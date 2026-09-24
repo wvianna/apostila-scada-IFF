@@ -1,0 +1,14 @@
+flowchart TB
+    subgraph CAMPO["Campo"]
+        S["Sensores"] --> C["CLP / RTU"]
+        C --> GW["Gateway de borda"]
+    end
+    subgraph INTEGRACAO["Integracao"]
+        GW -->|"MQTT"| TB["ThingsBoard"]
+        NR["Node-RED"] -->|"MQTT"| TB
+    end
+    subgraph USO["Uso"]
+        TB --> RC["Rule chain: alarme e historico"]
+        TB --> DB["Dashboard de operacao"]
+        TB --> API["API REST: sistemas externos"]
+    end

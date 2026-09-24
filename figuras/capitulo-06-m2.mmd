@@ -1,0 +1,6 @@
+flowchart TB
+    CLP["CLPs / sensores"] -->|"MQTT / OPC UA"| KAFKA["Apache Kafka\nstreaming"]
+    KAFKA --> INFLUX["InfluxDB\nserie temporal"]
+    INFLUX --> GRAF["Grafana\ndashboard"]
+    KAFKA --> SPARK["Apache Spark\nanalise em lote e ML"]
+    SPARK --> BI["Power BI / Tableau\nrelatorios gerenciais"]

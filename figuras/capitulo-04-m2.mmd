@@ -1,0 +1,11 @@
+flowchart TB
+    subgraph MONO["Monolitica: um servidor"]
+        direction TB
+        M1["Cliente do operador"] --> M2["Servidor unico"]
+    end
+    subgraph RED["Redundante: primario e reserva"]
+        direction TB
+        R1["Clientes"] --> R2["Servidor primario"]
+        R2 --> R3["Servidor reserva"]
+    end
+    MONO ~~~ RED

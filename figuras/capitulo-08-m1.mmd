@@ -1,0 +1,23 @@
+flowchart TB
+    subgraph Z1["Zona corporativa - SL1"]
+        ERP["ERP / e-mail / Internet"]
+    end
+    subgraph Z2["DMZ industrial"]
+        HIST["Historiador / servidor web"]
+        PATCH["Servidor de patches"]
+    end
+    subgraph Z3["Zona supervisoria - SL2"]
+        SCADA["Servidor SCADA"]
+        HMI["Estacoes HMI"]
+    end
+    subgraph Z4["Zona de controle - SL3"]
+        CLP["CLPs"]
+        RTU["RTUs"]
+    end
+    subgraph Z5["Zona de seguranca funcional - SL4"]
+        SIS["Sistema de seguranca"]
+    end
+    ERP -->|"firewall"| HIST
+    HIST -->|"firewall"| SCADA
+    SCADA -->|"firewall"| CLP
+    CLP -.-> SIS

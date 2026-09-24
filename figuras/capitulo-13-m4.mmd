@@ -1,0 +1,8 @@
+flowchart TB
+    CLP["CLP com servidor OPC UA"] -->|"opc.tcp 4840"| SCADA["SCADA: cliente OPC UA"]
+    CLP -->|"opc.tcp"| GW["Gateway de borda:\ncliente OPC UA + publisher Sparkplug"]
+    GW -->|"MQTT 5 com TLS"| BROKER["Broker MQTT"]
+    BROKER --> TB["Plataforma IIoT:\nNBIRTH cria ativos"]
+    BROKER --> HIST["Historizador"]
+    BROKER --> NR["Node-RED: regras e normalizacao"]
+    SCADA -->|"MQTT / OPC UA"| BROKER

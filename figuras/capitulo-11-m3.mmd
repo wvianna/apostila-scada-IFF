@@ -1,0 +1,9 @@
+flowchart TB
+    S["Sensores: P, T, F, N"] --> C["CLP: escala e filtro"]
+    C -->|"Modbus TCP"| N["Node-RED: normaliza e publica"]
+    N -->|"MQTT"| B["Broker MQTT"]
+    B --> I["InfluxDB: serie temporal"]
+    B --> T["ThingsBoard: alarme e dispositivo"]
+    I --> G["Grafana: tendencia e analise"]
+    T --> D["Dashboard operacional"]
+    G --> R["Relatorio e KPI"]

@@ -1,0 +1,24 @@
+graph TD
+    subgraph Campo
+        S[Sensores e Transmissores]
+        A[Atuadores]
+    end
+    subgraph Controle
+        CLP[CLP / RTU]
+        DCS[DCS]
+    end
+    subgraph Supervisório
+        SCADA[SCADA / HMI]
+    end
+    subgraph Gestão
+        MES[MES]
+        ERP[ERP]
+    end
+    S --> CLP
+    S --> DCS
+    CLP --> A
+    DCS --> A
+    CLP --> SCADA
+    DCS --> SCADA
+    SCADA --> MES
+    MES --> ERP

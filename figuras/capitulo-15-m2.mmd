@@ -1,0 +1,7 @@
+flowchart TB
+    RAW["Valor bruto do canal"] --> VAL{"Dentro da faixa fisica?"}
+    VAL -->|"Nao"| BAD["Marcar qualidade ruim\ne manter ultimo valor ou traco"]
+    VAL -->|"Sim"| SCL["Escalonar e filtrar\nmedia, mediana ou rampa"]
+    SCL --> DB{"Variou mais que a faixa morta?"}
+    DB -->|"Nao"| SKIP["Nao publicar: reduz trafego"]
+    DB -->|"Sim"| PUB["Publicar com carimbo de tempo"]

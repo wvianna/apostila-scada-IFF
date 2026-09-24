@@ -1,0 +1,6 @@
+flowchart TB
+    OC["Ocorrencia no sistema"] --> Q1{"Exige acao corretiva\ndo operador?"}
+    Q1 -->|"Sim"| AL["Alarme: anuncio com prioridade\ne registro no historico"]
+    Q1 -->|"Nao"| Q2{"E transicao de estado\nde equipamento?"}
+    Q2 -->|"Sim"| ES["Evento de estado:\nalimenta disponibilidade\ne diagnostico"]
+    Q2 -->|"Nao"| EO["Evento de operacao ou sistema:\nalimenta a trilha de auditoria"]

@@ -1,0 +1,7 @@
+flowchart TB
+    IN["Mensagem de entrada"] --> MS["Message Type Switch"]
+    MS -->|"Post telemetry"| SV["Save Timeseries"]
+    SV --> AL["Create Alarm"]
+    MS -->|"Post attributes"| AT["Save Attributes"]
+    AL --> CL["Clear Alarm"]
+    CL --> NOT["Notificacao e dashboard"]

@@ -1,0 +1,9 @@
+graph TD
+    L7["Camada 7 – Aplicação (OPC UA, MQTT, HTTP, Modbus/TCP)"]
+    L6["Camada 6 – Apresentação (codificação de dados)"]
+    L5["Camada 5 – Sessão (OPC UA Session)"]
+    L4["Camada 4 – Transporte (TCP/UDP)"]
+    L3["Camada 3 – Rede (IP, IPv6)"]
+    L2["Camada 2 – Enlace (Ethernet, PROFINET, EtherNet/IP)"]
+    L1["Camada 1 – Física (cabos, fibra, RS-485, Wi-Fi)"]
+    L7 --> L6 --> L5 --> L4 --> L3 --> L2 --> L1

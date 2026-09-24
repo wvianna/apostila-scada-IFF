@@ -1,0 +1,12 @@
+flowchart TB
+    subgraph "Campo e controle"
+        C["CLP / RTU: controle e protecao"]
+    end
+    subgraph "Integracao: papel do Node-RED"
+        F["Protocolos, normalizacao e regras leves"]
+    end
+    C -->|Modbus, OPC UA| F
+    F --> SC["SCADA: operacao e comando"]
+    F --> BD["Banco de series temporais"]
+    F --> II["Plataforma IIoT"]
+    F --> DB["Dashboard web"]

@@ -1,0 +1,12 @@
+flowchart TB
+    subgraph CS["Cliente-servidor: conversa ponto a ponto"]
+        C1["Cliente SCADA"] -->|"Sessao + Subscribe"| S1["Servidor OPC UA no CLP"]
+        C2["Cliente MES"] -->|"Sessao + Read"| S1
+    end
+    subgraph PS["PubSub: publicacao para muitos"]
+        P1["Publisher na borda"] -->|"UADP sobre UDP\nou MQTT"| B1["Broker / rede multicast"]
+        B1 --> A1["Assinante SCADA"]
+        B1 --> A2["Assinante historico"]
+        B1 --> A3["Assinante analise"]
+    end
+    CS ~~~ PS

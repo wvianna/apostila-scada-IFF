@@ -1,0 +1,7 @@
+flowchart TB
+    DT["Deteccao: monitoramento passivo"] --> TR["Triagem: falso positivo"]
+    TR --> CN["Contencao: isolar sem parar o processo"]
+    CN --> ER["Erradicacao: remover a causa"]
+    ER --> RC["Recuperacao: restaurar com backup verificado"]
+    RC --> LI["Licoes aprendidas"]
+    LI --> DT

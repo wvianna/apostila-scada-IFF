@@ -1,0 +1,20 @@
+graph TD
+    subgraph "Campo (On-Premises)"
+        CLP[CLPs / RTUs]
+        GW[Edge Gateway\nConcentrador de dados]
+    end
+    subgraph "Internet / WAN"
+        VPN[VPN / TLS]
+    end
+    subgraph "Cloud (AWS / Azure / GCP)"
+        BROKER[MQTT Broker\nGerenciado]
+        SCADA[SCADA Server\nVirtual]
+        HIST[Historiador\nTime-Series DB]
+        DASH[Dashboard Web]
+        ML[Analytics / ML]
+    end
+    CLP --> GW
+    GW -- "MQTT / OPC UA" --> VPN --> BROKER
+    BROKER --> SCADA --> HIST
+    SCADA --> DASH
+    HIST --> ML

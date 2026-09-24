@@ -1,0 +1,6 @@
+graph TD
+    P1[Publisher\nSensor/RTU] -- "Publica\ntopic: planta/bomba1/temperatura" --> BROKER["MQTT Broker\n(Mosquitto / HiveMQ)"]
+    P2[Publisher\nCLP] -- "Publica\ntopic: planta/tanque/nivel" --> BROKER
+    BROKER -- "Distribui" --> S1[Subscriber\nSCADA]
+    BROKER -- "Distribui" --> S2[Subscriber\nCloud / InfluxDB]
+    BROKER -- "Distribui" --> S3[Subscriber\nDashboard Grafana]

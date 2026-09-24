@@ -1,0 +1,3 @@
+flowchart TB
+    CLP["CLP / DCS\n(servidor OPC UA)"] -->|"OPC UA TCP\nporta 4840"| SCADA["SCADA\n(cliente OPC UA)"]
+    SCADA -. "Subscribe, Read e Write" .-> CLP

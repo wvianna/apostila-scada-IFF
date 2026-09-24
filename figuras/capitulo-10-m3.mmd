@@ -1,0 +1,9 @@
+flowchart TB
+    P["Processo"] --> C["CLP: protecao e intertravamento"]
+    C --> G["Gateway de borda: limites e filtragem"]
+    G -->|"MQTT"| PL["Plataforma IIoT: rule chain"]
+    PL --> A["Alarme: severidade e estado"]
+    PL --> H["Historico de telemetria"]
+    A --> D["Dashboard e notificacao"]
+    H --> D
+    A --> AN["Relatorio e analise de desempenho"]

@@ -1,0 +1,12 @@
+flowchart TB
+    subgraph TRAD["Modelo tradicional: em camadas"]
+        direction TB
+        L0["Campo"] --> L1["Controle"] --> L2["Supervisorio"] --> L3["MES"] --> L4["ERP"]
+    end
+    subgraph IIOT["Modelo IIoT: dado direto da borda"]
+        direction TB
+        C["Campo / Edge"] -->|MQTT / OPC UA| CL["Cloud / Analytics"]
+        CL --> ERP2["ERP / BI"]
+        CL -. "configuracao de retorno" .-> C
+    end
+    TRAD ~~~ IIOT

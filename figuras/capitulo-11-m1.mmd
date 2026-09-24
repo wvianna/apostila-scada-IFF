@@ -1,0 +1,5 @@
+flowchart TB
+    D["Dado bruto: 4 a 20 mA, registrador, MQTT"] --> T["Serie temporal com qualidade e timestamp"]
+    T --> I["Indicador: valor atual, media, maximo, tendencia"]
+    I --> C["Contexto: faixa normal, limite, setpoint"]
+    C --> A["Acao: manter, ajustar, investigar, chamar manutencao"]

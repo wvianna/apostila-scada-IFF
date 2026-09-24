@@ -1,0 +1,11 @@
+sequenceDiagram
+    participant NO as Edge node
+    participant BR as Broker MQTT
+    participant AP as Aplicacao
+    AP->>BR: Assina spBv1.0/planta/#
+    NO->>BR: NBIRTH com lista de metricas e tipos
+    BR->>AP: Aplicacao descobre o que existe
+    NO->>BR: NDATA apenas quando ha mudanca
+    BR->>AP: Valor com tipo, unidade e timestamp
+    NO--xBR: Enlace cai
+    BR->>AP: NDEATH avisa que o no saiu

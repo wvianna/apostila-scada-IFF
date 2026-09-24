@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant PROC as Processo
+    participant SIS as Instrumentacao
+    participant SUP as Supervisao
+    participant OPE as Operador
+    PROC->>SIS: Temperatura sobe acima de 85 C
+    SIS->>SUP: Alarme de alta temp (prioridade alta)
+    SUP->>OPE: Notifica som, cor e posicao
+    OPE->>SUP: Reconhece o alarme
+    OPE->>PROC: Verifica oleo, vibracao e bomba reserva
+    PROC->>SIS: Temperatura volta abaixo de 80 C
+    SIS->>SUP: Limpa o alarme
+    SUP->>OPE: Registra evento no historico

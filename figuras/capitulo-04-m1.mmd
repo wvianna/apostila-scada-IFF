@@ -1,0 +1,22 @@
+graph TD
+    subgraph Campo
+        RTU1[RTU / CLP #1]
+        RTU2[RTU / CLP #2]
+        S[Sensores e Atuadores]
+    end
+    subgraph "Rede de Comunicação"
+        NET[Fibra / Rádio / 4G / Ethernet]
+    end
+    subgraph "Centro de Controle"
+        MTU[Servidor SCADA / MTU]
+        HIST[Servidor de Histórico]
+        WEB[Servidor Web / Thin Client]
+        HMI1[Estação Operador 1]
+        HMI2[Estação Operador 2]
+    end
+    S --> RTU1 & RTU2
+    RTU1 & RTU2 --> NET
+    NET --> MTU
+    MTU --> HIST
+    MTU --> WEB
+    MTU --> HMI1 & HMI2

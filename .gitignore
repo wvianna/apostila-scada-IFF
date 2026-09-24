@@ -1,0 +1,102 @@
+# =====================================================================
+#  .gitignore — Apostila: Sistemas SCADA e Supervisórios Industriais
+#
+#  Regra do projeto (ver handoff.md §3 e status.md):
+#    apostila/*.md, figuras/*.mmd e .github/skills/  = FONTE, versionados
+#    docs/*.pdf                                      = insumo imutável
+#    latex/, figuras/*.pdf, docs/fontes/, HTML       = ARTEFATOS reproduzíveis
+#
+#  Tudo abaixo é reproduzível pelos scripts da skill:
+#    render-mermaid.sh · build-pdf.sh · extrair-fontes.sh · rebuild.py
+# =====================================================================
+
+
+# ---------------------------------------------------------------------
+#  1. Saída do pipeline LaTeX (build-pdf.sh) — inteiramente gerada.
+#     O script copia assets/{apostila.tex,callouts.lua} para cá e reescreve
+#     capitulos/, manifest.tex, references.tex e build/ a cada execução.
+#     O PDF final (latex/apostila.pdf) sai daqui: para versioná-lo, troque
+#     as duas linhas por   /latex/*   e   !/latex/apostila.pdf
+# ---------------------------------------------------------------------
+/latex/
+
+# Resíduos de LaTeX/pandoc fora de latex/ (compilação avulsa, testes)
+*.aux
+*.lof
+*.log
+*.lot
+*.out
+*.toc
+*.idx
+*.ind
+*.ilg
+
+# ---------------------------------------------------------------------
+#  2. Diagramas Mermaid renderizados (render-mermaid.sh)
+#     A fonte é figuras/*.mmd — os PDFs são derivados e saem do git.
+#     figuras/tmp* é o resíduo do pdfimages (figuras/tmp-000.png…) — ver
+#     references/figuras.md.
+# ---------------------------------------------------------------------
+/figuras/*.pdf
+figuras/tmp*
+
+# ---------------------------------------------------------------------
+#  3. Conversão dos PDFs de origem (extrair-fontes.sh)
+#     `docs/fontes/` é rascunho de conferência: nunca é copiado para o
+#     texto final (tabelas convertidas saem colapsadas — ver fontes.md).
+# ---------------------------------------------------------------------
+/docs/fontes/
+
+# ---------------------------------------------------------------------
+#  4. Versão web (docs/apostila/rebuild.py)
+#     O script lê apostila/*.md e regenera o HTML preservando CSS/JS.
+#     O .py é fonte; só o HTML é artefato.
+# ---------------------------------------------------------------------
+/docs/apostila/apostila-scada.html
+
+
+# ---------------------------------------------------------------------
+#  5. Fontes de origem — decisão consciente, fácil de reverter.
+#
+#  `docs/` guarda ~25 MB de PDFs de aula/curso, entre eles material de
+#  TERCEIROS da ISA (ISA101.pdf, simpósio ISA-101/Sabesp e boas práticas
+#  SCADA/PIMS). A apostila é CC BY-SA 4.0 e a skill proíbe reproduzir
+#  material ISA (regra 10 e status.md §1), então esses arquivos não devem
+#  ser redistribuídos pelo repositório.
+#
+#  Se o repositório for privado e você quiser o build reprodutível a
+#  partir do clone, comente as linhas abaixo.
+# ---------------------------------------------------------------------
+/docs/*.pdf
+/docs/*.odp
+/docs/isa101/
+
+# ---------------------------------------------------------------------
+#  6. Ferramentas, editores e sistema
+# ---------------------------------------------------------------------
+# Cache de trabalho do CLI Firecrawl (pesquisa de normas, uso pontual)
+/.firecrawl/
+
+# Python — scripts da skill e rebuild.py
+__pycache__/
+*.py[cod]
+
+# Editores / sistema
+# VS Code: ignorar o conteúdo, mas preservar tasks/settings do projeto —
+# o fluxo aqui é rodar 4 comandos fixos, e vale tê-los versionados.
+.vscode/*
+!.vscode/tasks.json
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+.directory
+
+# Backups de edição manual (o rewriter de template do latex.md usa rm+create:
+# um *.bak aqui indica edição manual, não artefato de build)
+*.bak
+*.orig
+*.rej

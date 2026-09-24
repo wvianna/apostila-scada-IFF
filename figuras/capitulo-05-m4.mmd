@@ -1,0 +1,6 @@
+flowchart TB
+    TX["Transmissores\nModbus RTU"] -->|RS-485| GW["Gateway\nModbus para OPC UA"]
+    CLP["CLP S7-1500\nOPC UA nativo"] -->|OPC UA| SCADA["Servidor SCADA"]
+    GW -->|OPC UA| SCADA
+    SCADA -->|"MQTT / Sparkplug B"| BROKER["Broker MQTT"]
+    BROKER --> CLOUD["Nuvem: dashboard e ML"]

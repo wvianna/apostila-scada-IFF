@@ -1,0 +1,18 @@
+graph TD
+    subgraph "Campo (Edge)"
+        D1[Sensor IIoT]
+        D2[Atuador Inteligente]
+        GW[Gateway / Edge Controller]
+    end
+    subgraph "Borda Intermediária (Fog)"
+        FOG[Servidor Fog / MEC]
+    end
+    subgraph "Nuvem (Cloud)"
+        CLOUD[Plataforma Cloud\nAWS / Azure / Google]
+        ANALYTICS[Analytics / ML]
+        DASH[Dashboard / BI]
+    end
+    D1 & D2 --> GW
+    GW -- "MQTT / OPC UA" --> FOG
+    FOG -- "HTTPS / AMQP" --> CLOUD
+    CLOUD --> ANALYTICS --> DASH

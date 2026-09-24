@@ -1,0 +1,9 @@
+stateDiagram-v2
+    [*] --> Parado
+    Parado --> Partindo: comando de partida
+    Partindo --> Operando: confirmacao de fluxo
+    Partindo --> Falha: tempo de partida excedido
+    Operando --> Parando: comando de parada
+    Operando --> Falha: protecao atuada
+    Parando --> Parado: rotacao nula
+    Falha --> Parado: reset apos diagnostico

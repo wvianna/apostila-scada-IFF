@@ -1,0 +1,208 @@
+% !TEX program = pdflatex
+% =====================================================================
+%  Apostila — Sistemas de Supervisão Industrial, SCADA, IoT e IIoT
+%  Master LaTeX. NÃO editar à mão o que o build gera (manifest.tex,
+%  capitulos/*.tex). Compilar com: scripts/build-pdf.sh
+%  (pdflatex x3 + makeindex; latexmk NÃO está instalado neste sistema)
+% =====================================================================
+\documentclass[12pt,a4paper,oneside]{report}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[brazilian]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+\setlength{\emergencystretch}{2em}   % parágrafos com URL/código longo: evita Overfull \hbox
+\sloppy                              % nomes de arquivo com "_" não quebram: sem isso, estouram a linha
+\usepackage[a4paper,top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage{calc}          % o pandoc gera p{(\columnwidth - 6\tabcolsep) * \real{...}}
+\usepackage{graphicx}
+\usepackage{float}
+% Figuras SEM float. Um float colocado logo depois de uma longtable (todas as
+% tabelas do pandoc são longtable) é posicionado com estimativa otimista de
+% espaço e estoura a mancha — Overfull \vbox de 261 pt medido no cap. 11, que o
+% "tbp" não resolveu. Sem float, o TeX quebra a página com segurança.
+% A minipage mantém imagem e legenda no mesmo bloco indivisível: sem ela o TeX
+% pode quebrar a página entre as duas (imagem no fim de uma folha e legenda no
+% topo da seguinte). A Lista de Figuras continua funcionando porque o \caption
+% sabe numerar fora de float via \captionsetup{type=figure}.
+\renewenvironment{figure}[1][]{%
+  \par\addvspace{\intextsep}%
+  \noindent\begin{minipage}{\linewidth}%
+    \captionsetup{type=figure}%
+}{%
+  \end{minipage}%
+  \par\addvspace{\intextsep}%
+}
+% O pandoc emite \includegraphics{} sem opções para figura sem atributo de largura no
+% Markdown; o pdflatex assumiria 96 dpi e a figura estouraria a mancha
+% (Overfull \hbox de ~700 pt). O par width+height com keepaspectratio limita os dois
+% lados: nenhuma figura passa de 75% da mancha nem de 42% da altura do texto.
+\setkeys{Gin}{width=0.75\linewidth,height=0.42\textheight,keepaspectratio}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{makeidx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}   % permite quebrar URL longa (sem isso, as referências estouram a mancha)
+
+\makeindex
+
+% ---------------------------------------------------------------------
+%  Macros que o pandoc emite e que o template dele define — mas aqui o
+%  master é próprio, então precisam existir:
+%    \tightlist   -> listas "tight" (todo itemize/enumerate do pandoc)
+%    \passthrough -> conteúdo que não deve ser escapado
+% ---------------------------------------------------------------------
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\passthrough}[1]{#1}
+
+% ---------------------------------------------------------------------
+%  Tipografia e mancha  (ATENÇÃO: \tabcolsep entra na largura de p{}:
+%  cada coluna ocupa x + 2\tabcolsep. Orçamento: ~14,6 cm em 3 colunas
+%  e ~14,3 cm em 4 colunas. Ver references/latex.md.)
+% ---------------------------------------------------------------------
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.15}
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+\captionsetup{font=small,labelfont=bf,skip=6pt}
+% A apostila numera figuras à mão ("Figura 4.3 – ..."), inclusive nos placeholders.
+% Sem isto, o LaTeX acrescenta o próprio rótulo e sai "Figura 4.3: Figura 4.3 – ...".
+% Tabelas continuam numeradas automaticamente ("Tabela 10.1: ...").
+% "listformat=empty" faz o mesmo na Lista de Figuras — sem ele o LOF imprime o
+% número automático ANTES do rótulo manual e os dois divergem ("4.2 Figura 4.3 – ..."),
+% porque os placeholders não geram entrada no LOF e deslocam a contagem.
+\captionsetup[figure]{labelformat=empty,listformat=empty}
+\setlist{itemsep=2pt,topsep=4pt,parsep=0pt}
+
+\definecolor{azul}{HTML}{1F4E79}
+\definecolor{vinho}{HTML}{B7472A}
+\definecolor{verde}{HTML}{2E7D32}
+\definecolor{roxo}{HTML}{6A4C93}
+\definecolor{cinzafundo}{HTML}{F4F5F7}
+\definecolor{cinzaborda}{HTML}{C9CDD4}
+
+% ---------------------------------------------------------------------
+%  Caixas de destaque — usadas pelo assets/callouts.lua a partir dos
+%  quadros 📌 Nota / ⚠️ Atenção / 💡 Dica / 🖼️ Figura do Markdown.
+% ---------------------------------------------------------------------
+\tcbuselibrary{breakable}   % sem isso, a chave 'breakable' das caixas falha
+\newtcolorbox{destaque}[2]{%
+  breakable, colback=#1!7, colframe=#1!75, boxrule=0.6pt, arc=2pt,
+  left=6pt, right=6pt, top=5pt, bottom=5pt,
+  before skip=8pt, after skip=8pt,
+  title={\small\bfseries #2}, coltitle=white, colbacktitle=#1!85}
+
+\newenvironment{caixanota}{\begin{destaque}{azul}{Nota}}{\end{destaque}}
+\newenvironment{caixaatencao}{\begin{destaque}{vinho}{Atenção}}{\end{destaque}}
+\newenvironment{caixadica}{\begin{destaque}{verde}{Dica}}{\end{destaque}}
+\newenvironment{caixafigura}{\begin{destaque}{roxo}{Figura}}{\end{destaque}}
+
+% ---------------------------------------------------------------------
+%  Listagens — ~70 caracteres por linha é o limite prático; acima disso
+%  quebra (e quebra em desenho ASCII destrói o alinhamento).
+% ---------------------------------------------------------------------
+\lstdefinestyle{apostila}{
+  basicstyle=\ttfamily\scriptsize,
+  breaklines=true, breakatwhitespace=false,
+  columns=fullflexible, keepspaces=true, showstringspaces=false,
+  frame=single, framesep=3pt, rulecolor=\color{cinzaborda},
+  backgroundcolor=\color{cinzafundo}, tabsize=2, numbers=none,
+  aboveskip=6pt, belowskip=6pt,
+  % Acentos dentro de lstlisting/\lstinline: sem 'literate', o inputenc utf8
+  % falha com "Invalid UTF-8 byte sequence" (comentário de código em português).
+  extendedchars=true,
+  literate=%
+    {á}{{\'a}}1 {à}{{\`a}}1 {ã}{{\~a}}1 {â}{{\^a}}1 {ä}{{\"a}}1
+    {é}{{\'e}}1 {ê}{{\^e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {õ}{{\~o}}1 {ô}{{\^o}}1
+    {ú}{{\'u}}1 {ü}{{\"u}}1 {ç}{{\c c}}1 {º}{{\textordmasculine}}1 {ª}{{\textordfeminine}}1
+    {Á}{{\'A}}1 {À}{{\`A}}1 {Ã}{{\~A}}1 {Â}{{\^A}}1 {É}{{\'E}}1 {Ê}{{\^E}}1
+    {Í}{{\'I}}1 {Ó}{{\'O}}1 {Õ}{{\~O}}1 {Ô}{{\^O}}1 {Ú}{{\'U}}1 {Ç}{{\c C}}1
+    {→}{{->}}1 {←}{{<-}}1 {≤}{{<=}}1 {≥}{{>=}}1 {×}{{x}}1 {µ}{{{$\mu$}}}1}
+\lstset{style=apostila}
+\renewcommand{\lstlistingname}{Listagem}
+\captionsetup[lstlisting]{font=small,labelfont=bf}
+
+% ---------------------------------------------------------------------
+%  Cabeçalho e rodapé
+% ---------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\itshape\nouppercase{\leftmark}}
+\fancyfoot[C]{\small\thepage}
+% cabeçalho só com "N. Título" (o padrão do report repete "CAPÍTULO N.")
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\small\thepage}\renewcommand{\headrulewidth}{0pt}}
+
+% ---------------------------------------------------------------------
+%  \chapterfile: inclui o capítulo se existir, avisa se faltar
+%  (o build regenera manifest.tex a partir de apostila/capitulo-*.md)
+% ---------------------------------------------------------------------
+\newcommand{\chapterfile}[1]{%
+  \IfFileExists{#1.tex}{\input{#1}}{\typeout{AVISO: #1.tex ausente --- capitulo ignorado}}}
+
+\begin{document}
+
+% ---------------------------- capa ----------------------------------
+% Manter em sincronia com apostila/indice.md
+\begin{titlepage}
+  \centering
+  {\scshape\large INSTITUTO FEDERAL FLUMINENSE\par}
+  {\large Curso de Engenharia de Controle e Automação\par}
+  \vspace{2.5cm}
+  {\Huge\bfseries Sistemas SCADA e\\ Supervisórios Industriais\par}
+  \vspace{0.8cm}
+  {\Large Apostila Técnica Ilustrada\par}
+  \vspace{0.4cm}
+  {\large\itshape Supervisão Industrial, SCADA, HMI, IoT e IIoT\par}
+  \vspace{1.5cm}
+  {\large Versão 2.2\par}
+  {\normalsize Atualizada com IIoT, OPC UA, MQTT, Cloud SCADA, alarmes, dashboards, ThingsBoard e Sparkplug\par}
+  \vfill
+  {\large William da Silva Vianna\par}
+  \vspace{0.8cm}
+  {\small Licenciada sob Creative Commons Atribuição--CompartilhaIgual 4.0 Internacional\par}
+\end{titlepage}
+
+% ------------------------- pré-textuais -----------------------------
+\pagenumbering{roman}
+\IfFileExists{frontmatter.tex}{\input{frontmatter.tex}}{\typeout{AVISO: frontmatter.tex ausente}}
+\clearpage
+\tableofcontents
+\clearpage
+\listoffigures
+\clearpage
+\listoftables
+\clearpage
+
+% --------------------------- capítulos ------------------------------
+\pagenumbering{arabic}
+\IfFileExists{manifest.tex}{\input{manifest.tex}}{\typeout{AVISO: manifest.tex ausente}}
+
+% --------------------------- anexos ---------------------------------
+\appendix
+\chapterfile{apendices/glossario}
+
+% ------------------------ referências -------------------------------
+\cleardoublepage
+\chapter*{Referências}
+\addcontentsline{toc}{chapter}{Referências}
+\markboth{Referências}{Referências}
+\IfFileExists{referencias.tex}{\input{referencias.tex}}{\typeout{AVISO: referencias.tex ausente}}
+
+% --------------------------- índice ---------------------------------
+% Habilite \printindex quando houver entradas \index{} nos textos.
+% \printindex
+
+\end{document}

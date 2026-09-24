@@ -1,0 +1,7 @@
+flowchart TB
+    F["Fenomeno fisico\nnivel, pressao, temperatura"]
+    S["Sensor, transmissor e condicionamento\nconverte e prepara o sinal eletrico"]
+    A["Conversao A/D e memoria imagem\n%AI, %I e %Q no controlador"]
+    D["Driver ou servidor de comunicacao\nvarredura por grupo ou assinatura"]
+    T["Tag, historizador e nuvem\nescalonado, validado, com qualidade"]
+    F --> S --> A --> D --> T

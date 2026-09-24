@@ -1,0 +1,11 @@
+sequenceDiagram
+    participant CLP as CLP (Campo)
+    participant SCADA as SCADA
+    participant DT as Digital Twin
+    participant OTIM as Otimizador (ML)
+    CLP->>SCADA: Dados em tempo real (T, P, F, V)
+    SCADA->>DT: Atualiza estado do modelo
+    DT->>DT: Simula cenários alternativos
+    DT->>OTIM: Envia estado atual + simulações
+    OTIM->>SCADA: Recomendação de setpoints ótimos
+    SCADA->>CLP: Comando de ajuste (operador aprova)

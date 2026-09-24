@@ -1,0 +1,9 @@
+graph LR
+    subgraph Campo
+        S1[Sensor 1] & S2[Sensor 2] --> RTU
+        RTU --> A1[Atuador]
+    end
+    subgraph Centro de Controle
+        MTU[MTU / Servidor SCADA]
+    end
+    RTU -- "Rádio / 4G / Satélite" --> MTU

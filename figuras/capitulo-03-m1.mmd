@@ -1,0 +1,9 @@
+flowchart TB
+    C["Campo: sensores e atuadores"] --> P["CLP / RTU: controle"]
+    P -->|"Modbus, OPC UA, DNP3"| D["Servidor SCADA: drivers e tags"]
+    D --> M["Motor de alarmes"]
+    D --> H["Historiador: serie temporal"]
+    D --> V["Visualizacao: sinoticos e tendencias"]
+    M --> V
+    V --> O["Clientes do operador"]
+    H --> R["Relatorios e analise"]

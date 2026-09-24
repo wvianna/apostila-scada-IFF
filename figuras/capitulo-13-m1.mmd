@@ -1,0 +1,7 @@
+flowchart TB
+    ROOT["Objeto: Bomba 2"] --> V1["Variavel: PressaoDescarga\nDouble, bar, EURange 0 a 16"]
+    ROOT --> V2["Variavel: TemperaturaMancal\nDouble, graus C"]
+    ROOT --> M1["Metodo: PartidaBomba"]
+    ROOT --> E1["Evento: AlarmeAltaTemperatura"]
+    ROOT --> V1T["Tipo: AnalogItemType\n(with engineering units)"]
+    V1 -. "HasTypeDefinition" .-> V1T

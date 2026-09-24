@@ -1,0 +1,7 @@
+flowchart TB
+    C["CLP / RTU: controle e protecao"] -->|Modbus, OPC UA| F["Node-RED: protocolo, normalizacao, regras leves"]
+    S["Sensor / gateway"] -->|MQTT| F
+    F --> D["Dashboard web"]
+    F --> B["Banco de series temporais"]
+    F --> N["Plataforma IIoT"]
+    F --> A["Alarme e notificacao"]

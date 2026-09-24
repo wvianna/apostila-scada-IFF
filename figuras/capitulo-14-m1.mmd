@@ -1,0 +1,8 @@
+flowchart TB
+    S["Sensor de campo\n4 a 20 mA"] --> AD["Conversor A/D\nfaixa bruta 0 a 32767"]
+    AD --> IMG["Memoria imagem do controle\n%AI1, %Q1, %I1"]
+    IMG --> DRV["Driver ou servidor de comunicacao\nModbus, OPC UA, DNP3"]
+    DRV --> BT["Banco de tagnames do supervisório"]
+    BT --> OBJ["Objetos da IHM\nbarra, display, cor, botao"]
+    BT --> HIS["Historizador e registro de eventos"]
+    BT --> API["Publicacao IoT e nuvem\nMQTT, REST"]
