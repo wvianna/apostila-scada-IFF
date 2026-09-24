@@ -41,13 +41,15 @@ do HTML e a ordem do livro saem) e o glossário.
 ## 3. Convenções que não se inventam
 
 - Título: `# Capítulo N – Título`; seções `## N.M`; subseções `### N.M.K`.
+- Autor oficial: **D.Sc. William da Silva Vianna** — com o título, em capa (`assets/apostila.tex`),
+  `apostila/indice.md`, `README.md` e `LICENSE.md`. Não escrever o nome sem o título.
 - Quadros de destaque com **exatamente quatro** emojis: 📌 Nota, ⚠️ Atenção, 💡 Dica, 🖼️ Figura.
   O `rebuild.py` e o filtro LaTeX classificam as caixas por eles.
 - Tabela legendada como `**Tabela N.M – Título**` em linha própria, antes da tabela.
 - Numeração manual (`Figura N.M`, `Tabela N.M`) precisa ser sequencial dentro do capítulo: o
   LaTeX renumera e o gate acusa buraco.
 - Mínimos por capítulo: 3 figuras, 2 diagramas, 1 tabela comparativa, 1 estudo de caso,
-  2 quadros de destaque, 5–10 questões, seção de referências. (Todos os 14 capítulos já têm
+  2 quadros de destaque, 5–10 questões, seção de referências. (Todos os 20 capítulos já têm
   estudo de caso; a **atividade prática** existe só nos capítulos 10 a 13.)
 - Toda figura leva `Fonte:`. Toda norma citada exige edição verificada.
 - A linha `> **Fonte:**` é escrita logo depois da figura. No **PDF** ela é integrada à legenda
@@ -80,7 +82,7 @@ do HTML e a ordem do livro saem) e o glossário.
 
 ## 5. Próximos passos sugeridos (em ordem de retorno)
 
-1. **Continuar a extração de figuras** para as 37 posições restantes (cobertura atual: 24 reais).
+1. **Continuar a extração de figuras** para as 48 posições restantes (cobertura atual: 31 reais).
    O caminho já está provado: `pdfimages -list` para achar as páginas → `pdfimages -png -f P -l P` →
    conferir qualidade numa folha de contato (`montage` ou uma montagem simples com PIL) → **conferir
    a legenda na página do PDF** (`pdftotext -layout -f P -l P`) para não batizar a figura errada →
@@ -101,18 +103,48 @@ do HTML e a ordem do livro saem) e o glossário.
 
    Esgotadas: as páginas 20–33 do `Livro SCADA` (todas as figuras de arquitetura já estão na
    apostila) e as páginas 89–139 (telas de InTouch/Elipse, que só repetem tutoriais).
-2. **Criar os capítulos que faltam**, na ordem de dependência: aquisição e tratamento de dados →
-   historiadores e séries temporais → Edge Computing → integração SCADA+CLP+IoT+Cloud → estudos de
-   caso → projetos práticos → IA e Digital Twin. (**Tags, variáveis, estados e eventos** saiu nesta
-   rodada como capítulo 14.)
-3. **Renumerar uma única vez**, quando o conjunto de capítulos estiver completo (ver `status.md`,
-   decisão 3). Enquanto isso, a sequência 1–13 é a vigente e o gate confere a numeração interna.
-4. **Redesenhar as figuras de HMI/alarmes** dos capítulos 3, 10 e 11 (hierarquia de telas, uso de
+2. **Renumerar os capítulos** (agora é o passo de maior efeito). O conjunto está completo: 20
+   capítulos, 257 páginas, gate e build limpos. A ordem atual é a de criação — a apostila abre com
+   arquitetura e protocolos e só no fim trata de aquisição, tags, historiadores, borda e projeto.
+   Ordem proposta, do fundamento à aplicação:
+
+   | Nova | Título | Atual |
+   |---|---|---|
+   | 1 | Introdução à Automação Industrial | 1 |
+   | 2 | Pirâmide de Automação e Níveis Hierárquicos | 2 |
+   | 3 | Sistemas Supervisórios — SCADA e HMI | 3 |
+   | 4 | Arquitetura e Componentes de um Sistema SCADA | 4 |
+   | 5 | Aquisição e Tratamento de Dados | 15 |
+   | 6 | Tags, Variáveis, Estados e Eventos | 14 |
+   | 7 | Redes e Protocolos de Comunicação Industrial | 5 |
+   | 8 | OPC UA, MQTT e Sparkplug B | 13 |
+   | 9 | IIoT e Tecnologias Emergentes | 6 |
+   | 10 | Edge Computing na Indústria | 17 |
+   | 11 | Node-RED como Interface Supervisória | 7 |
+   | 12 | ThingsBoard | 12 |
+   | 13 | Integração SCADA + CLP + IoT + Cloud | 18 |
+   | 14 | Tendências: Cloud SCADA e Digital Twin | 9 |
+   | 15 | Historiadores e Séries Temporais | 16 |
+   | 16 | Dashboards e Visualização de Dados | 11 |
+   | 17 | Gerenciamento de Alarmes | 10 |
+   | 18 | Segurança em Sistemas SCADA | 8 |
+   | 19 | Projeto e Implantação de um Sistema Supervisório | 19 |
+   | 20 | IA e Analítica Industrial | 20 |
+
+   **Como fazer sem quebrar:** o título do capítulo, os títulos de seção, os rótulos manuais
+   (`Figura N.M`, `Tabela N.M`), as remissões no texto (“Capítulo 13”), os nomes de arquivo em
+   `figuras/` e as linhas de `indice.md` andam **juntos**. Faça em um só passo, capítulo a capítulo,
+   e rode o gate e o build a cada dois ou três capítulos — o gate confere a sequência interna, e o
+   build acusa figura ausente se o nome do PNG não acompanhar. Alternativa de menor risco: manter a
+   numeração atual e apenas reordenar o sumário, deixando a numeração fora de ordem.
+3. **Redesenhar as figuras de HMI/alarmes** dos capítulos 3, 10 e 11 (hierarquia de telas, uso de
    cor, painel de alarmes) em Mermaid ou desenho próprio, no lugar de reproduzir material ISA.
-5. **Revisar o `LICENSE.md`** com os autores (o arquivo descreve outra obra).
-6. **Avaliar `\printindex`**: hoje comentado porque não há entradas `\index{}`. Se o índice
+4. **Revisar o `LICENSE.md`** com os autores (o arquivo descreve outra obra).
+5. **Avaliar `\printindex`**: hoje comentado porque não há entradas `\index{}`. Se o índice
    remissivo for desejado, marcar os termos-chave com `\index{}` no texto (o `makeindex` já roda
    no `build-pdf.sh`).
+6. **Revisar o número de questões** dos capítulos antigos: os capítulos 1 a 9 têm 6 questões, os
+   novos têm 9 ou 10. Padronizar em 8 a 10 melhoraria a simetria de avaliação.
 
 ## 6. Fontes e rastreabilidade
 

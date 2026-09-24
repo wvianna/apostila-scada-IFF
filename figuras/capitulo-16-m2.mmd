@@ -1,0 +1,8 @@
+flowchart TB
+    Q{"Qual e a pergunta?"}
+    Q -->|"Valores de X entre 14h e 15h"| RP["Historico de processo
+serie temporal por tag"]
+    Q -->|"O que aconteceu as 14h32"| RE["Historico de eventos
+lista cronologica com estado"]
+    Q -->|"Quem alterou o limite"| RA["Trilha de auditoria
+acao, usuario e horario"]

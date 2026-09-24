@@ -1,0 +1,14 @@
+flowchart TB
+    N["Novo dado chega com resolucao alta"] --> C1{"Classe do dado?"}
+    C1 -->|"Protecao e transitorio"| P1["Registro de eventos
+retencao de meses"]
+    C1 -->|"Processo rapido"| P2["1 s por dias ou semanas
+depois: media, minimo e maximo por minuto"]
+    C1 -->|"Processo lento"| P3["5 a 60 s por meses
+depois: media por hora e por dia"]
+    C1 -->|"Indicador de gestao"| P4["1 min ou por evento
+retencao de anos"]
+    P2 --> AGG["Camada agregada
+alimenta a gestao"]
+    P3 --> AGG
+    P4 --> AGG

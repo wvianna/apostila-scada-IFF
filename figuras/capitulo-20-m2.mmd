@@ -1,0 +1,8 @@
+flowchart TB
+    H["Historico do ativo com regime\nrotulado"] --> B["Construcao do baseline\nmedia, dispersao e correlacoes"]
+    B --> D["Deteccao de desvio\nestatico, multivariavel ou ambos"]
+    D --> C{"Desvio persistente?"}
+    C -->|"Nao"| L["Registrar como observacao\nsem avisar ninguem"]
+    C -->|"Sim"| A["Encaminhar para analise\nde engenharia ou manutencao"]
+    A --> F["Falha confirmada vira rotulo\ne volta para o baseline"]
+    F --> B

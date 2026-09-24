@@ -1,0 +1,9 @@
+flowchart TB
+    C["Campo: sensores, atuadores e controladores"]
+    E["Borda: gateway de campo\nnormaliza, filtra, agrega e guarda"]
+    F["Planta: servidores locais\nSCADA, historizador, engenharia"]
+    N["Nuvem ou centro de dados\nanalise, indicadores, multiplas plantas"]
+    C -->|"Modbus, OPC UA, DNP3, PROFINET"| E
+    E -->|"OPC UA, MQTT"| F
+    E -->|"MQTT com TLS, HTTPS"| N
+    F -->|"consolidado"| N

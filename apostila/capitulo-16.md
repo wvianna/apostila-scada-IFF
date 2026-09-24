@@ -150,9 +150,10 @@ software só grava um novo ponto quando o valor se afasta do último ponto grava
 tolerância definida.
 
 ```text
-Sinal estavel em 50,0 %  -> 1 ponto gravado, mais um refresh periodico
-Rampa de 0 a 100 %       -> pontos gravados a cada desvio de tolerancia
-Degrau instantaneo       -> gravado como degrau (se a tolerancia for menor que o degrau)
+Sinal estavel em 50,0 %  -> 1 ponto, mais um refresh periodico
+Rampa de 0 a 100 %       -> pontos a cada desvio de tolerancia
+Degrau instantaneo       -> gravado como degrau, se a tolerancia
+                            for menor que o degrau
 
 tolerancia de compressao = erro maximo da serie reconstruida
 ```
@@ -198,6 +199,26 @@ Três cuidados completam a política:
   quanto tempo guardar continua sendo da engenharia — e frequentemente responde a exigências
   regulatórias e contratuais, não a preferências técnicas.
 
+```mermaid
+flowchart TB
+    N["Novo dado chega com resolucao alta"] --> C1{"Classe do dado?"}
+    C1 -->|"Protecao e transitorio"| P1["Registro de eventos
+retencao de meses"]
+    C1 -->|"Processo rapido"| P2["1 s por dias ou semanas
+depois: media, minimo e maximo por minuto"]
+    C1 -->|"Processo lento"| P3["5 a 60 s por meses
+depois: media por hora e por dia"]
+    C1 -->|"Indicador de gestao"| P4["1 min ou por evento
+retencao de anos"]
+    P2 --> AGG["Camada agregada
+alimenta a gestao"]
+    P3 --> AGG
+    P4 --> AGG
+```
+
+> 🖼️ **[Figura 16.3 – Consulta de histórico com agregação e comparação de períodos]**
+> *Captura de uma tela de consulta a séries temporais com três controles visíveis: seleção de variáveis por ativo, intervalo de tempo (data e hora inicial e final) e função de agregação (média, mínimo, máximo, por hora ou por dia). O gráfico exibe duas curvas sobrepostas de períodos diferentes, com legenda identificando cada período e uma tabela resumida abaixo com mínimo, média e máximo de cada série. Destacar que a agregação está explícita na consulta e não escondida no painel.*
+
 ---
 
 ## 16.7 Histórico de processo × histórico de eventos
@@ -218,6 +239,17 @@ A **trilha de auditoria** é um terceiro registro, ainda distinto: quem comandou
 *setpoint*, quem alterou limite de alarme, quem reiniciou o registrador de primeira falha. Esse
 registro responde à pergunta "quem fez", que nem o histórico de processo nem a lista de eventos
 respondem sozinhos — e é requisito de qualquer sistema sujeito a auditoria (Capítulo 8).
+
+```mermaid
+flowchart TB
+    Q{"Qual e a pergunta?"}
+    Q -->|"Valores de X entre 14h e 15h"| RP["Historico de processo
+serie temporal por tag"]
+    Q -->|"O que aconteceu as 14h32"| RE["Historico de eventos
+lista cronologica com estado"]
+    Q -->|"Quem alterou o limite"| RA["Trilha de auditoria
+acao, usuario e horario"]
+```
 
 > 💡 **Dica:** antes de escolher um historian, escreva as cinco consultas que você precisa responder.
 > "Consumo diário por setor, últimos 12 meses", "todas as partidas da bomba 2 com duração acima de

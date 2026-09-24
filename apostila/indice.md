@@ -10,15 +10,15 @@
 
 ## Apostila Técnica Ilustrada
 
-### Versão 2.5
+### Versão 2.6
 
-Atualizada com IIoT, OPC UA, MQTT, Cloud SCADA, alarmes, dashboards, ThingsBoard, Sparkplug, aquisição de dados e historização
+Atualizada com IIoT, OPC UA, MQTT, Cloud SCADA, alarmes, dashboards, ThingsBoard, Sparkplug, aquisição, historização, borda, integração, projeto e analítica industrial
 
 ---
 
-**Autor:** William da Silva Vianna
+**Autor:** D.Sc. William da Silva Vianna
 
-**Versão:** 2.5 — Acrescenta os capítulos de aquisição e tratamento de dados e de historiadores e séries temporais  
+**Versão:** 2.6 — Acrescenta os capítulos de Edge Computing, integração ponta a ponta, projeto e implantação, e IA e analítica industrial
 **Público-alvo:** Estudantes de Engenharia de Controle e Automação; Técnicos Industriais  
 **Nível:** Intermediário (requer conhecimentos básicos de elétrica e eletrônica)  
 **Idioma:** Português brasileiro (pt-BR)
@@ -40,6 +40,8 @@ A versão 2.3 amplia a **base de figuras** para 20 reproduções do material de 
 A versão 2.4 acrescenta o capítulo de **tags, variáveis, estados e eventos** — a camada de dados que sustenta tudo o que os capítulos anteriores descrevem. Ele trata do cadastro de tag e do mapa de memória, do escalonamento para unidade de engenharia, da taxa de amostragem e da qualidade do dado, das máquinas de estado de equipamento e da distinção entre evento e alarme. Quatro novas figuras do material de origem entram junto: o dicionário de tagnames, a representação de uma variável discreta, o efeito da taxa de amostragem inadequada e o diagrama de eventos que disparam scripts.
 
 A versão 2.5 fecha o ciclo do dado: o capítulo de **aquisição e tratamento** segue a cadeia do fenômeno físico até o valor validado — tipos de sinal, resolução, exatidão, ruído, taxas de varredura de cada elo, filtração, faixa morta e registro da primeira falha; o capítulo de **historiadores e séries temporais** trata do que se decide guardar — tendência real e histórica, compressão por exceção, retenção, agregação e a separação entre histórico de processo, histórico de eventos e trilha de auditoria.
+
+A versão 2.6 completa a apostila com quatro capítulos. **Edge Computing** trata da borda industrial — funções do gateway, *store and forward*, redução na publicação, operação de frota e o limite que separa observação de proteção. **Integração SCADA + CLP + IoT + Cloud** organiza em uma arquitetura de referência onde cada decisão deve morar, com a sequência de dados de cinco arranjos típicos e o roteiro de testes de integração. **Projeto e Implantação** traz o ciclo de vida em sete fases, o levantamento em nove etapas, ergonomia de IHM, testes e aceitação. **IA e Analítica Industrial** fecha a obra separando as quatro famílias de problema, o pré-requisito de dado com contexto, manutenção preditiva, detecção de anomalia e o ciclo de vida do modelo em operação.
 
 ---
 
@@ -63,6 +65,10 @@ A versão 2.5 fecha o ciclo do dado: o capítulo de **aquisição e tratamento**
 | 14 | [Tags, Variáveis, Estados e Eventos](./capitulo-14.md) | — |
 | 15 | [Aquisição e Tratamento de Dados](./capitulo-15.md) | — |
 | 16 | [Historiadores e Séries Temporais](./capitulo-16.md) | — |
+| 17 | [Edge Computing na Indústria](./capitulo-17.md) | — |
+| 18 | [Integração SCADA + CLP + IoT + Cloud](./capitulo-18.md) | — |
+| 19 | [Projeto e Implantação de um Sistema Supervisório](./capitulo-19.md) | — |
+| 20 | [IA e Analítica Industrial](./capitulo-20.md) | — |
 | — | [Glossário Técnico](./glossario.md) | — |
 
 ---

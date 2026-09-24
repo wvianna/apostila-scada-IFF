@@ -1,0 +1,12 @@
+sequenceDiagram
+    participant CLP as CLP
+    participant GW as Gateway
+    participant BR as Broker MQTT
+    participant PL as Plataforma
+    participant OP as Painel
+    CLP->>GW: valores por Modbus ou OPC UA
+    GW->>BR: publica telemetria com carimbo de origem
+    BR->>PL: entrega no topico do dispositivo
+    PL->>PL: cadeia de regras avalia limites
+    PL->>OP: atualiza widget e dispara alarme
+    OP-->>PL: reconhecimento do operador

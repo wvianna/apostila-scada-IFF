@@ -1,0 +1,17 @@
+flowchart TB
+    S["Instrumentacao de campo"]
+    P["CLP: logica, intertravamento\ne protecao"]
+    G["Gateway de borda:\nnormaliza, filtra, agrega e guarda"]
+    SC["SCADA: operacao, alarmes e comando"]
+    H["Historizador: series temporais"]
+    B["Broker MQTT com TLS"]
+    TB["Plataforma IIoT: ativos, alarmes e paineis"]
+    AN["Analise e indicadores\nmultiplas plantas"]
+    S --> P
+    P -->|"Modbus, OPC UA, PROFINET"| G
+    P -->|"OPC UA"| SC
+    SC --> H
+    G -->|"MQTT com TLS"| B
+    B --> TB
+    B --> H
+    TB --> AN

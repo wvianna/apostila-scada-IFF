@@ -1,0 +1,14 @@
+flowchart TB
+    V["Visao geral da planta\nestado e alarmes resumidos"]
+    A1["Area 1: captacao"]
+    A2["Area 2: tratamento"]
+    A3["Area 3: distribuicao"]
+    E1["Equipamento: bomba 1\ncomando, estado e tendencia"]
+    E2["Equipamento: bomba 2"]
+    ANA["Analises: tendencias historicas\ne relatorios"]
+    V --> A1
+    V --> A2
+    V --> A3
+    V --> ANA
+    A1 --> E1
+    A1 --> E2

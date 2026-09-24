@@ -1,0 +1,9 @@
+flowchart TB
+    D["1. Definicao: requisitos e acervo tecnico"] --> S["2. Selecao: software e arquitetura"]
+    S --> P["3. Projeto: especificacao funcional aprovada"]
+    P --> I["4. Implementacao: aplicacao em ambiente de teste"]
+    I --> T["5. Testes preliminares: relatorio de pendencias"]
+    T --> A["6. Aceitacao: manuais e treinamento"]
+    A --> M["7. Manutencao: backup e gestao de mudancas"]
+    T -.->|"correcao de projeto"| P
+    M -.->|"novo requisito"| D

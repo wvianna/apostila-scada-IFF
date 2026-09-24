@@ -1,0 +1,6 @@
+flowchart TB
+    L["Leitura na face sul"] --> V{"Variou mais que a faixa morta?"}
+    V -->|"Nao"| N["Mantem o ultimo valor e reinicia o refresh"]
+    V -->|"Sim"| T{"E serie continua ou evento?"}
+    T -->|"Serie"| S["Publica valor com carimbo de origem"]
+    T -->|"Evento"| E["Publica registro de transicao de estado"]

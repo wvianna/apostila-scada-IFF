@@ -30,6 +30,9 @@ Alarme que dispara e limpa em poucos segundos, normalmente por transitório de p
 **Alarm flooding (inundação de alarmes)**  
 Rajada de alarmes em curto intervalo que ultrapassa a capacidade de leitura e de resposta do operador, escondendo a causa raiz.
 
+**Anomalia**  
+Comportamento estatisticamente diferente do padrão observado. Não é sinônimo de falha: pode ser regime novo, produto diferente ou condição ambiental. Serve como convite à investigação, não como alarme.
+
 **Atributo (ThingsBoard)**  
 Valor de estado associado a uma entidade, em que o último valor substitui o anterior (ao contrário da telemetria, que preserva o histórico). Escopos: servidor, compartilhado e cliente.
 
@@ -40,8 +43,8 @@ Dispositivo que converte um sinal elétrico em ação física sobre o processo: 
 
 ## B
 
-**Batch (Batelada)**  
-Tipo de processo industrial em que lotes discretos de produto passam por etapas sequenciais. Normatizado pela ISA-88.
+**Baseline (linha de base)**  
+Referência de comportamento normal de um ativo ou processo, obtida do próprio histórico, com média, dispersão e correlações. Sem baseline, não há como afirmar que um valor está anormal.
 
 **BPCS** (*Basic Process Control System*)  
 Sistema de controle principal de uma planta — geralmente o DCS ou CLP. Distinto do SIS (sistema de segurança).
@@ -65,6 +68,9 @@ Tríade clássica de segurança da informação: Confidencialidade, Integridade 
 **CIP** (*Common Industrial Protocol*)  
 Protocolo de aplicação usado pelo EtherNet/IP e DeviceNet para comunicação industrial Rockwell/ODVA.
 
+**Ciclo de vida de um projeto SCADA**  
+Sequência de fases — definição, seleção, projeto, implementação, testes preliminares, aceitação e manutenção — em que cada fase termina com um produto verificável.
+
 **CLP** (*Controlador Lógico Programável*)  
 Computador industrial programável para controle de sequências lógicas e processos discretos. Equivalente inglês: PLC (*Programmable Logic Controller*).
 
@@ -81,6 +87,9 @@ Estratégia de historização que só grava um novo ponto quando o valor se afas
 
 ## D
 
+**Contêiner**  
+Forma de empacotar uma aplicação com suas dependências em uma imagem versionada, executável de forma isolada — usada na borda para atualizar aquisição, regras e modelos sem trocar o sistema do gateway.
+
 **Dashboard**  
 Painel que reúne indicadores, tendências, estados e alarmes para apoiar decisão. Sem contexto (faixa normal, limite e período) o valor exibido não informa.
 
@@ -89,6 +98,9 @@ Sistema de controle para processos contínuos de grande escala, com controle dis
 
 **Deadband (faixa morta)**  
 Diferença necessária entre o valor de disparo e o de limpeza de um alarme, evitando que ele oscile em torno do limite.
+
+**Deriva (drift)**  
+Perda de validade de um modelo ou de um baseline em produção, causada por mudança do processo, do sensor ou da relação entre as variáveis. Silenciosa: o sistema continua respondendo, com confiança, errado.
 
 **Digital Twin (Gêmeo Digital)**  
 Representação virtual dinâmica de um ativo físico, processo ou sistema que sincroniza em tempo real com seu equivalente real, permitindo simulação e otimização.
@@ -117,6 +129,9 @@ Conversão de uma leitura bruta (contagem do conversor A/D) para a unidade de en
 
 **Espaço de endereços (address space)**  
 No OPC UA, a estrutura de nós e referências que o servidor expõe e que o cliente descobre com `Browse` — diferente do mapa fixo de registradores de um protocolo clássico.
+
+**Ergonomia**  
+Conjunto de disciplinas que estuda a organização do trabalho na interação entre seres humanos e máquinas. Aplicada à IHM, busca reduzir sobrecarga, monotonia, cansaço e excesso de informação.
 
 **ERP** (*Enterprise Resource Planning* — Planejamento de Recursos Empresariais*)  
 Sistema de gestão integrada de negócios: finanças, RH, logística, vendas. Integra-se ao MES via ISA-95.
@@ -159,12 +174,18 @@ Protocolo de fieldbus digital para instrumentação de processo contínuo (petro
 **Gateway de Protocolo**  
 Dispositivo ou software que converte entre diferentes protocolos de comunicação (ex.: Modbus RTU → OPC UA).
 
+**Gateway de borda**  
+Equipamento que materializa a borda de campo: conversa com o processo pela face sul (Modbus, OPC UA, DNP3), normaliza e publica pela face norte (MQTT, REST, Sparkplug B), com fila local para sobreviver à queda do enlace.
+
 **Grafana**  
 Plataforma de visualização e monitoramento que consulta fontes externas (séries temporais, bancos SQL, Prometheus). Não armazena o dado de processo e não é sistema de comando.
 
 ---
 
 ## H
+
+**Hierarquia de navegação**  
+Organização das telas de um supervisório do geral para o particular, com barra de navegação fixa, navegação horizontal pelo fluxo do processo e retorno sempre disponível.
 
 **HART** (*Highway Addressable Remote Transducer*)  
 Protocolo que superpõe comunicação digital (FSK — Frequency Shift Keying) sobre o sinal analógico 4-20 mA, permitindo configuração e diagnóstico remoto de instrumentos.
@@ -231,6 +252,12 @@ Modelo que descreve os estados possíveis de um equipamento ou de um procediment
 
 **Mapa de memória (tabela de alocação)**  
 Documento que relaciona cada tagname do supervisório ao endereço real do hardware de aquisição/controle e ao driver de comunicação responsável pela leitura.
+
+**Mapa de memória (tabela de alocação)**  
+Documento que relaciona cada tagname do supervisório ao endereço real do hardware de aquisição/controle e ao driver de comunicação responsável pela leitura.
+
+**Manutenção preditiva**  
+Nível de manutenção em que a intervenção é programada a partir da projeção de falha em janela útil. Exige histórico longo com eventos rotulados; a baseada em condição registra o desvio e o limite que o caracteriza.
 
 **Média móvel**  
 Filtro digital que suaviza o ruído calculando a média das *n* últimas amostras; reduz o ruído na proporção da raiz quadrada de *n*, ao custo de atrasar a resposta do sinal.
@@ -335,6 +362,12 @@ Menor degrau que o conversor A/D consegue representar, dado pelo número de bits
 **Retenção (política de)**  
 Conjunto de regras que define por quanto tempo cada classe de dado é mantida e com que resolução, prevendo agregação, cópia de segurança e descarte planejado.
 
+**Retenção (política de)**  
+Conjunto de regras que define por quanto tempo cada classe de dado é mantida e com que resolução, prevendo agregação, cópia de segurança e descarte planejado.
+
+**Rotulagem**  
+Registro da causa e do componente em cada ocorrência de manutenção. É o que transforma o histórico de operação em dado utilizável para aprendizado supervisionado.
+
 **RPC** (*Remote Procedure Call*)  
 Chamada de procedimento remoto. Em plataformas IIoT, permite que a plataforma envie comandos ao dispositivo (lado do servidor) ou que o dispositivo solicite algo à plataforma (lado do dispositivo).
 
@@ -356,6 +389,9 @@ Sistema de controle supervisório e aquisição de dados — monitora e controla
 
 **Sensor**  
 Dispositivo que mede uma grandeza física do processo (temperatura, pressão, nível, vazão, posição) e a converte em sinal elétrico padronizado (4-20 mA, 0-10 V, pulso, digital).
+
+**Sensor virtual (soft sensor)**  
+Modelo que estima em tempo real uma variável medida apenas em laboratório ou por analisador caro, a partir de variáveis medidas continuamente. Precisa declarar a sua região de validade.
 
 **Série temporal**  
 Conjunto de medições indexadas no tempo. Exige carimbo de tempo confiável: sem o *timestamp* do dispositivo, dado atrasado é gravado como atual.
@@ -383,6 +419,9 @@ Especificação sobre MQTT com esquema de dados padronizado para IIoT industrial
 
 **StatusCode (OPC UA)**  
 Código que acompanha cada valor lido, indicando se a leitura é válida ou se a qualidade está comprometida. Ignorá-lo faz um sensor com defeito aparecer como "valor zero".
+
+**Store and forward**  
+Armazenamento local do dado durante a queda do enlace, com reenvio posterior preservando o carimbo de origem. É o que evita buracos na série temporal justamente nos períodos de problema.
 
 **Supressão (suppression)**  
 Ocultação temporária de um alarme por projeto, enquanto a causa que o tornaria irrelevante está ativa (por exemplo, durante o enchimento de um tanque).

@@ -1,6 +1,6 @@
 # Estrutura, convenções e controle de qualidade
 
-## Sumário atual (medido em 2026-09, versão 2.3)
+## Sumário atual (medido em 2026-09, versão 2.6)
 
 | Arquivo | Título (`# Capítulo N – ...`) | Linhas | 🖼️ real/placeholder | Mermaid |
 |---|---|---|---|---|
@@ -18,11 +18,17 @@
 | `capitulo-12.md` | ThingsBoard | 345 | 0 / 3 | 2 |
 | `capitulo-13.md` | OPC UA, MQTT e Sparkplug B | 345 | 1 / 3 | 4 |
 | `capitulo-14.md` | Tags, Variáveis, Estados e Eventos | 430 | 4 / 0 | 3 |
-| `indice.md` | capa + apresentação + sumário | 73 | 0 | 0 |
-| `glossario.md` | glossário técnico | 300 | 0 | 0 |
+| `capitulo-15.md` | Aquisição e Tratamento de Dados | 336 | 2 / 1 | 2 |
+| `capitulo-16.md` | Historiadores e Séries Temporais | 331 | 2 / 1 | 2 |
+| `capitulo-17.md` | Edge Computing na Indústria | 292 | 0 / 3 | 2 |
+| `capitulo-18.md` | Integração SCADA + CLP + IoT + Cloud | 295 | 1 / 2 | 2 |
+| `capitulo-19.md` | Projeto e Implantação de um Sistema Supervisório | 300 | 2 / 1 | 2 |
+| `capitulo-20.md` | IA e Analítica Industrial | 271 | 0 / 3 | 2 |
+| `indice.md` | capa + apresentação + sumário | 80 | 0 | 0 |
+| `glossario.md` | glossário técnico | 400 | 0 | 0 |
 
-Total: 61 posições de figura — **24 reais, 37 placeholders** — e 35 diagramas Mermaid.
-Versão declarada: **2.4**. Todos os 14 capítulos têm estudo de caso; a atividade prática
+Total: 79 posições de figura — **31 reais, 48 placeholders** — e 47 diagramas Mermaid.
+Versão declarada: **2.6**. Todos os 20 capítulos têm estudo de caso; a atividade prática
 existe nos capítulos 10 a 13.
 
 ## Arquitetura-alvo (22 capítulos, `promptSkill.md` §7)
@@ -36,24 +42,24 @@ confirmar lendo o capítulo antes de decidir refatorar ou criar.
 | 02 Automação Industrial e Pirâmide | cap. 2 | atualizar (ISA-95/IEC 62264, Edge) |
 | 03 HMI e SCADA | cap. 3 | atualizar (ISA-101, HMI moderno) |
 | 04 Arquitetura SCADA | cap. 4 | atualizar (virtualização, containers, redundância) |
-| 05 Aquisição e Tratamento de Dados | disperso no cap. 4 | **criar** |
+| 05 Aquisição e Tratamento de Dados | **cap. 15** (criado em 2026-09) | feito |
 | 06 Tags, Variáveis, Estados e Eventos | **cap. 14** (criado em 2026-09) | feito |
 | 07 Redes e Protocolos Industriais | cap. 5 | atualizar (TSN, PROFINET, EtherNet/IP) |
 | 08 OPC UA e Integração de Sistemas | **cap. 13** (com MQTT/Sparkplug) | feito; avaliar separar em capítulo próprio |
 | 09 MQTT e Comunicação IoT/IIoT | **cap. 13** (com OPC UA/Sparkplug) | feito; avaliar separar em capítulo próprio |
-| 10 Historiadores e Bancos de Dados | parcial no cap. 4 (`Servidor de Historização`) e no cap. 11 | **criar** (séries temporais) |
+| 10 Historiadores e Bancos de Dados | **cap. 16** (criado em 2026-09) | feito |
 | 11 Dashboards e Visualização | **cap. 11** | feito |
 | 12 Node-RED | cap. 7 | refatorar (fluxos de exemplo, boas práticas) |
 | 13 ThingsBoard | **cap. 12** | feito |
 | 14 IoT e IIoT Industrial | cap. 6 | refatorar (IoT × IIoT × SCADA) |
-| 15 Edge Computing | ausente | **criar** |
+| 15 Edge Computing | **cap. 17** (criado em 2026-09) | feito |
 | 16 Cloud SCADA e Plataformas IoT | cap. 6 e 9 (parcial) | refatorar |
 | 17 Gerenciamento de Alarmes | **cap. 10** | feito → [alarmes.md](./alarmes.md) |
 | 18 Cibersegurança em SCADA e IIoT | cap. 8 | refatorar (IEC 62443 por zonas) |
-| 19 Integração SCADA + CLP + IoT + Cloud | ausente | **criar** |
-| 20 Estudos de Caso Industriais | ausente como capítulo; **há um estudo de caso em cada capítulo** | **criar** (se ainda fizer sentido) |
-| 21 Projetos Práticos | ausente | **criar** |
-| 22 IA, Digital Twin e Automação Conectada | cap. 9 (parcial) | refatorar |
+| 19 Integração SCADA + CLP + IoT + Cloud | **cap. 18** (criado em 2026-09) | feito |
+| 20 Estudos de Caso Industriais | ausente como capítulo; **há um estudo de caso em cada um dos 20 capítulos** | não criar como capítulo — decisão editorial registrada em `status.md` |
+| 21 Projetos Práticos | **cap. 19** cobre o método (ciclo de vida e planejamento); laboratórios ficam nos caps. 10–13 e nos exemplos progressivos do cap. 18 | parcial, por decisão |
+| 22 IA, Digital Twin e Automação Conectada | **cap. 20** (IA e analítica) + cap. 9 (Cloud e Digital Twin) | feito em dois capítulos |
 | Anexos | `glossario.md` | criar: normas com edição/ano, práticas, bibliografia |
 
 A ordem final deve ser adaptada ao material efetivamente encontrado — o sumário acima é
@@ -87,6 +93,8 @@ Ao refatorar, manter essa ordem.
 
 - Título: `# Capítulo 3 – Sistemas Supervisórios — SCADA e HMI` (travessão `–` curto; `—` só
   dentro do título).
+- Autor oficial: **D.Sc. William da Silva Vianna** — sempre com o título, na capa
+  (`assets/apostila.tex`), em `apostila/indice.md`, `README.md` e `LICENSE.md`.
 - Seções: `## 3.2 Funções Principais de um SCADA`, subseções `### 3.2.1 Aquisição de Dados`.
 - Sigla na primeira ocorrência: `**SCADA** (*Supervisory Control and Data Acquisition* —
   Controle Supervisório e Aquisição de Dados)`.

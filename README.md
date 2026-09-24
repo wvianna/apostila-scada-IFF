@@ -1,21 +1,29 @@
 # Sistemas SCADA e Supervisórios Industriais — Apostila Técnica Ilustrada
 
 Apostila do curso de **Engenharia de Controle e Automação** do Instituto Federal Fluminense
-(IFF), cobrindo supervisão industrial, SCADA, HMI, redes e protocolos industriais, IoT/IIoT,
-Node-RED, gerenciamento de alarmes, dashboards e ThingsBoard — com estudos de caso, diagramas e
-atividades práticas.
+(IFF), cobrindo supervisão industrial, SCADA, HMI, arquitetura e aquisição de dados, redes e
+protocolos industriais, IoT/IIoT, edge computing, Node-RED, gerenciamento de alarmes, dashboards,
+ThingsBoard, integração ponta a ponta, projeto de IHM e analítica industrial — com estudos de caso,
+diagramas e atividades práticas.
 
 | | |
 |---|---|
-| **Versão** | 2.3 |
-| **Páginas (PDF)** | 168 |
-| **Capítulos** | 13 + glossário |
-| **Estudo de caso** | em todos os 13 capítulos |
-| **Diagramas** | 32 (Mermaid, renderizados em PDF) |
-| **Figuras** | 20 reais (reproduzidas do material de origem, com crédito) + 37 posições com direção de arte |
-| **Tabelas** | 30 legendadas |
+| **Autor** | D.Sc. William da Silva Vianna |
+| **Versão** | 2.6 |
+| **Páginas (PDF)** | 257 |
+| **Capítulos** | 20 + glossário |
+| **Estudo de caso** | em todos os 20 capítulos |
+| **Diagramas** | 47 (Mermaid, renderizados em PDF) |
+| **Figuras** | 31 reais (reproduzidas do material de origem, com crédito) + 48 posições com direção de arte |
+| **Tabelas** | 64 legendadas |
+| **Questões de revisão** | 159 |
 | **Idioma** | pt-BR |
 | **Licença** | Creative Commons BY-SA 4.0 (ver `LICENSE.md`) |
+
+> **Nota:** as figuras vêm do material didático do próprio curso (*Livro SCADA*, *Sistema SCADA
+> Supervisório* e as partes de *Sistemas Supervisórios*), sempre com página e crédito. Material de
+> terceiros (ISA) não é reproduzido: as posições correspondentes ficam como direção de arte até
+> serem redesenhadas.
 
 ## Estrutura do repositório
 
@@ -23,7 +31,7 @@ atividades práticas.
 promptSkill.md        especificação editorial do projeto (requisitos)
 apostila/             FONTE DE VERDADE dos capítulos em Markdown
   indice.md           capa, apresentação e sumário
-  capitulo-01..13.md  capítulos
+  capitulo-01..20.md  capítulos
   glossario.md        glossário técnico (PT/EN)
 docs/                 PDFs de origem do curso (não editar)
   fontes/             texto convertido + inventário de imagens (gerado)
@@ -72,6 +80,13 @@ python3 docs/apostila/rebuild.py
 | 11 | Dashboards e Visualização de Dados (Grafana, InfluxDB) |
 | 12 | ThingsBoard |
 | 13 | OPC UA, MQTT e Sparkplug B |
+| 14 | Tags, Variáveis, Estados e Eventos |
+| 15 | Aquisição e Tratamento de Dados |
+| 16 | Historiadores e Séries Temporais |
+| 17 | Edge Computing na Indústria |
+| 18 | Integração SCADA + CLP + IoT + Cloud |
+| 19 | Projeto e Implantação de um Sistema Supervisório |
+| 20 | IA e Analítica Industrial |
 | A | Glossário Técnico |
 
 ## Como trabalhar neste projeto
@@ -82,8 +97,9 @@ reaproveitamento das figuras dos PDFs, o controle de rastreabilidade das fontes 
 qualidade. Peça diretamente, por exemplo:
 
 - "refatore o capítulo 3 trazendo as figuras do `Livro_SCADA`"
-- "crie o capítulo sobre OPC UA"
-- "extraia as figuras do PDF de ISA-101"
+- "crie o capítulo sobre edge computing"
+- "extraia as figuras do `supervisorio_scada.pdf`"
+- "compile o PDF da apostila"
 
 Estado atual do trabalho, pendências e decisões: [`status.md`](./status.md).
 Como continuar: [`handoff.md`](./handoff.md).
@@ -93,3 +109,8 @@ Como continuar: [`handoff.md`](./handoff.md).
 Distribuída sob **Creative Commons Atribuição–CompartilhaIgual 4.0 Internacional (CC BY-SA 4.0)** —
 uso educacional, adaptação e citação permitidos, com atribuição e compartilhamento sob a mesma
 licença. Ver [`LICENSE.md`](./LICENSE.md).
+
+---
+
+**Autor:** D.Sc. William da Silva Vianna — Instituto Federal Fluminense, Curso de Engenharia de
+Controle e Automação.
