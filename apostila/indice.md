@@ -18,7 +18,7 @@ Atualizada com IIoT, OPC UA, MQTT, Cloud SCADA, alarmes, dashboards, ThingsBoard
 
 **Autor:** D.Sc. William da Silva Vianna
 
-**Versão:** 2.6 — Acrescenta os capítulos de Edge Computing, integração ponta a ponta, projeto e implantação, e IA e analítica industrial
+**Versão:** 2.6
 **Público-alvo:** Estudantes de Engenharia de Controle e Automação; Técnicos Industriais  
 **Nível:** Intermediário (requer conhecimentos básicos de elétrica e eletrônica)  
 **Idioma:** Português brasileiro (pt-BR)
@@ -29,19 +29,18 @@ Atualizada com IIoT, OPC UA, MQTT, Cloud SCADA, alarmes, dashboards, ThingsBoard
 
 Esta apostila reúne os fundamentos e as tendências dos **Sistemas Supervisórios e SCADA** (*Supervisory Control and Data Acquisition*) aplicados à automação industrial. O material foi desenvolvido para oferecer uma progressão didática — do conceito à implementação — com linguagem acessível, diagramas explicativos e estudos de caso reais.
 
-A segunda versão incorpora as tecnologias que transformaram o setor na última década: **IIoT** (*Industrial Internet of Things*), protocolos modernos como **OPC UA** e **MQTT**, ferramentas open-source como o **Node-RED** e **Grafana**, além dos paradigmas de **Cloud SCADA**, **Digital Twin** e **cibersegurança industrial**.
+Os 20 capítulos estão organizados em quatro blocos:
 
-A versão 2.1 acrescenta três capítulos de aplicação: **gerenciamento de alarmes** segundo ANSI/ISA-18.2, IEC 62682, EEMUA 191 e NAMUR NA 102; **dashboards e visualização de dados**, com Grafana e InfluxDB; e **ThingsBoard**, com o modelo de entidades, motor de regras, alarmes e integração por MQTT.
+- **Fundamentos (capítulos 1 a 4):** automação industrial, pirâmide de automação e níveis hierárquicos, sistemas supervisórios (SCADA e HMI), arquitetura e componentes.
+- **Comunicação, integração e segurança (capítulos 5 a 9 e 13):** redes e protocolos industriais, IIoT, Node-RED, cibersegurança, Cloud SCADA e Digital Twin, OPC UA, MQTT e Sparkplug B.
+- **Dados, alarmes e visualização (capítulos 10 a 12 e 14 a 16):** tags, variáveis, estados e eventos; aquisição e tratamento de dados; historiadores e séries temporais; gerenciamento de alarmes; dashboards; ThingsBoard.
+- **Borda, nuvem e projeto (capítulos 17 a 20):** edge computing, integração SCADA + CLP + IoT + Cloud, projeto e implantação de um sistema supervisório, IA e analítica industrial.
 
-A versão 2.2 acrescenta o capítulo de **OPC UA, MQTT e Sparkplug B** — a camada de integração entre equipamento, supervisão e nuvem — e incorpora as primeiras figuras extraídas do material de origem.
+As normas aparecem onde mudam a decisão de engenharia, não como apêndice teórico: o **gerenciamento de alarmes** segue ANSI/ISA-18.2, IEC 62682, EEMUA 191 e NAMUR NA 102, e a **cibersegurança industrial** se apoia na série IEC 62443.
 
-A versão 2.3 amplia a **base de figuras** para 20 reproduções do material de origem (telas de supervisão, arquiteturas de rede, Painel de alarmes, tendências e dashboard Node-RED) e fecha uma lacuna do plano original: **todos os capítulos passam a ter estudo de caso**, com cenário, diagnóstico, decisão de engenharia e limitações do arranjo.
+Cada capítulo abre com objetivos de aprendizagem e fecha com questões de revisão — 159 no total. O corpo do texto traz 47 diagramas Mermaid, 64 tabelas legendadas e 79 posições de figura, 31 delas com reproduções do material de origem (telas de supervisão, arquiteturas de rede, painéis de alarmes, tendências e dashboards). Todos os 20 capítulos têm **estudo de caso**, com cenário, diagnóstico, decisão de engenharia e limitações do arranjo; os capítulos 10 a 13 trazem **atividades práticas**; e o **glossário técnico** em apêndice resolve a terminologia durante a leitura.
 
-A versão 2.4 acrescenta o capítulo de **tags, variáveis, estados e eventos** — a camada de dados que sustenta tudo o que os capítulos anteriores descrevem. Ele trata do cadastro de tag e do mapa de memória, do escalonamento para unidade de engenharia, da taxa de amostragem e da qualidade do dado, das máquinas de estado de equipamento e da distinção entre evento e alarme. Quatro novas figuras do material de origem entram junto: o dicionário de tagnames, a representação de uma variável discreta, o efeito da taxa de amostragem inadequada e o diagrama de eventos que disparam scripts.
-
-A versão 2.5 fecha o ciclo do dado: o capítulo de **aquisição e tratamento** segue a cadeia do fenômeno físico até o valor validado — tipos de sinal, resolução, exatidão, ruído, taxas de varredura de cada elo, filtração, faixa morta e registro da primeira falha; o capítulo de **historiadores e séries temporais** trata do que se decide guardar — tendência real e histórica, compressão por exceção, retenção, agregação e a separação entre histórico de processo, histórico de eventos e trilha de auditoria.
-
-A versão 2.6 completa a apostila com quatro capítulos. **Edge Computing** trata da borda industrial — funções do gateway, *store and forward*, redução na publicação, operação de frota e o limite que separa observação de proteção. **Integração SCADA + CLP + IoT + Cloud** organiza em uma arquitetura de referência onde cada decisão deve morar, com a sequência de dados de cinco arranjos típicos e o roteiro de testes de integração. **Projeto e Implantação** traz o ciclo de vida em sete fases, o levantamento em nove etapas, ergonomia de IHM, testes e aceitação. **IA e Analítica Industrial** fecha a obra separando as quatro famílias de problema, o pré-requisito de dado com contexto, manutenção preditiva, detecção de anomalia e o ciclo de vida do modelo em operação.
+Ao final do percurso, o leitor deve ser capaz de especificar, integrar e operar um sistema supervisório completo — e de justificar cada escolha de arquitetura, protocolo, base de dados e política de alarmes.
 
 ---
 
