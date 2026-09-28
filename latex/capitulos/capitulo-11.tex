@@ -1,0 +1,533 @@
+\hypertarget{dashboards-e-visualizauxe7uxe3o-de-dados}{%
+\chapter{Dashboards e Visualização de Dados}\label{dashboards-e-visualizauxe7uxe3o-de-dados}}
+
+\section*{Objetivos de Aprendizagem}
+
+Ao final deste capítulo, o leitor será capaz de:
+
+\begin{itemize}
+\tightlist
+\item
+  Explicar a diferença entre dado, indicador e decisão, e o papel do dashboard nessa cadeia.
+\item
+  Projetar uma hierarquia de telas coerente com a tarefa do operador, gestor e engenheiro.
+\item
+  Escolher o tipo de painel adequado a cada tipo de dado.
+\item
+  Aplicar princípios de cor, escala, precisão e atualização em painéis industriais.
+\item
+  Comparar SCADA HMI, Node-RED Dashboard, ThingsBoard e Grafana sem tratá-los como substitutos.
+\item
+  Configurar fontes de dados, variáveis e \emph{alerting} no Grafana, incluindo provisionamento por arquivo.
+\item
+  Montar um dashboard de processo com pressão, temperatura, vazão e nível.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{do-dado-ao-indicador}{%
+\section{Do dado ao indicador}\label{do-dado-ao-indicador}}
+
+Um dashboard não é um repositório de números: é um instrumento de decisão. A cadeia que leva do dado bruto à ação tem quatro elos, e cada elo tem sua responsabilidade.
+
+\begin{center}
+\IfFileExists{../figuras/capitulo-11-m1.pdf}{%
+  \includegraphics[width=\linewidth,height=0.8\textheight,keepaspectratio]{../figuras/capitulo-11-m1.pdf}%
+}{\fbox{\parbox{0.9\linewidth}{\small Diagrama Mermaid ainda não renderizado: capitulo-11-m1. Rode scripts/render-mermaid.sh.}}}
+\end{center}
+
+A falha mais comum em dashboards industriais é pular o elo do \textbf{contexto}. Um painel que mostra \passthrough{\lstinline!72,4!} não diz nada; o mesmo valor com a faixa normal (45--70), o limite de alarme (85) e a tendência de 30 minutos permite decidir em segundos.
+
+\textbf{Tabela 11.1 -- Vocabulário mínimo do dashboard}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Elemento
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Função
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Cuidado
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Valor instantâneo & Situação atual & Sem contexto vira número decorativo \\
+Tendência & Comportamento no tempo & Janela de tempo tem de ser escolhida, não fixa \\
+Indicador de estado & Ligado/desligado, aberto/fechado, manual/automático & Não usar cor de alarme para estado normal \\
+KPI de processo & Vazão média, consumo específico, disponibilidade & Precisa de fórmula e período explícitos \\
+Alarme & Condição que exige ação & Não despejar a lista completa de alarmes no painel de gestão \\
+Meta/limite & Referência de comparação & Marcar graficamente no próprio painel \\
+\end{longtable}
+
+\begin{caixadica}
+
+\textbf{Dica:} antes de desenhar qualquer tela, escreva a pergunta que ela responde. ``Esta tela responde: a estação está entregando a vazão contratada?'' Se a pergunta não estiver clara, o painel será uma coleção de widgets.
+
+\end{caixadica}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{hierarquia-de-telas}{%
+\section{Hierarquia de telas}\label{hierarquia-de-telas}}
+
+A ISA-101 organiza as telas de operação em níveis de detalhe. A mesma ideia vale para dashboards web de processo.
+
+\textbf{Tabela 11.2 -- Níveis de detalhe e responsabilidade}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Nível
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Público
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Pergunta que responde
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Densidade
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+1 --- Visão geral & Gerência, operação & A planta inteira está saudável? & Muito baixa, uma informação por área \\
+2 --- Área/processo & Operador & Esta área está dentro do esperado? & Média, sinótico com valores-chave \\
+3 --- Equipamento & Operador e manutenção & A bomba 2 está em condição normal? & Alta, todas as variáveis relevantes \\
+4 --- Diagnóstico & Manutenção e engenharia & Por que o mancal está aquecendo? & Máxima, tendências, eventos, dados brutos \\
+\end{longtable}
+
+\begin{center}
+\IfFileExists{../figuras/capitulo-11-m2.pdf}{%
+  \includegraphics[width=\linewidth,height=0.8\textheight,keepaspectratio]{../figuras/capitulo-11-m2.pdf}%
+}{\fbox{\parbox{0.9\linewidth}{\small Diagrama Mermaid ainda não renderizado: capitulo-11-m2. Rode scripts/render-mermaid.sh.}}}
+\end{center}
+
+A regra prática é \textbf{navegação a dois cliques}: do nível 1 ao dado que explica a anomalia em no máximo dois cliques. Se o engenheiro precisa abrir três telas e consultar um banco separado, o dashboard não cumpriu sua função.
+
+\begin{figure}
+\centering
+\includegraphics{../figuras/cap11-navegacao-telas.png}
+\caption[Figura 11.1 -- Navegação entre telas: barra de navegação e link horizontal no sinótico]{Figura 11.1 -- Navegação entre telas: barra de navegação e link horizontal no sinótico. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~83 (Machado, Pontes e Vianna, reproduzida com crédito).}
+\end{figure}
+
+A figura mostra os dois mecanismos de navegação que sustentam a hierarquia da Tabela 11.2. A
+\textbf{barra de navegação} (à direita) é persistente e dá acesso direto aos níveis 1 e 4 --- processo,
+tendência e alarmes. O \textbf{link horizontal} (no corpo do sinótico, apontando para o equipamento)
+é contextual: leva ao nível 3 daquele ativo específico. O relógio fixo no canto inferior direito
+não é decoração: sem hora de referência, o operador não consegue comparar a tela com o registro
+de eventos.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{tipos-de-painel-e-quando-usar-cada-um}{%
+\section{Tipos de painel e quando usar cada um}\label{tipos-de-painel-e-quando-usar-cada-um}}
+
+A escolha do painel depende do tipo de dado e da pergunta.
+
+\textbf{Tabela 11.3 -- Tipo de painel por tipo de dado}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Tipo de dado
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Painel adequado
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Painel inadequado
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Analógico contínuo (temperatura, pressão) & Tendência + valor com faixa & Gauge de ponteiro para 30 variáveis \\
+Estado discreto (liga/desliga) & Indicador de estado com rótulo textual & Gráfico de linha \\
+Contador acumulativo & Valor com unidade e período & Média do contador \\
+Evento esporádico & Tabela ou linha do tempo de eventos & Média móvel \\
+Comparação entre unidades & Barra ordenada ou mapa de calor & Pizza com mais de cinco fatias \\
+Distribuição no tempo & Histograma e curva de duração & Valor instantâneo \\
+Posição geográfica & Mapa com estado por ponto & Lista sem ordenação \\
+\end{longtable}
+
+\begin{figure}
+\centering
+\includegraphics{../figuras/cap11-tendencia-real.png}
+\caption[Figura 11.2 -- Tendência de processo com escala fixa e legenda da variável]{Figura 11.2 -- Tendência de processo com escala fixa e legenda da variável. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~114 (Machado, Pontes e Vianna, reproduzida com crédito).}
+\end{figure}
+
+O painel de tendência é o tipo mais subestimado do dashboard industrial: ele responde ``para onde
+está indo'' e não apenas ``quanto está''. Repare nos três elementos que fazem a leitura funcionar ---
+escala \textbf{fixa} de 0 a 100, eixo de tempo com hora explícita e legenda nomeando a variável
+(\passthrough{\lstinline!Nível Tanque 01!}). Um valor instantâneo de 45 seria idêntico em uma subida ou em uma descida; a
+tendência distingue os dois casos em um relance.
+
+\hypertarget{cor-escala-e-precisuxe3o}{%
+\subsection{Cor, escala e precisão}\label{cor-escala-e-precisuxe3o}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Cor é semântica, não decoração.} Vermelho, âmbar e verde ficam reservados para condição anormal, atenção e normal --- se a paleta da empresa usar vermelho no cabeçalho, o operador perde a referência.
+\item
+  \textbf{Escala fixa em painéis de processo.} Escala automática faz um desvio de 2\% parecer catástrofe. Fixe mínimo e máximo coerentes com a faixa de operação.
+\item
+  \textbf{Precisão significativa.} Registrar 24,8735 \ensuremath{^\circ}C quando o transmissor tem incerteza de 1 \ensuremath{^\circ}C é ruído numérico. Duas casas decimais já é exagero para a maioria das variáveis de processo.
+\item
+  \textbf{Atualização coerente com a dinâmica.} Nível de reservatório muda por minuto; atualizar a cada segundo consome rede e chama atenção para o que não muda.
+\item
+  \textbf{Unidade sempre visível.} Um número sem unidade é um erro esperando para acontecer.
+\item
+  \textbf{Nada piscando sem motivo.} Pisca é reservado para alarme não reconhecido de prioridade alta.
+\end{itemize}
+
+\textbf{Tabela 11.4 -- Antipadrões frequentes e a correção}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Antipadrão
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Por que é ruim
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Correção
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Sinótico como papel de parede & Reproduz o desenho do processo, não a informação & Reduzir ao essencial, uma informação por elemento \\
+Dezenas de gauges de ponteiro & Exigem leitura lenta e comparação ruim & Tendências agrupadas com faixa fixa \\
+Escala automática em painel de alarme & Amplifica ruído e assusta & Escala fixa com limites marcados \\
+Dashboard de gestão com dados de 1 s & Ruído e custo de rede & Agregar por período e documentar a agregação \\
+Muitas métricas sem hierarquia & Nada se destaca & No máximo cinco indicadores principais por tela \\
+Filtro sem indicação de contexto & Usuário não sabe o que está vendo & Cabeçalho com período, ativo e unidade \\
+\end{longtable}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{comparando-plataformas-de-dashboard}{%
+\section{Comparando plataformas de dashboard}\label{comparando-plataformas-de-dashboard}}
+
+Não existe vencedor: existe tarefa. A comparação útil é por função.
+
+\textbf{Tabela 11.5 -- Comparação de plataformas de visualização}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Plataforma
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Função principal
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Fonte de dados
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Perfil de uso
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Limitação típica
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+SCADA / HMI & Operação e comando em tempo real & Drivers industriais, CLP & Sala de controle, ação crítica & Custo por licença e pouca flexibilidade analítica \\
+Node-RED Dashboard & Prototipagem e painéis operacionais simples & MQTT, HTTP, OPC UA, banco & Bancada, laboratório, integração rápida & Recursos limitados de autenticação e escala \\
+ThingsBoard & Gestão de dispositivos e telemetria & MQTT, HTTP, CoAP & Frotas de dispositivos, alarme e RPC & Curva de aprendizado no motor de regras \\
+Grafana & Análise e monitoramento sobre séries temporais & InfluxDB, Prometheus, SQL, MQTT & Engenharia, manutenção, gestão & Não é sistema de comando: não substitui o SCADA \\
+\end{longtable}
+
+A leitura correta dessas linhas: o SCADA \textbf{comanda}, o Grafana \textbf{analisa}, o ThingsBoard \textbf{gerencia dispositivos e telemetria}, o Node-RED \textbf{integra e prototipa}. Em uma planta real, os quatro podem coexistir, cada um no seu papel.
+
+\begin{caixaatencao}
+
+\textbf{Atenção:} dashboard web \textbf{não} é interface de segurança nem de comando crítico. Comando de válvula, partida de equipamento e intertravamento pertencem ao CLP e à IHM/SCADA, com requisitos de disponibilidade e latência que um painel em nuvem não garante. Se a rede cai, o painel cai --- o processo não pode depender dele.
+
+\end{caixaatencao}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{grafana-na-pruxe1tica}{%
+\section{Grafana na prática}\label{grafana-na-pruxe1tica}}
+
+O Grafana é uma plataforma de visualização que consulta fontes externas: ele não armazena os dados de processo (com exceção de configuração e estado de alerta). Isso define o desenho da arquitetura: primeiro o banco de séries temporais, depois o painel.
+
+\hypertarget{fonte-de-dados-influxdb}{%
+\subsection{Fonte de dados: InfluxDB}\label{fonte-de-dados-influxdb}}
+
+A configuração de fonte de dados pode ser feita por interface ou por arquivo de provisionamento. Os dois formatos abaixo são os documentados oficialmente para InfluxDB 1.x e 2.x.
+
+\begin{lstlisting}
+# InfluxDB 1.x - banco e modo HTTP
+apiVersion: 1
+datasources:
+  - name: InfluxDB_SCADA
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+    jsonData:
+      dbName: processos
+      httpMode: GET
+    secureJsonData:
+      password: ${INFLUX_SENHA}
+\end{lstlisting}
+
+\begin{lstlisting}
+# InfluxDB 2.x - Flux, organizacao e bucket padrao
+apiVersion: 1
+datasources:
+  - name: InfluxDB_V2
+    type: influxdb
+    access: proxy
+    url: http://influxdb:8086
+    jsonData:
+      version: Flux
+      organization: iffluminense
+      defaultBucket: processo
+    secureJsonData:
+      token: ${INFLUX_TOKEN}
+\end{lstlisting}
+
+Observações de engenharia:
+
+\begin{itemize}
+\tightlist
+\item
+  O \passthrough{\lstinline!access: proxy!} faz o Grafana consultar o banco; o navegador do operador não fala direto com o banco --- melhor para segurança e para redes segmentadas.
+\item
+  Credenciais vão em \passthrough{\lstinline!secureJsonData!}, nunca em \passthrough{\lstinline!jsonData!}. Em ambiente real, use variáveis de ambiente ou cofre de segredos, como indicado no \passthrough{\lstinline!$\{...\}!}.
+\item
+  No InfluxDB 1.x o campo recomendado é \passthrough{\lstinline!dbName!} (o campo \passthrough{\lstinline!database!} é legado); no 2.x o idioma de consulta é o Flux.
+\end{itemize}
+
+\hypertarget{variuxe1veis-de-dashboard}{%
+\subsection{Variáveis de dashboard}\label{variuxe1veis-de-dashboard}}
+
+Variáveis transformam um dashboard em um instrumento reutilizável: em vez de uma tela por área, uma tela com seletor de área, bomba e período.
+
+\begin{lstlisting}
+"templating": {
+  "list": [
+    {
+      "name": "area",
+      "type": "query",
+      "datasource": "InfluxDB_V2",
+      "query": "tag_values(processo, \"area\")",
+      "includeAll": true,
+      "multi": true,
+      "refresh": 1
+    }
+  ]
+}
+\end{lstlisting}
+
+O campo \passthrough{\lstinline!query!} é resolvido pela fonte de dados (por exemplo \passthrough{\lstinline!tag\_values!} para InfluxDB) e \passthrough{\lstinline!refresh!} controla quando a lista é recarregada. Um cuidado de desempenho: variável com \passthrough{\lstinline!refresh: 1!} (a cada carregamento) em painel com muitos usuários gera consultas repetidas --- considerar \passthrough{\lstinline!refresh: 2!} (sob demanda).
+
+\hypertarget{alertas-a-limitauxe7uxe3o-que-pega-todo-mundo}{%
+\subsection{Alertas: a limitação que pega todo mundo}\label{alertas-a-limitauxe7uxe3o-que-pega-todo-mundo}}
+
+\begin{caixaatencao}
+
+\textbf{Atenção:} regras de alerta do Grafana são avaliadas no \textbf{backend}, sem o contexto do dashboard. Por isso, \textbf{uma regra de alerta não pode usar variáveis de template} (\passthrough{\lstinline!$area!}, \passthrough{\lstinline!$bomba!}): a consulta falha ou não retorna o esperado. Se a mesma consulta precisa existir no painel e no alerta, mantenha \textbf{duas versões}: uma com variáveis, para o painel, e outra com valores fixos, para o alerta. É a causa mais comum de ``o alerta nunca dispara''.
+
+\end{caixaatencao}
+
+\hypertarget{provisionamento-como-cuxf3digo}{%
+\subsection{Provisionamento como código}\label{provisionamento-como-cuxf3digo}}
+
+Configurar dashboards à mão não escala e não é auditável. O Grafana aceita provisionamento por arquivo em quatro tipos de recurso: \textbf{fontes de dados, plugins, dashboards e alertas}. Usuários \textbf{não} são provisionados por arquivo --- isso é feito por integração com provedor de identidade.
+
+Na prática: dashboards versionados em Git, provisionados por arquivo, revisados por \emph{pull request}. É o equivalente, para a camada de visualização, da gestão de mudanças discutida no capítulo de alarmes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estudo-de-caso-dashboard-de-pressuxe3o-temperatura-vazuxe3o-e-nuxedvel}{%
+\section{\texorpdfstring{Estudo de caso --- dashboard de pressão, temperatura, vazão e nível}{Estudo de caso  dashboard de pressão, temperatura, vazão e nível}}\label{estudo-de-caso-dashboard-de-pressuxe3o-temperatura-vazuxe3o-e-nuxedvel}}
+
+\textbf{Cenário.} Estação elevatória com quatro variáveis principais: pressão de descarga (0--16 bar), temperatura do mancal (0--120 \ensuremath{^\circ}C), vazão (0--420 m³/h) e nível do reservatório (0--6 m). Telemetria publicada em MQTT a cada 5 s; persistida em InfluxDB; visualizada em Grafana.
+
+\begin{center}
+\IfFileExists{../figuras/capitulo-11-m3.pdf}{%
+  \includegraphics[width=\linewidth,height=0.8\textheight,keepaspectratio]{../figuras/capitulo-11-m3.pdf}%
+}{\fbox{\parbox{0.9\linewidth}{\small Diagrama Mermaid ainda não renderizado: capitulo-11-m3. Rode scripts/render-mermaid.sh.}}}
+\end{center}
+
+\textbf{Esquema de medição (InfluxDB).} Um \emph{measurement} por variável, \emph{tags} para localização e \emph{fields} para valor e qualidade:
+
+\begin{lstlisting}
+measurement: processo
+  tags:   area=estacao-1, equipamento=bomba-2, variavel=pressao
+  fields: valor=11.4, qualidade=1
+\end{lstlisting}
+
+A \textbf{tag} identifica o ativo (cardinalidade baixa e estável); o \textbf{field} carrega o número. Trocar isso --- usar valor na tag --- destrói o desempenho do banco. E a \textbf{qualidade} entra como campo, não como comentário: painel que ignora qualidade mostra valor inválido como se fosse bom.
+
+\textbf{Painéis do dashboard operacional.}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Painel
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Conteúdo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Configuração relevante
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Faixa de estado geral & Quatro indicadores com faixa normal & Escala fixa, unidade, limites marcados \\
+Tendências & P, T, F e N com janela de 8 h & Sobreposição apenas de variáveis correlatas \\
+Nível & Tendência longa (7 dias) + marcador de meta & Agregação por hora na janela longa \\
+Consumo & KPI de m³/h médio e energia por m³ & Período explícito no título \\
+Eventos & Lista de alarmes e mudanças de estado & Ordenada por tempo, com reconhecimento \\
+Diagnóstico & Vibração e corrente do motor & Nível 4, acesso restrito \\
+\end{longtable}
+
+\textbf{Consultas (exemplos em Flux, InfluxDB 2.x).}
+
+\begin{lstlisting}
+from(bucket: "processo")
+  |> range(start: -8h)
+  |> filter(fn: (r) => r._measurement == "processo")
+  |> filter(fn: (r) => r.variavel == "pressao")
+  |> filter(fn: (r) => r._field == "valor")
+  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)
+\end{lstlisting}
+
+\begin{lstlisting}
+from(bucket: "processo")
+  |> range(start: -7d)
+  |> filter(fn: (r) => r.variavel == "nivel")
+  |> filter(fn: (r) => r._field == "valor")
+  |> aggregateWindow(every: 1h, fn: max)
+\end{lstlisting}
+
+\begin{figure}
+\centering
+\includegraphics{../figuras/cap11-fluxograma-pi.png}
+\caption[Figura 11.3 -- Fluxograma P\&I do processo usado no estudo de caso]{Figura 11.3 -- Fluxograma P\&I do processo usado no estudo de caso. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~89 (Machado, Pontes e Vianna, reproduzida com crédito).}
+\end{figure}
+
+Antes de desenhar qualquer painel, é preciso ter o \textbf{P\&I} do processo. O fluxograma acima é a
+referência de verdade do estudo de caso: tanque misturador com agitação, duas linhas de
+alimentação (água e concentrado) com bombas B01 e B02, linha de produto com a válvula de controle
+V-1 e o conjunto de instrumentos que gera cada variável do dashboard --- FT (vazão), LT (nível),
+TT (temperatura) e o controlador de vazão. O painel só pode mostrar o que o P\&I instrumenta; o
+resto é expectativa.
+
+\textbf{Resultado de engenharia.} O painel de gestão passou a mostrar consumo específico e disponibilidade; o painel do operador ficou com quatro variáveis e a lista de eventos; o nível 4 ficou restrito à manutenção. O tempo de leitura da condição geral caiu de cerca de dois minutos (consulta em três telas diferentes) para menos de dez segundos.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{atividade-pruxe1tica}{%
+\section{Atividade prática}\label{atividade-pruxe1tica}}
+
+Com os dados históricos disponibilizados em um arquivo CSV (ou em um InfluxDB local) contendo pressão, temperatura, vazão e nível de um período de sete dias:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Importe os dados para o banco de séries temporais e defina \emph{tags} e \emph{fields} com justificativa.
+\item
+  Crie três dashboards: visão geral (nível 1), área (nível 2) e diagnóstico (nível 4).
+\item
+  Escolha o tipo de painel para cada variável, justificando com a Tabela 11.3.
+\item
+  Use escala fixa nos painéis de processo e explique os limites escolhidos.
+\item
+  Crie uma variável de dashboard para selecionar o período e teste a navegação.
+\item
+  Crie \textbf{uma} regra de alerta, respeitando a limitação de variáveis de template, e explique a solução adotada.
+\item
+  Exporte os dashboards como JSON, versione os arquivos e descreva o fluxo de provisionamento.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{resumo}{%
+\section{Resumo}\label{resumo}}
+
+\begin{itemize}
+\tightlist
+\item
+  Dashboard é instrumento de decisão: sem \textbf{contexto} (faixa normal, limite, período), o valor não informa.
+\item
+  A hierarquia de telas (níveis 1 a 4, alinhada aos princípios da ISA-101) organiza o detalhe por público e por pergunta, com navegação a dois cliques.
+\item
+  O tipo de painel deve seguir o tipo de dado: tendência para analógico, indicador de estado para discreto, tabela para evento.
+\item
+  Cor, escala fixa, precisão significativa, unidade visível e atualização coerente são requisitos, não preferências.
+\item
+  SCADA, Node-RED, ThingsBoard e Grafana têm papéis distintos e complementares; nenhum substitui o comando crítico do SCADA.
+\item
+  No Grafana, a fonte de dados carrega o dado (InfluxDB 1.x por banco, 2.x com Flux), variáveis tornam o painel reutilizável, o provisionamento por arquivo traz auditabilidade e o \emph{alerting} não aceita variáveis de template.
+\item
+  Um dashboard industrial mínimo tem quatro variáveis de processo, contexto visual e uma lista de eventos --- não trinta gauges.
+\end{itemize}
+
+\hypertarget{questuxf5es-de-revisuxe3o}{%
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Explique por que um dashboard que mostra apenas o valor instantâneo é insuficiente para a operação.
+\item
+  Descreva os quatro níveis de detalhe de tela e o público de cada um.
+\item
+  Qual painel você escolheria para o estado ligado/desligado de oito bombas? Justifique.
+\item
+  Por que escala automática é desaconselhada em painéis de processo? Em que caso ela é aceitável?
+\item
+  Descreva três antipadrões de dashboard industrial e a correção de cada um.
+\item
+  Compare SCADA HMI, Node-RED Dashboard, ThingsBoard e Grafana quanto à função principal e à limitação típica.
+\item
+  Qual a diferença entre \passthrough{\lstinline!jsonData!} e \passthrough{\lstinline!secureJsonData!} na configuração de uma fonte de dados no Grafana?
+\item
+  Por que uma regra de alerta do Grafana não pode usar variáveis de template? Como resolver?
+\item
+  Em um banco de séries temporais, por que o valor medido deve ser \emph{field} e não \emph{tag}?
+\item
+  Um gestor pede um dashboard com dados de 1 segundo de todas as 40 variáveis da planta. Apresente duas objeções técnicas e uma proposta alternativa.
+\end{enumerate}
+
+\hypertarget{referuxeancias}{%
+\section{Referências}\label{referuxeancias}}
+
+\begin{itemize}
+\tightlist
+\item
+  GRAFANA LABS. \textbf{Documentação oficial do Grafana} --- provisionamento de fontes de dados (InfluxDB 1.x e 2.x), modelo JSON de dashboards, variáveis de template e limitações de \emph{alerting} com variáveis. Disponível em: \url{grafana.com/docs}. Consulta: 2026.
+\item
+  INFLUXDATA. \textbf{InfluxDB --- documentação oficial} (modelo de dados, \emph{tags} e \emph{fields}, linguagem Flux).
+\item
+  INTERNATIONAL SOCIETY OF AUTOMATION. \textbf{ISA-101 --- Human-Machine Interfaces for Process Automation Systems} (hierarquia de telas, uso de cor e alarme visual).
+\item
+  MATERIAL DE ORIGEM: \passthrough{\lstinline!ISA101.pdf!}; \emph{ISA-101 --- III Simpósio ISA São Paulo / Sabesp, novembro de 2016}; \emph{ISA boas práticas SCADA/PIMS, 2017}; \passthrough{\lstinline!Node-Red\_InterfaceDeSupervisão.pdf!}; \passthrough{\lstinline!IIoT e suas Tecnologias Aderentes.pdf!}.
+\item
+  OPC FOUNDATION. \textbf{OPC UA} --- modelo de informação e qualidade de dado (\emph{quality}), usados no contexto de dashboards de processo.
+\end{itemize}

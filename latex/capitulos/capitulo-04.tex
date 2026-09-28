@@ -1,0 +1,477 @@
+\hypertarget{arquitetura-e-componentes-de-um-sistema-scada}{%
+\chapter{Arquitetura e Componentes de um Sistema SCADA}\label{arquitetura-e-componentes-de-um-sistema-scada}}
+
+\section*{Objetivos de Aprendizagem}
+
+Ao final deste capítulo, o leitor será capaz de:
+
+\begin{itemize}
+\tightlist
+\item
+  Identificar e descrever os componentes físicos e lógicos de uma arquitetura SCADA.
+\item
+  Compreender as funções da MTU, RTU e servidor de dados.
+\item
+  Distinguir arquiteturas monolíticas, distribuídas e redundantes.
+\item
+  Dimensionar os elementos de uma arquitetura SCADA para um cenário típico.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{componentes-de-uma-arquitetura-scada}{%
+\section{Componentes de uma Arquitetura SCADA}\label{componentes-de-uma-arquitetura-scada}}
+
+Uma arquitetura SCADA típica é composta pelos seguintes elementos:
+
+\begin{center}
+\IfFileExists{../figuras/capitulo-04-m1.pdf}{%
+  \includegraphics[width=\linewidth,height=0.8\textheight,keepaspectratio]{../figuras/capitulo-04-m1.pdf}%
+}{\fbox{\parbox{0.9\linewidth}{\small Diagrama Mermaid ainda não renderizado: capitulo-04-m1. Rode scripts/render-mermaid.sh.}}}
+\end{center}
+
+\begin{figure}
+\centering
+\includegraphics{../figuras/cap04-arquitetura-basica.png}
+\caption[Figura 4.1 -- Arquitetura básica de um sistema SCADA]{Figura 4.1 -- Arquitetura básica de um sistema SCADA. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~22 (Machado, Pontes e Vianna, reproduzida com crédito).}
+\end{figure}
+
+A estação de supervisão comunica-se pelos meios RS-485, RS-422, RS-232 ou Ethernet e conversa
+com o hardware de controle, que por sua vez lê sensores e transmissores e aciona os atuadores
+sobre o processo.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{rtu-unidade-terminal-remota}{%
+\section{\texorpdfstring{RTU --- Unidade Terminal Remota}{RTU  Unidade Terminal Remota}}\label{rtu-unidade-terminal-remota}}
+
+A \textbf{RTU} (\emph{Remote Terminal Unit}) é o dispositivo de campo responsável por:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Coletar} dados dos sensores e instrumentos (entradas analógicas e digitais).
+\item
+  \textbf{Executar} lógicas de controle locais simples.
+\item
+  \textbf{Transmitir} os dados ao servidor central (MTU) via protocolo SCADA.
+\item
+  \textbf{Receber} comandos da MTU e aplicá-los aos atuadores.
+\end{enumerate}
+
+\hypertarget{caracteruxedsticas-tuxe9cnicas}{%
+\subsection{Características Técnicas}\label{caracteruxedsticas-tuxe9cnicas}}
+
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Parâmetro & Valores Típicos \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Entradas analógicas & 4--64 canais, 4-20 mA / \ensuremath{\pm}10 V \\
+Entradas digitais & 8--256 pontos, 24 VCC / 120 VCA \\
+Saídas analógicas & 2--16 canais, 4-20 mA \\
+Saídas digitais & 4--64 relés ou transistores \\
+Protocolos suportados & Modbus RTU/TCP, DNP3, IEC 60870-5-101/104 \\
+Alimentação & 12--48 VCC (bateria + painel solar em campo remoto) \\
+Temperatura operação & -40\ensuremath{^\circ}C a +70\ensuremath{^\circ}C \\
+\end{longtable}
+
+\hypertarget{rtu-vs.-clp-no-papel-de-rtu}{%
+\subsection{RTU vs.~CLP no Papel de RTU}\label{rtu-vs.-clp-no-papel-de-rtu}}
+
+Em instalações modernas, \textbf{CLPs de pequeno porte} frequentemente substituem RTUs tradicionais, pois oferecem maior capacidade de processamento e conectividade Ethernet nativa. A escolha entre RTU dedicada e CLP depende de:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Consumo energético:} RTUs consomem menos energia --- essencial em locais com energia solar.
+\item
+  \textbf{Robustez ambiental:} RTUs certificadas para ambientes extremos (offshore, subestações).
+\item
+  \textbf{Custo:} CLPs de pequeno porte (ex.: Siemens S7-1200 Basic) são competitivos.
+\end{itemize}
+
+\begin{caixadica}
+
+\textbf{Dica:} Em aplicações de telemetria de água e saneamento, é comum encontrar RTUs com comunicação GPRS/4G incorporada, alimentadas por painel solar e bateria, operando sem intervenção por meses. Fabricantes como Advantech, Emerson (Bristol) e SEL atendem bem esse nicho.
+
+\end{caixadica}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{mtu-unidade-terminal-mestre}{%
+\section{\texorpdfstring{MTU --- Unidade Terminal Mestre}{MTU  Unidade Terminal Mestre}}\label{mtu-unidade-terminal-mestre}}
+
+A \textbf{MTU} (\emph{Master Terminal Unit}) é o \textbf{servidor central} do sistema SCADA. Suas funções:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Polling:} interroga periodicamente cada RTU/CLP para coletar dados.
+\item
+  \textbf{Banco de dados em tempo real (RTDB):} mantém na memória o estado atual de todas as variáveis do sistema.
+\item
+  \textbf{Processamento de alarmes:} avalia condições de alarme e notifica os operadores.
+\item
+  \textbf{Registro de eventos:} armazena com timestamp cada mudança de estado e alarme.
+\item
+  \textbf{Execução de controle supervisório:} processa os comandos dos operadores e os encaminha às RTUs.
+\item
+  \textbf{Interface com clientes HMI:} serve dados às estações de operação e thin clients.
+\end{itemize}
+
+\hypertarget{redunduxe2ncia-da-mtu}{%
+\subsection{Redundância da MTU}\label{redunduxe2ncia-da-mtu}}
+
+Em sistemas críticos (energia elétrica, óleo e gás, água), a MTU opera em configuração \textbf{ativo-passivo} ou \textbf{ativo-ativo}:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Ativo-passivo:} Servidor primário em operação; o secundário sincroniza continuamente o banco de dados em tempo real. Em caso de falha, assume em segundos (failover).
+\item
+  \textbf{Ativo-ativo:} Dois servidores processam dados simultaneamente; os clientes HMI recebem de ambos.
+\end{itemize}
+
+\begin{caixafigura}
+
+\textbf{{[}Figura 4.2 -- Configuração redundante de servidores SCADA{]}}
+\emph{Diagrama mostrando dois servidores SCADA (Primário e Backup) conectados por link dedicado de sincronização. As RTUs de campo conectam-se aos dois servidores. Os clientes HMI recebem dados do servidor ativo. Seta pontilhada indicando o failover automático.}
+
+\end{caixafigura}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{servidor-de-historizauxe7uxe3o-historiador}{%
+\section{Servidor de Historização (Historiador)}\label{servidor-de-historizauxe7uxe3o-historiador}}
+
+O \textbf{historiador de processo} é um banco de dados especializado em armazenar séries temporais de variáveis industriais com alta eficiência de compressão e acesso.
+
+\hypertarget{por-que-nuxe3o-usar-sql-convencional}{%
+\subsection{Por que não usar SQL convencional?}\label{por-que-nuxe3o-usar-sql-convencional}}
+
+Bancos de dados relacionais (SQL Server, PostgreSQL) são inadequados para a escala de dados industriais:
+
+\begin{itemize}
+\tightlist
+\item
+  Uma planta com 10.000 tags coletados a cada segundo gera \textbf{864 milhões de registros por dia}.
+\item
+  Bancos relacionais não comprimem séries temporais eficientemente.
+\item
+  Queries de tendência histórica são lentas em SQL não otimizado para séries temporais.
+\end{itemize}
+
+\hypertarget{soluuxe7uxf5es-de-historizauxe7uxe3o}{%
+\subsection{Soluções de Historização}\label{soluuxe7uxf5es-de-historizauxe7uxe3o}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Produto
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Tipo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Empresa
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Diferencial
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{AVEVA PI System} & Comercial & AVEVA & Padrão da indústria de O\&G; ecossistema amplo (PI Vision, PI AF) \\
+\textbf{Honeywell Uniformance PHD} & Comercial & Honeywell & Integrado ao Experion \\
+\textbf{InfluxDB} & Open-source & InfluxData & Alta performance; linha do tempo nativa; integração com Grafana \\
+\textbf{TimescaleDB} & Open-source & Timescale & Extensão PostgreSQL para séries temporais \\
+\textbf{Prometheus} & Open-source & CNCF & Focado em métricas de infraestrutura; integra com Grafana \\
+\end{longtable}
+
+\begin{caixanota}
+
+\textbf{Nota:} O \textbf{AVEVA PI System} é o historiador mais utilizado na indústria de petróleo, gás e energia elétrica no Brasil e no mundo. Conhecer sua estrutura de atributos (PI AF --- Asset Framework) é uma competência valorizada no mercado.
+
+\end{caixanota}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estauxe7uxf5es-de-operauxe7uxe3o-e-thin-clients}{%
+\section{Estações de Operação e Thin Clients}\label{estauxe7uxf5es-de-operauxe7uxe3o-e-thin-clients}}
+
+As \textbf{estações de operação} são os computadores onde os operadores monitoram o processo e executam comandos. Podem ser:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Fat clients (clientes completos):} PC com software SCADA instalado --- alto desempenho, menor dependência de rede.
+\item
+  \textbf{Thin clients:} estações sem disco local que executam a interface SCADA a partir de um servidor (Terminal Server ou Citrix). Mais fáceis de manter e atualizar.
+\item
+  \textbf{Web clients:} acesso via navegador (Chrome, Edge) sem instalação. Tendência predominante em plataformas modernas como Ignition.
+\item
+  \textbf{Mobile clients:} aplicativos iOS/Android para supervisão em campo ou acesso remoto.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{infraestrutura-de-comunicauxe7uxe3o}{%
+\section{Infraestrutura de Comunicação}\label{infraestrutura-de-comunicauxe7uxe3o}}
+
+A rede de comunicação é o sistema circulatório do SCADA. Suas características determinam a confiabilidade e o desempenho do sistema.
+
+\hypertarget{meios-fuxedsicos}{%
+\subsection{Meios Físicos}\label{meios-fuxedsicos}}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Meio
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Vantagem
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Limitação
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Aplicação
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Fibra ótica} & Alta velocidade, imune a EMI & Custo de instalação & Redes industriais críticas \\
+\textbf{Ethernet par trançado} & Baixo custo, fácil instalação & Distância \textasciitilde100 m & Ambiente de controle local \\
+\textbf{Rádio UHF/VHF} & Sem infraestrutura física & Sujeito a interferência & Áreas remotas sem cabeamento \\
+\textbf{4G/5G} & Cobertura ampla, fácil implantação & Custo recorrente, latência variável & RTUs remotas, telemetria \\
+\textbf{Satélite} & Cobertura global & Alta latência, custo elevado & Offshore, locais sem cobertura celular \\
+\end{longtable}
+
+\hypertarget{topologias-de-rede}{%
+\subsection{Topologias de Rede}\label{topologias-de-rede}}
+
+\begin{figure}
+\centering
+\includegraphics{../figuras/cap04-rede-profibus.png}
+\caption[Figura 4.3 -- Arquitetura de rede de campo com PROFIBUS e supervisão remota]{Figura 4.3 -- Arquitetura de rede de campo com PROFIBUS e supervisão remota. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~30 (Machado, Pontes e Vianna, reproduzida com crédito).}
+\end{figure}
+
+Observe a topologia em barramento nos dois níveis: PROFIBUS DP entre CLPs e instrumentos,
+PROFIBUS PA no nível dos transmissores, e uma estação de supervisão que também é alcançada
+pela rede corporativa.
+
+\begin{caixaatencao}
+
+\textbf{Atualização tecnológica:} o próprio material de origem anota, na página da figura, que
+ela \textbf{seria alterada}: na prática, o PROFIBUS DP passou a ser substituído por \textbf{Ethernet}
+industrial (PROFINET ou EtherNet/IP) no nível de controle, e o PROFIBUS FMS foi descontinuado.
+O barramento PROFIBUS permanece relevante onde já está instalado --- sobretudo na camada de
+instrumentação (PROFIBUS PA) ---, não como escolha para projetos novos. A figura é mantida como
+registro de uma arquitetura real de campo, e não como recomendação de projeto.
+
+\end{caixaatencao}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{comparativo-de-arquiteturas-scada}{%
+\section{Comparativo de Arquiteturas SCADA}\label{comparativo-de-arquiteturas-scada}}
+
+A escolha da arquitetura é uma decisão de engenharia de disponibilidade: quanto mais crítico o
+processo, mais a redundância deixa de ser opcional.
+
+\begin{center}
+\IfFileExists{../figuras/capitulo-04-m2.pdf}{%
+  \includegraphics[width=\linewidth,height=0.8\textheight,keepaspectratio]{../figuras/capitulo-04-m2.pdf}%
+}{\fbox{\parbox{0.9\linewidth}{\small Diagrama Mermaid ainda não renderizado: capitulo-04-m2. Rode scripts/render-mermaid.sh.}}}
+\end{center}
+
+\textbf{Tabela 4.1 -- Arquiteturas SCADA e suas características}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Arquitetura
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Descrição
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Vantagens
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Desvantagens
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Indicada para
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Monolítica} & Um único servidor SCADA & Simples, baixo custo & Ponto único de falha & Pequenas plantas, projetos piloto \\
+\textbf{Cliente-Servidor} & Servidor central + múltiplos clientes & Escalável, acesso multiusuário & Exige rede confiável & Plantas médias e grandes \\
+\textbf{Distribuída} & Múltiplos servidores por área ou site & Falha isolada por área & Mais complexa de integrar & Múltiplos sites \\
+\textbf{Redundante} & Servidor primário + backup automático & Alta disponibilidade (HA) & Custo dobrado & Infraestruturas críticas \\
+\textbf{Cloud SCADA} & Servidor hospedado na nuvem & Acesso global, sem hardware local & Latência, segurança de dados & Supervisão distribuída, SaaS \\
+\end{longtable}
+
+As três variantes abaixo são as arquiteturas históricas que a tabela resume: com CLP, com
+controladores dedicados e com sistema de aquisição de dados. Elas continuam aparecendo em campo,
+mesmo quando o CLP é a escolha padrão.
+
+\begin{figure}
+\centering
+\includegraphics{../figuras/cap04-arquitetura-clp.png}
+\caption[Figura 4.4 -- Arquitetura SCADA com uso de CLP]{Figura 4.4 -- Arquitetura SCADA com uso de CLP. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~26 (Machado, Pontes e Vianna, reproduzida com crédito).}
+\end{figure}
+
+Com o CLP, o controle fica concentrado no controlador e a supervisão deixa de conversar
+diretamente com os instrumentos: ela fala com o CLP pela rede de comunicação.
+
+\begin{figure}
+\centering
+\includegraphics{../figuras/cap04-arquitetura-single-multiloop.png}
+\caption[Figura 4.5 -- Arquitetura com controladores single-loop e multi-loop]{Figura 4.5 -- Arquitetura com controladores single-loop e multi-loop. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~27 (Machado, Pontes e Vianna, reproduzida com crédito).}
+\end{figure}
+
+Cada controlador dedicado fecha uma ou mais malhas, e a supervisão lê e escreve setpoints
+sobre o barramento RS-485.
+
+\begin{figure}
+\centering
+\includegraphics{../figuras/cap04-arquitetura-daq.png}
+\caption[Figura 4.6 -- Arquitetura com sistema de aquisição de dados]{Figura 4.6 -- Arquitetura com sistema de aquisição de dados. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~28 (Machado, Pontes e Vianna, reproduzida com crédito).}
+\end{figure}
+
+No DAQ não há controle pelo sistema supervisório: ele apenas adquire, apresenta e registra.
+
+\begin{figure}
+\centering
+\includegraphics{../figuras/cap04-tempo-resposta.png}
+\caption[Figura 4.7 -- Tempo de resposta de um sistema SCADA]{Figura 4.7 -- Tempo de resposta de um sistema SCADA. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~33 (Machado, Pontes e Vianna, reproduzida com crédito).}
+\end{figure}
+
+O tempo total de resposta é a soma das parcelas: interface homem-máquina, driver de comunicação,
+sistema operacional, hardware de controle e E/S. É por isso que o tempo medido na tela nunca é
+igual ao tempo de varredura do CLP.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{estudo-de-caso-scada-para-sistema-de-abastecimento-de-uxe1gua}{%
+\section{\texorpdfstring{Estudo de Caso --- SCADA para Sistema de Abastecimento de Água}{Estudo de Caso  SCADA para Sistema de Abastecimento de Água}}\label{estudo-de-caso-scada-para-sistema-de-abastecimento-de-uxe1gua}}
+
+\textbf{Contexto:} Uma companhia de saneamento opera 35 estações de bombeamento distribuídas em uma cidade de médio porte, com distâncias de até 80 km do centro de controle.
+
+\textbf{Desafio:} Monitorar em tempo real nível dos reservatórios, pressão nas redes de distribuição e status das bombas; detectar vazamentos; gerar relatórios de consumo para a concessionária reguladora.
+
+\textbf{Solução adotada:}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Campo:} RTUs alimentadas por energia solar + bateria, com medidores de vazão eletromagnéticos, transmissores de pressão e nível ultrassônico.
+\item
+  \textbf{Comunicação:} Link 4G (operadora) com VPN criptografada; backup via rádio UHF para estações críticas.
+\item
+  \textbf{SCADA:} Servidor central com ScadaBR (open-source) + módulo de relatórios. Interface web para acesso da equipe de operação e manutenção via tablets.
+\item
+  \textbf{Histórico:} InfluxDB para séries temporais + Grafana para dashboards de consumo e OEE das bombas.
+\end{itemize}
+
+\textbf{Resultados:} redução de 35\% nas perdas comerciais (detecção de vazamentos), tempo médio de resposta a falhas caiu de 4 horas para 25 minutos.
+
+\begin{caixafigura}
+
+\textbf{{[}Figura 4.8 -- Arquitetura do SCADA de saneamento{]}}
+\emph{Diagrama da arquitetura completa do estudo de caso: mapa geográfico esquemático da cidade com as 35 estações; link 4G até o centro de controle; servidor SCADA, InfluxDB e Grafana; estações de operação e acesso mobile.}
+
+\end{caixafigura}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{resumo}{%
+\section{Resumo}\label{resumo}}
+
+\begin{itemize}
+\tightlist
+\item
+  A arquitetura SCADA é composta por RTUs de campo, infraestrutura de comunicação, MTU (servidor central), historiador e estações de operação.
+\item
+  \textbf{RTUs} coletam dados do campo; a \textbf{MTU} centraliza, processa e distribui para os clientes.
+\item
+  O \textbf{historiador de processo} armazena séries temporais; soluções modernas como InfluxDB são alternativas open-source ao AVEVA PI.
+\item
+  A arquitetura deve ser dimensionada conforme criticidade: desde monolítica (simples) até redundante com failover automático (infraestruturas críticas).
+\item
+  A comunicação pode usar fibra, Ethernet, rádio ou 4G --- cada meio com trade-offs de custo, velocidade e confiabilidade.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{questuxf5es-de-revisuxe3o}{%
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+
+\textbf{Conceituais:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Qual é a diferença entre MTU e RTU em um sistema SCADA?
+\item
+  Por que bancos de dados relacionais convencionais são inadequados para historização de dados de processo industrial?
+\item
+  Quais são as diferenças entre as arquiteturas SCADA cliente-servidor e cloud SCADA?
+\end{enumerate}
+
+\textbf{Práticas:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  Uma planta petroquímica opera 24 horas por dia, 7 dias por semana, com zero tolerância a paradas não programadas do sistema de supervisão. Qual arquitetura SCADA você recomendaria? Descreva os componentes de redundância necessários.
+\item
+  Para um sistema com 500 RTUs coletando 20 variáveis cada uma, a cada 10 segundos, calcule o volume de dados históricos gerado por dia e por ano. Qual solução de historização você escolheria?
+\end{enumerate}
+
+\textbf{Desafio:}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Projete uma arquitetura SCADA para uma fazenda com 10 pivôs de irrigação localizados em área sem cobertura de fibra. Defina: meios de comunicação, equipamento de campo, servidor e interface de supervisão.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\hypertarget{referuxeancias}{%
+\section{Referências}\label{referuxeancias}}
+
+\begin{itemize}
+\tightlist
+\item
+  BOYER, S. A. \emph{SCADA: Supervisory Control and Data Acquisition}. 4. ed.~ISA, 2010.
+\item
+  INFLUXDATA. \emph{InfluxDB Documentation}. Disponível em: docs.influxdata.com.
+\item
+  AVEVA. \emph{PI System Overview}. Disponível em: \url{aveva.com/en/products/pi-system/}.
+\item
+  IEC 60870-5: \emph{Telecontrol Equipment and Systems}. IEC, 2006.
+\item
+  MACHADO, C. F. B.; PONTES, M. O.; VIANNA, W. S. \emph{SCADA --- Supervisory Control and Data
+  Acquisition: sistemas de supervisão e aquisição de dados para automação}. (Material de origem desta
+  apostila; figuras das arquiteturas dos autores, reproduzidas com crédito.)
+\end{itemize}

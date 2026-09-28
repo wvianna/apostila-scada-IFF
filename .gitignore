@@ -18,7 +18,7 @@
 #     O PDF final (latex/apostila.pdf) sai daqui: para versioná-lo, troque
 #     as duas linhas por   /latex/*   e   !/latex/apostila.pdf
 # ---------------------------------------------------------------------
-/latex/
+#/latex/
 
 # Resíduos de LaTeX/pandoc fora de latex/ (compilação avulsa, testes)
 *.aux

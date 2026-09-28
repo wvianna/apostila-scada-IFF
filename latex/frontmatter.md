@@ -1,0 +1,16 @@
+Esta apostila reúne os fundamentos e as tendências dos **Sistemas Supervisórios e SCADA** (*Supervisory Control and Data Acquisition*) aplicados à automação industrial. O material foi desenvolvido para oferecer uma progressão didática — do conceito à implementação — com linguagem acessível, diagramas explicativos e estudos de caso reais.
+
+Os 20 capítulos estão organizados em quatro blocos:
+
+- **Fundamentos (capítulos 1 a 4):** automação industrial, pirâmide de automação e níveis hierárquicos, sistemas supervisórios (SCADA e HMI), arquitetura e componentes.
+- **Comunicação, integração e segurança (capítulos 5 a 9 e 13):** redes e protocolos industriais, IIoT, Node-RED, cibersegurança, Cloud SCADA e Digital Twin, OPC UA, MQTT e Sparkplug B.
+- **Dados, alarmes e visualização (capítulos 10 a 12 e 14 a 16):** tags, variáveis, estados e eventos; aquisição e tratamento de dados; historiadores e séries temporais; gerenciamento de alarmes; dashboards; ThingsBoard.
+- **Borda, nuvem e projeto (capítulos 17 a 20):** edge computing, integração SCADA + CLP + IoT + Cloud, projeto e implantação de um sistema supervisório, IA e analítica industrial.
+
+As normas aparecem onde mudam a decisão de engenharia, não como apêndice teórico: o **gerenciamento de alarmes** segue ANSI/ISA-18.2, IEC 62682, EEMUA 191 e NAMUR NA 102, e a **cibersegurança industrial** se apoia na série IEC 62443.
+
+Cada capítulo abre com objetivos de aprendizagem e fecha com questões de revisão — 159 no total. O corpo do texto traz 47 diagramas Mermaid, 64 tabelas legendadas e 79 posições de figura, 31 delas com reproduções do material de origem (telas de supervisão, arquiteturas de rede, painéis de alarmes, tendências e dashboards). Todos os 20 capítulos têm **estudo de caso**, com cenário, diagnóstico, decisão de engenharia e limitações do arranjo; os capítulos 10 a 13 trazem **atividades práticas**; e o **glossário técnico** em apêndice resolve a terminologia durante a leitura.
+
+Ao final do percurso, o leitor deve ser capaz de especificar, integrar e operar um sistema supervisório completo — e de justificar cada escolha de arquitetura, protocolo, base de dados e política de alarmes.
+
+---
