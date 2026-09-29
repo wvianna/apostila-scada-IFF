@@ -354,9 +354,31 @@ horário, prioridade e botão de reconhecimento --- a separação que a Seção 
 \hypertarget{como-o-alarme-chega-ao-operador}{%
 \subsection{Como o alarme chega ao operador}\label{como-o-alarme-chega-ao-operador}}
 
-A ergonomia de telas e a sinalização de alarmes são tratadas pela \textbf{ISA-101} (\emph{Human-Machine Interfaces for Process Automation Systems}), que está no material de origem desta apostila (inclui o simpósio ISA-101 realizado em São Paulo, com aplicação em saneamento).
+A ergonomia de telas e a sinalização de alarmes são tratadas pela \textbf{ISA-101} (\emph{Human-Machine Interfaces for Process Automation Systems}), a principal referência global para o projeto de \textbf{IHM e SCADA de alta performance}. Ela está no material de origem desta apostila (inclui o simpósio ISA-101 realizado em São Paulo, com aplicação em saneamento).
 
-Princípios práticos:
+\begin{caixanota}
+
+\textbf{Nota:} a ISA-101 \textbf{não é um software SCADA}. É um conjunto de diretrizes e padrões de engenharia para criar telas eficientes: o pacote de supervisão é escolhido à parte, e a norma diz \textbf{como} a informação deve ser apresentada ao operador. Comprar um SCADA não garante uma IHM de alta performance --- projetá-la, sim.
+
+\end{caixanota}
+
+O que define uma IHM/SCADA de \textbf{alta performance} pela ISA-101:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Foco cognitivo:} elimina poluição visual, gráficos 3-D excessivos e cores chamativas sem função. Cada elemento que sobra compete com o que importa.
+\item
+  \textbf{Uso estratégico de cores:} o processo em condição normal é desenhado em tons neutros (fundo cinza/apagado), e as cores vibrantes ficam reservadas para alarmes e anomalias. Se tudo é colorido, nada se destaca.
+\item
+  \textbf{Hierarquia da informação:} as telas são organizadas em níveis navegáveis, para que o operador entenda o problema rapidamente sem se perder em excesso de dados --- a hierarquia de níveis 1 a 4 detalhada no Capítulo 11.
+\item
+  \textbf{Tomada de decisão rápida:} é o resultado dos três itens anteriores --- reduz o tempo de resposta a situações anormais e amplia a \textbf{consciência situacional} do operador.
+\end{itemize}
+
+O gerenciamento de alarmes tratado nas Seções 10.1 a 10.5 é o outro lado da mesma moeda: a ISA-101 cuida de \textbf{como} a informação chega ao operador, enquanto a ISA-18.2 e a IEC 62682 definem \textbf{quando} um alarme deve existir.
+
+Aplicando esses princípios à tela de alarmes:
 
 \begin{itemize}
 \tightlist
@@ -622,7 +644,7 @@ Em grupos de três, com a lista de alarmes fictícia fornecida pelo professor (o
 \item
   ISA. \emph{Alarm management questions that everyone asks}. InTech, 2020. Disponível em: \url{isa.org/intech-home/2020/march-april/features/alarm-management-questions-that-everyone-asks}.
 \item
-  INTERNATIONAL SOCIETY OF AUTOMATION. \textbf{ISA-101 --- Human-Machine Interfaces for Process Automation Systems}. (Material de origem desta apostila: \passthrough{\lstinline!ISA101.pdf!} e simpósio ISA-101 de novembro de 2016.)
+  INTERNATIONAL SOCIETY OF AUTOMATION. \textbf{ISA-101 --- Human-Machine Interfaces for Process Automation Systems}. Principal referência global de projeto de IHM/SCADA de \textbf{alta performance} (foco cognitivo, uso estratégico de cores, hierarquia da informação e tempo de resposta); \textbf{não} é um software SCADA. Material de origem desta apostila: \passthrough{\lstinline!ISA101.pdf!} e simpósio ISA-101 de novembro de 2016.
 \item
   MATERIAL DE ORIGEM: \emph{Livro SCADA --- versão para análise} (capítulos sobre supervisão e alarmes,
   figuras dos autores reproduzidas com crédito); \emph{ISA boas práticas SCADA/PIMS (2017)}.

@@ -47,7 +47,7 @@ A falha mais comum em dashboards industriais é pular o elo do **contexto**. Um 
 
 ## Hierarquia de telas
 
-A ISA-101 organiza as telas de operação em níveis de detalhe. A mesma ideia vale para dashboards web de processo.
+A ISA-101 — principal referência global para o projeto de **IHM de alta performance** (Seção 10.6.1) — organiza as telas de operação em níveis de detalhe. A mesma ideia vale para dashboards web de processo: fundo neutro, cor reservada a alarme e anomalia, e cada nível respondendo a uma pergunta.
 
 **Tabela 11.2 – Níveis de detalhe e responsabilidade**
 
@@ -316,6 +316,7 @@ Com os dados históricos disponibilizados em um arquivo CSV (ou em um InfluxDB l
 
 - Dashboard é instrumento de decisão: sem **contexto** (faixa normal, limite, período), o valor não informa.
 - A hierarquia de telas (níveis 1 a 4, alinhada aos princípios da ISA-101) organiza o detalhe por público e por pergunta, com navegação a dois cliques.
+- A ISA-101 define a **IHM de alta performance**: foco cognitivo, fundo neutro com cor só para anomalia, informação hierarquizada e decisão rápida — o mesmo vale para dashboards web.
 - O tipo de painel deve seguir o tipo de dado: tendência para analógico, indicador de estado para discreto, tabela para evento.
 - Cor, escala fixa, precisão significativa, unidade visível e atualização coerente são requisitos, não preferências.
 - SCADA, Node-RED, ThingsBoard e Grafana têm papéis distintos e complementares; nenhum substitui o comando crítico do SCADA.
@@ -339,6 +340,6 @@ Com os dados históricos disponibilizados em um arquivo CSV (ou em um InfluxDB l
 
 - GRAFANA LABS. **Documentação oficial do Grafana** — provisionamento de fontes de dados (InfluxDB 1.x e 2.x), modelo JSON de dashboards, variáveis de template e limitações de *alerting* com variáveis. Disponível em: grafana.com/docs. Consulta: 2026.
 - INFLUXDATA. **InfluxDB — documentação oficial** (modelo de dados, *tags* e *fields*, linguagem Flux).
-- INTERNATIONAL SOCIETY OF AUTOMATION. **ISA-101 — Human-Machine Interfaces for Process Automation Systems** (hierarquia de telas, uso de cor e alarme visual).
+- INTERNATIONAL SOCIETY OF AUTOMATION. **ISA-101 — Human-Machine Interfaces for Process Automation Systems** (principal referência de projeto de IHM de **alta performance**: foco cognitivo, uso estratégico de cor, hierarquia de telas e tempo de resposta).
 - MATERIAL DE ORIGEM: `ISA101.pdf`; *ISA-101 — III Simpósio ISA São Paulo / Sabesp, novembro de 2016*; *ISA boas práticas SCADA/PIMS, 2017*; `Node-Red_InterfaceDeSupervisão.pdf`; `IIoT e suas Tecnologias Aderentes.pdf`.
 - OPC FOUNDATION. **OPC UA** — modelo de informação e qualidade de dado (*quality*), usados no contexto de dashboards de processo.

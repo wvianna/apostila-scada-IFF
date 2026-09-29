@@ -1,6 +1,6 @@
 # status.md — estado do projeto
 
-**Versão da apostila:** 2.6 · **Atualizado em:** 2026-09-24
+**Versão da apostila:** 2.6 · **Atualizado em:** 2026-09-29
 
 | Indicador | Valor |
 |---|---|
@@ -14,7 +14,7 @@
 | Questões de revisão | 159 |
 | Build | 0 erros de LaTeX, 0 `Overfull \hbox`, 0 `Overfull \vbox` |
 | Gate editorial | 0 erros, 0 avisos |
-| Versão web | `docs/apostila/apostila-scada.html` (22 seções, 47 diagramas, 144 quadros, 31 figuras) |
+| Versão web | `docs/apostila/apostila-scada.html` (22 seções, 47 diagramas, 145 quadros, 31 figuras) |
 
 ## Situação dos capítulos
 
@@ -29,8 +29,8 @@
 | 7 | `capitulo-07.md` | 439 | **2** / 2 | 2 | 4 | 6 |
 | 8 | `capitulo-08.md` | 290 | 0 / 3 | 2 | 6 | 6 |
 | 9 | `capitulo-09.md` | 282 | 0 / 4 | 2 | 4 | 6 |
-| 10 | `capitulo-10.md` | 376 | **3** / 2 | 3 | 7 | 10 |
-| 11 | `capitulo-11.md` | 342 | **3** / 0 | 3 | 6 | 10 |
+| 10 | `capitulo-10.md` | 387 | **3** / 2 | 3 | 7 | 10 |
+| 11 | `capitulo-11.md` | 343 | **3** / 0 | 3 | 6 | 10 |
 | 12 | `capitulo-12.md` | 345 | 0 / 3 | 2 | 7 | 10 |
 | 13 | `capitulo-13.md` | 345 | **1** / 3 | 4 | 9 | 10 |
 | 14 | `capitulo-14.md` | 430 | **4** / 0 | 3 | 8 | 9 |
@@ -41,7 +41,30 @@
 | 19 | `capitulo-19.md` | 300 | **2** / 1 | 2 | 4 | 10 |
 | 20 | `capitulo-20.md` | 271 | 0 / 3 | 2 | 4 | 10 |
 
-## Concluído nesta rodada (v2.6)
+## Revisão editorial (2026-09-29) — ISA-101 como IHM/SCADA de alta performance
+
+A ISA-101 passou a ser apresentada explicitamente como a **principal referência global de projeto
+de IHM/SCADA de alta performance**, com o esclarecimento de que **não é um software SCADA** (é um
+conjunto de diretrizes de engenharia para telas eficientes) e com os quatro pilares que a definem:
+**foco cognitivo**, **uso estratégico de cores**, **hierarquia da informação** e **tomada de
+decisão rápida**.
+
+| Onde | O que mudou |
+|---|---|
+| `capitulo-10.md` §10.6.1 | parágrafo de abertura reescrito; quadro 📌 Nota ("não é software"); lista dos quatro pilares da alta performance (fundo neutro, cor só para anomalia, níveis navegáveis, tempo de resposta e consciência situacional); ligação explícita com ISA-18.2/IEC 62682 (a ISA-101 diz **como** apresentar, as normas de alarme dizem **quando** alarmar) |
+| `capitulo-11.md` §11.2 e Resumo | ISA-101 identificada como referência de IHM de alta performance; princípios (fundo neutro, cor para anomalia, hierarquia) aplicados a dashboards web |
+| `capitulo-03.md` §3.1 | ISA-101 citada como referência de IHM/SCADA de alta performance na leitura da Figura 3.1 |
+| `indice.md` (Apresentação) | norma acrescentada: "o projeto de IHM de alta performance segue a ISA-101" |
+| `glossario.md` | verbetes novos: **IHM de alta performance** (*High Performance HMI*) e **ISA-101** |
+| Referências | caps. 10 e 11 descrevem a ISA-101 como referência de alta performance, sem confundi-la com produto |
+
+Nenhuma tabela nova: os quatro pilares entram como lista, para não deslocar a numeração
+`Tabela 10.x`. Artefatos revalidados: PDF com 257 páginas, gate editorial 0 erros / 0 avisos, build
+com 0 erros e 0 `Overfull \hbox`/`\vbox`, HTML regenerado (145 quadros de destaque).
+
+---
+
+## Concluído na rodada anterior (v2.6)
 
 ### 1. Sete capítulos novos — a apostila passa de 13 para 20
 

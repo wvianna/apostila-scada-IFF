@@ -52,6 +52,9 @@ do HTML e a ordem do livro saem) e o glossário.
   2 quadros de destaque, 5–10 questões, seção de referências. (Todos os 20 capítulos já têm
   estudo de caso; a **atividade prática** existe só nos capítulos 10 a 13.)
 - Toda figura leva `Fonte:`. Toda norma citada exige edição verificada.
+- A ISA-101 é citada como a referência de projeto de **IHM/SCADA de alta performance** e
+  explicitamente **não** como software SCADA (cap. 10 §10.6.1, cap. 11 §11.2, glossário). Os
+  quatro pilares são foco cognitivo, uso estratégico de cor, hierarquia da informação e decisão rápida.
 - A linha `> **Fonte:**` é escrita logo depois da figura. No **PDF** ela é integrada à legenda
   (ver a armadilha correspondente na seção 4); no **HTML** continua como quadro separado.
 - Versionamento (`.gitignore`): entram **`apostila/`, `figuras/*.mmd`, `figuras/*.png`,

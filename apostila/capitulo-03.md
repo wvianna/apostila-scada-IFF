@@ -26,7 +26,7 @@ O nome descreve bem suas funções essenciais:
 
 > **Fonte:** *Livro SCADA — versão para análise*, p. 51 (Machado, Pontes e Vianna, reproduzida com crédito).
 
-A tela acima reúne os elementos que a ISA-101 trata como camada de operação: o sinótico do
+A tela acima reúne os elementos que a ISA-101 — principal referência global para o projeto de **IHM/SCADA de alta performance** (Seção 10.6.1) — trata como camada de operação: o sinótico do
 processo à esquerda, a **barra de navegação** à direita (acesso a processo, tendência, alarmes e
 visão geral), a data e a hora de referência no canto inferior e a indicação de estado de cada
 equipamento sobre o próprio desenho. Repare que a quantidade de informação é deliberadamente
