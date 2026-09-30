@@ -67,7 +67,7 @@ figuras/tmp*
 #  Se o repositório for privado e você quiser o build reprodutível a
 #  partir do clone, comente as linhas abaixo.
 # ---------------------------------------------------------------------
-/docs/*.pdf
+#/docs/*.pdf
 /docs/*.odp
 /docs/isa101/
 
