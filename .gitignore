@@ -37,7 +37,7 @@
 #     figuras/tmp* é o resíduo do pdfimages (figuras/tmp-000.png…) — ver
 #     references/figuras.md.
 # ---------------------------------------------------------------------
-/figuras/*.pdf
+#/figuras/*.pdf
 figuras/tmp*
 
 # ---------------------------------------------------------------------
