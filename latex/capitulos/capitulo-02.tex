@@ -1,5 +1,4 @@
-\hypertarget{piruxe2mide-de-automauxe7uxe3o-e-nuxedveis-hieruxe1rquicos}{%
-\chapter{Pirâmide de Automação e Níveis Hierárquicos}\label{piruxe2mide-de-automauxe7uxe3o-e-nuxedveis-hieruxe1rquicos}}
+\chapter{Pirâmide de Automação e Níveis Hierárquicos}\label{piruxe2mide-de-automauxe7uxe3o-e-nuxedveis-hieruxe1rquicos}
 
 \section*{Objetivos de Aprendizagem}
 
@@ -8,7 +7,7 @@ Ao final deste capítulo, o leitor será capaz de:
 \begin{itemize}
 \tightlist
 \item
-  Descrever a pirâmide de automação clássica e os cinco níveis hierárquicos.
+  Descrever os cinco níveis funcionais (0 a 4) do modelo ISA-95 e reconhecer extensões didáticas da pirâmide.
 \item
   Identificar as tecnologias e funções de cada nível.
 \item
@@ -19,10 +18,9 @@ Ao final deste capítulo, o leitor será capaz de:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{a-piruxe2mide-de-automauxe7uxe3o}{%
-\section{A Pirâmide de Automação}\label{a-piruxe2mide-de-automauxe7uxe3o}}
+\section{A Pirâmide de Automação}\label{a-piruxe2mide-de-automauxe7uxe3o}
 
-A \textbf{pirâmide de automação} é um modelo hierárquico amplamente utilizado para organizar e compreender os diferentes sistemas tecnológicos presentes em uma indústria. Desenvolvida com base no modelo \textbf{ISA-95} (\emph{ANSI/ISA-95 --- Enterprise-Control System Integration}), a pirâmide é dividida em cinco níveis, do chão de fábrica até a gestão corporativa.
+A \textbf{pirâmide de automação} é uma representação didática das funções industriais e de negócio. O modelo \textbf{ISA-95} (\emph{Enterprise-Control System Integration}) define os níveis 0 a 4: processo físico, detecção/atuação, monitoramento e controle, operações de manufatura e planejamento/logística do negócio. Algumas representações acrescentam um nível corporativo acima do nível 4; essa extensão não deve ser apresentada como um nível adicional definido pela ISA-95.
 
 Cada nível possui:
 
@@ -39,14 +37,13 @@ Cada nível possui:
 \begin{caixafigura}
 
 \textbf{{[}Figura 2.1 -- Pirâmide de Automação Clássica (ISA-95){]}}
-\emph{Pirâmide em cinco camadas coloridas (de baixo para cima): Campo \ensuremath{\rightarrow} Controle \ensuremath{\rightarrow} Supervisório \ensuremath{\rightarrow} Gerenciamento \ensuremath{\rightarrow} Corporativo. Cada nível com ícones representativos, exemplos de sistemas (CLP, SCADA, MES, ERP) e indicação de tempo de resposta típico (ms, s, min, horas, dias).}
+\emph{Pirâmide de cinco níveis, numerados de 0 a 4 conforme ISA-95: processo físico; sensores e atuadores; monitoramento e controle (CLP, DCS, SCADA conforme a função); operações de manufatura (MES/MOM); planejamento e logística do negócio (ERP). Mostrar a direção da integração sem sugerir que todo produto pertence exclusivamente a um único nível. Não incluir um nível 5 como se fosse parte da ISA-95.}
 
 \end{caixafigura}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{nuxedvel-0-campo-processo-fuxedsico}{%
-\section{\texorpdfstring{Nível 0 --- Campo (Processo Físico)}{Nível 0  Campo (Processo Físico)}}\label{nuxedvel-0-campo-processo-fuxedsico}}
+\section{\texorpdfstring{Nível 0 --- Campo (Processo Físico)}{Nível 0  Campo (Processo Físico)}}\label{nuxedvel-0-campo-processo-fuxedsico}
 
 O \textbf{Nível 0} é a base da pirâmide: o processo físico em si --- os equipamentos, tubulações, motores, reatores e as variáveis físicas que precisam ser medidas e controladas.
 
@@ -62,18 +59,16 @@ O \textbf{Nível 0} é a base da pirâmide: o processo físico em si --- os equi
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{nuxedvel-1-instrumentauxe7uxe3o-de-campo}{%
-\section{\texorpdfstring{Nível 1 --- Instrumentação de Campo}{Nível 1  Instrumentação de Campo}}\label{nuxedvel-1-instrumentauxe7uxe3o-de-campo}}
+\section{\texorpdfstring{Nível 1 --- Instrumentação de Campo}{Nível 1  Instrumentação de Campo}}\label{nuxedvel-1-instrumentauxe7uxe3o-de-campo}
 
 O \textbf{Nível 1} engloba todos os dispositivos que fazem a interface direta com o processo: \textbf{sensores} (que medem variáveis) e \textbf{atuadores} (que executam ações de controle).
 
-\hypertarget{sensores-e-transmissores}{%
-\subsection{Sensores e Transmissores}\label{sensores-e-transmissores}}
+\subsection{Sensores e Transmissores}\label{sensores-e-transmissores}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Variável
@@ -93,8 +88,7 @@ Nível & Ultrassônico, radar, pressão hidrostática & VEGA VEGAPULS, Siemens S
 Posição/Velocidade & Encoder, resolver, sensor indutivo & Heidenhain, Balluff \\
 \end{longtable}
 
-\hypertarget{atuadores}{%
-\subsection{Atuadores}\label{atuadores}}
+\subsection{Atuadores}\label{atuadores}
 
 \begin{itemize}
 \tightlist
@@ -123,20 +117,18 @@ Posição/Velocidade & Encoder, resolver, sensor indutivo & Heidenhain, Balluff 
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{nuxedvel-2-controle}{%
-\section{\texorpdfstring{Nível 2 --- Controle}{Nível 2  Controle}}\label{nuxedvel-2-controle}}
+\section{\texorpdfstring{Níveis 1 e 2 --- Detecção, atuação, monitoramento e controle}{Níveis 1 e 2  Detecção, atuação, monitoramento e controle}}\label{nuxedveis-1-e-2-detecuxe7uxe3o-atuauxe7uxe3o-monitoramento-e-controle}
 
-O \textbf{Nível 2} é responsável pelo controle automático do processo. Os equipamentos deste nível recebem os sinais dos sensores, executam os algoritmos de controle e enviam comandos aos atuadores.
+No \textbf{Nível 1}, os dispositivos fazem a interface com o processo e executam funções básicas de detecção e atuação. No \textbf{Nível 2}, sistemas de controle e supervisão monitoram o processo e executam ou apoiam o controle automático. A alocação exata de CLP, DCS, IHM e SCADA depende da arquitetura; a pirâmide representa funções, não uma regra física de localização.
 
-\hypertarget{clp-controlador-luxf3gico-programuxe1vel}{%
-\subsection{\texorpdfstring{CLP --- Controlador Lógico Programável}{CLP  Controlador Lógico Programável}}\label{clp-controlador-luxf3gico-programuxe1vel}}
+\subsection{\texorpdfstring{CLP --- Controlador Lógico Programável}{CLP  Controlador Lógico Programável}}\label{clp-controlador-luxf3gico-programuxe1vel}
 
 O \textbf{CLP} é o equipamento dominante na automação discreta e em batelada. Suas características:
 
 \begin{itemize}
 \tightlist
 \item
-  Programação em linguagens da norma \textbf{IEC 61131-3}: Ladder (LD), Blocos de Função (FBD), Texto Estruturado (ST), Lista de Instruções (IL), SFC.
+  Programação em linguagens da norma \textbf{IEC 61131-3}: Ladder Diagram (LD), Function Block Diagram (FBD), Structured Text (ST) e Sequential Function Chart (SFC). A Instruction List (IL), presente em edições antigas, foi removida da 4ª edição publicada em 2025; projetos legados ainda podem encontrá-la.
 \item
   Alta confiabilidade e robustez para ambientes industriais.
 \item
@@ -147,8 +139,7 @@ O \textbf{CLP} é o equipamento dominante na automação discreta e em batelada.
 
 \textbf{Principais fabricantes:} Siemens (S7-1200/1500), Allen-Bradley (ControlLogix), Schneider (Modicon M340/M580), Mitsubishi (MELSEC iQ-R).
 
-\hypertarget{dcs-sistema-de-controle-distribuuxeddo}{%
-\subsection{\texorpdfstring{DCS --- Sistema de Controle Distribuído}{DCS  Sistema de Controle Distribuído}}\label{dcs-sistema-de-controle-distribuuxeddo}}
+\subsection{\texorpdfstring{DCS --- Sistema de Controle Distribuído}{DCS  Sistema de Controle Distribuído}}\label{dcs-sistema-de-controle-distribuuxeddo}
 
 O \textbf{DCS} (\emph{Distributed Control System}) é projetado para processos contínuos de grande escala. Suas características:
 
@@ -166,8 +157,7 @@ O \textbf{DCS} (\emph{Distributed Control System}) é projetado para processos c
 
 \textbf{Principais fabricantes:} Honeywell (Experion PKS), ABB (Ability System 800xA), Yokogawa (CENTUM VP), Emerson (DeltaV).
 
-\hypertarget{rtu-unidade-terminal-remota}{%
-\subsection{\texorpdfstring{RTU --- Unidade Terminal Remota}{RTU  Unidade Terminal Remota}}\label{rtu-unidade-terminal-remota}}
+\subsection{\texorpdfstring{RTU --- Unidade Terminal Remota}{RTU  Unidade Terminal Remota}}\label{rtu-unidade-terminal-remota}
 
 A \textbf{RTU} (\emph{Remote Terminal Unit}) é usada em aplicações geograficamente distribuídas, onde não há rede elétrica confiável ou conectividade local. Possui baixo consumo energético e comunicação via rádio, GPRS, 4G ou satélite.
 
@@ -188,12 +178,11 @@ A \textbf{RTU} (\emph{Remote Terminal Unit}) é usada em aplicações geografica
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{nuxedvel-3-supervisuxf3rio-scadahmi}{%
-\section{\texorpdfstring{Nível 3 --- Supervisório (SCADA/HMI)}{Nível 3  Supervisório (SCADA/HMI)}}\label{nuxedvel-3-supervisuxf3rio-scadahmi}}
+\section{\texorpdfstring{Nível 2 --- Monitoramento e controle (inclui SCADA/HMI)}{Nível 2  Monitoramento e controle (inclui SCADA/HMI)}}\label{nuxedvel-2-monitoramento-e-controle-inclui-scadahmi}
 
-O \textbf{Nível 3} é o nível \textbf{supervisório}: onde os operadores monitoram o processo, visualizam tendências históricas, respondem a alarmes e, quando necessário, fazem intervenções manuais.
+O \textbf{Nível 2} inclui funções de monitoramento e supervisão. Em muitas arquiteturas, é onde operam sistemas SCADA e estações de operação; controladores locais executam as malhas e sequências que precisam continuar funcionando sem depender da interface supervisória.
 
-Este nível é abordado em detalhes nos Capítulos 3 e 4. Em resumo:
+Essas funções são abordadas em detalhes nos Capítulos 3 e 4. Em resumo:
 
 \begin{itemize}
 \tightlist
@@ -205,10 +194,9 @@ Este nível é abordado em detalhes nos Capítulos 3 e 4. Em resumo:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{nuxedvel-4-gerenciamento-de-produuxe7uxe3o-mes}{%
-\section{\texorpdfstring{Nível 4 --- Gerenciamento de Produção (MES)}{Nível 4  Gerenciamento de Produção (MES)}}\label{nuxedvel-4-gerenciamento-de-produuxe7uxe3o-mes}}
+\section{\texorpdfstring{Nível 3 --- Operações de Manufatura (MES/MOM)}{Nível 3  Operações de Manufatura (MES/MOM)}}\label{nuxedvel-3-operauxe7uxf5es-de-manufatura-mesmom}
 
-O \textbf{MES} (\emph{Manufacturing Execution System}) conecta o chão de fábrica ao mundo corporativo. Suas funções incluem:
+O \textbf{MES} (\emph{Manufacturing Execution System}) ou \textbf{MOM} (\emph{Manufacturing Operations Management}) coordena e registra as operações de manufatura, fazendo a interface entre o controle da produção e as funções de negócio. Suas funções incluem:
 
 \begin{itemize}
 \tightlist
@@ -228,20 +216,17 @@ O \textbf{MES} (\emph{Manufacturing Execution System}) conecta o chão de fábri
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{nuxedvel-5-corporativo-erp}{%
-\section{\texorpdfstring{Nível 5 --- Corporativo (ERP)}{Nível 5  Corporativo (ERP)}}\label{nuxedvel-5-corporativo-erp}}
+\section{\texorpdfstring{Nível 4 --- Planejamento e Logística do Negócio (ERP)}{Nível 4  Planejamento e Logística do Negócio (ERP)}}\label{nuxedvel-4-planejamento-e-loguxedstica-do-neguxf3cio-erp}
 
-O \textbf{ERP} (\emph{Enterprise Resource Planning}) integra as funções de negócio da empresa: finanças, recursos humanos, logística, vendas e planejamento estratégico. Recebe do MES os dados consolidados de produção e os contextualiza com dados de negócio.
+O \textbf{ERP} (\emph{Enterprise Resource Planning}) integra funções de negócio como finanças, recursos humanos, logística, vendas e planejamento. Troca informações com sistemas de operações de manufatura; essa integração não exige que todo dado de processo seja enviado diretamente ao ERP.
 
-\textbf{Integração ERP MES:} normatizada pela \textbf{ISA-95}, que define os modelos de informação e interfaces entre os dois sistemas.
+\textbf{Integração ERP MES/MOM:} a ISA-95 define modelos e atividades para a integração entre o domínio de negócio (Nível 4) e as operações de manufatura (Nível 3), além de terminologia e modelos relacionados.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{integrauxe7uxe3o-vertical-e-horizontal}{%
-\section{Integração Vertical e Horizontal}\label{integrauxe7uxe3o-vertical-e-horizontal}}
+\section{Integração Vertical e Horizontal}\label{integrauxe7uxe3o-vertical-e-horizontal}
 
-\hypertarget{integrauxe7uxe3o-vertical}{%
-\subsection{Integração Vertical}\label{integrauxe7uxe3o-vertical}}
+\subsection{Integração Vertical}\label{integrauxe7uxe3o-vertical}
 
 A \textbf{integração vertical} conecta os níveis hierárquicos --- do sensor ao ERP --- permitindo que dados de processo sejam visíveis em tempo real para a gestão e que decisões corporativas influenciem a programação da produção.
 
@@ -252,8 +237,7 @@ A \textbf{integração vertical} conecta os níveis hierárquicos --- do sensor 
 
 \end{caixafigura}
 
-\hypertarget{integrauxe7uxe3o-horizontal}{%
-\subsection{Integração Horizontal}\label{integrauxe7uxe3o-horizontal}}
+\subsection{Integração Horizontal}\label{integrauxe7uxe3o-horizontal}
 
 A \textbf{integração horizontal} conecta sistemas do mesmo nível --- por exemplo, diferentes células de produção, linhas de manufatura ou plantas geograficamente distribuídas --- compartilhando dados em tempo real.
 
@@ -261,8 +245,7 @@ A \textbf{integração horizontal} conecta sistemas do mesmo nível --- por exem
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{a-piruxe2mide-revisitada-iiot-e-a-converguxeancia-tiot}{%
-\section{A Pirâmide Revisitada: IIoT e a Convergência TI/OT}\label{a-piruxe2mide-revisitada-iiot-e-a-converguxeancia-tiot}}
+\section{A Pirâmide Revisitada: IIoT e a Convergência TI/OT}\label{a-piruxe2mide-revisitada-iiot-e-a-converguxeancia-tiot}
 
 O modelo tradicional de pirâmide foi concebido em uma época em que os sistemas de \textbf{TI} (\emph{Tecnologia da Informação}) e \textbf{OT} (\emph{Operational Technology}) eram completamente separados. Com o advento do \textbf{IIoT} (\emph{Industrial Internet of Things}), essa separação está sendo eliminada.
 
@@ -280,18 +263,17 @@ O modelo tradicional de pirâmide foi concebido em uma época em que os sistemas
   \textbf{Analytics e IA:} algoritmos de aprendizado de máquina operam sobre dados históricos de processo, retroalimentando decisões de controle.
 \end{itemize}
 
-\begin{center}
-\IfFileExists{../figuras/capitulo-02-m2.pdf}{%
-  \includegraphics[width=\linewidth,height=0.8\textheight,keepaspectratio]{../figuras/capitulo-02-m2.pdf}%
-}{\fbox{\parbox{0.9\linewidth}{\small Diagrama Mermaid ainda não renderizado: capitulo-02-m2. Rode scripts/render-mermaid.sh.}}}
-\end{center}
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 2.5  Pirâmide tradicional de automação industrial}]{../figuras/piramide_automacao.jpeg}}
+\caption[Figura 2.5 -- Pirâmide tradicional de automação industrial]{Figura 2.5 -- Pirâmide tradicional de automação industrial. \textbf{Fonte:} arquivo \passthrough{\lstinline!piramide\_automacao.jpeg!} fornecido no repositório; autoria e fonte original não informadas.}
+\end{figure}
 
-\begin{caixafigura}
+\begin{caixanota}
 
-\textbf{{[}Figura 2.5 -- Pirâmide clássica versus arquitetura IIoT{]}}
-\emph{Dois diagramas lado a lado: (esquerda) pirâmide tradicional de 5 níveis; (direita) arquitetura IIoT com Edge, Cloud e acesso direto. Destacar em vermelho as ``conexões que pulam níveis'' no modelo IIoT.}
+\textbf{Nota:} a imagem representa uma convenção tradicional em cinco níveis (1 a 5), não uma representação direta dos níveis ISA-95 (0 a 4) definidos neste capítulo. Ela não representa a arquitetura IIoT.
 
-\end{caixafigura}
+\end{caixanota}
 
 \begin{caixaatencao}
 
@@ -301,8 +283,7 @@ O modelo tradicional de pirâmide foi concebido em uma época em que os sistemas
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estudo-de-caso-duas-plantas-duas-formas-de-integrar}{%
-\section{\texorpdfstring{Estudo de Caso --- Duas plantas, duas formas de integrar}{Estudo de Caso  Duas plantas, duas formas de integrar}}\label{estudo-de-caso-duas-plantas-duas-formas-de-integrar}}
+\section{\texorpdfstring{Estudo de Caso --- Duas plantas, duas formas de integrar}{Estudo de Caso  Duas plantas, duas formas de integrar}}\label{estudo-de-caso-duas-plantas-duas-formas-de-integrar}
 
 \textbf{Cenário.} Duas unidades do mesmo grupo industrial. A \textbf{planta A} opera desde 1998:
 controladores de gerações diferentes, barramento PROFIBUS no chão de fábrica, supervisório
@@ -315,7 +296,7 @@ diretamente na nuvem.
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Integração vertical} entre os níveis 2 e 4: a ordem de produção desce, o resultado da
+  \textbf{Integração vertical} entre os níveis 3 e 4: a ordem de produção desce, o resultado da
   produção sobe.
 \item
   \textbf{Separação de responsabilidade}: quem controla o quê e com qual requisito de tempo.
@@ -326,9 +307,9 @@ diretamente na nuvem.
 \textbf{Onde a pirâmide deixa de descrever o que existe --- na planta B.}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Comportamento observado na planta B
@@ -341,9 +322,9 @@ Por que a leitura falha
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Sensor de vibração publica na nuvem sem passar pelo CLP & Salto de níveis & A pirâmide pressupõe caminho único e ascendente \\
-Modelo analítico devolve \emph{setpoint} ao CLP & Fluxo descendente do nível 4 para o 2 & Não há atividade de gestão de produção envolvida \\
-Dado bruto chega ao time de analytics antes do supervisório & Nível 1 comunicando com o nível 4 & A ordem hierárquica não se aplica ao caminho do dado \\
+Sensor de vibração publica na nuvem sem passar pelo CLP & Caminho direto entre campo e serviço externo & A pirâmide descreve níveis funcionais, não impõe um caminho único para os dados \\
+Modelo analítico propõe um \emph{setpoint} ao CLP & Integração entre analytics e controle & A proposta deve passar por validação e autoridade de controle local antes de ser aplicada \\
+Dado bruto chega ao time de analytics antes do supervisório & Fluxos paralelos de dados & Os níveis funcionais não determinam a ordem de entrega de cada fluxo \\
 \end{longtable}
 
 \textbf{Conclusão de engenharia.} A pirâmide continua sendo o melhor \textbf{mapa de responsabilidades} ---
@@ -358,27 +339,25 @@ apoiado na pirâmide errada.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{resumo}{%
-\section{Resumo}\label{resumo}}
+\section{Resumo}\label{resumo}
 
 \begin{itemize}
 \tightlist
 \item
-  A \textbf{pirâmide de automação} organiza os sistemas industriais em cinco níveis: Campo (0), Instrumentação (1), Controle (2), Supervisório (3), Gerenciamento (4) e Corporativo (5).
+  A ISA-95 descreve cinco níveis funcionais, numerados de 0 a 4: processo físico; detecção e atuação; monitoramento e controle; operações de manufatura; planejamento e logística do negócio.
 \item
   Cada nível tem função, tecnologia e velocidade de resposta específicas.
 \item
   \textbf{CLP}, \textbf{DCS} e \textbf{RTU} são as tecnologias dominantes no nível de controle, cada uma adequada a um tipo de processo.
 \item
-  O \textbf{MES} conecta o chão de fábrica ao \textbf{ERP}, normatizado pela ISA-95.
+  O \textbf{MES/MOM} conecta as operações de manufatura às funções de negócio; a ISA-95 fornece modelos e terminologia para essa integração.
 \item
   O \textbf{IIoT} está achatando a pirâmide, permitindo que dados de campo cheguem diretamente à nuvem e às ferramentas de analytics.
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{questuxf5es-de-revisuxe3o}{%
-\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}
 
 \textbf{Conceituais:}
 
@@ -417,13 +396,14 @@ apoiado na pirâmide errada.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{referuxeancias}{%
-\section{Referências}\label{referuxeancias}}
+\section{Referências}\label{referuxeancias}
 
 \begin{itemize}
 \tightlist
 \item
-  ISA-95: \emph{Enterprise-Control System Integration}. ISA, 2010.
+  ANSI/ISA-95.00.01: \emph{Enterprise-Control System Integration --- Models and Terminology}. ISA. Consultar a edição vigente no catálogo da ISA antes de especificações contratuais.
+\item
+  IEC 61131-3:2025: \emph{Programmable Controllers --- Part 3: Programming Languages}. IEC, 4ª ed., 2025.
 \item
   NIST: \emph{Guide to Industrial Control Systems (ICS) Security}. NIST SP 800-82 Rev.~2, 2015.
 \item

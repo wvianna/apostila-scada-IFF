@@ -1,41 +1,48 @@
 # status.md — estado do projeto
 
-**Versão da apostila:** 2.6 · **Atualizado em:** 2026-09-29
-
+**Versão da apostila:** 2.6 · **Atualizado em:** 2026-10-10
 | Indicador | Valor |
 |---|---|
 | Capítulos | 20 + glossário |
-| Páginas (PDF) | 257 (`latex/apostila.pdf`) |
-| Figuras | 79 posições: **31 reais** + 48 placeholders |
-| Diagramas Mermaid | 47 (0 falhas, todos na faixa legível) |
+| Páginas (PDF) | 259 (`latex/apostila.pdf`) |
+| Figuras | 79 posições: **32 reais** + 47 placeholders |
+| Diagramas Mermaid | 46 (0 falhas) |
 | Tabelas legendadas | 64 |
 | Estudos de caso | **20 de 20 capítulos** |
 | Atividades práticas | 4 (capítulos 10 a 13) |
 | Questões de revisão | 159 |
-| Build | 0 erros de LaTeX, 0 `Overfull \hbox`, 0 `Overfull \vbox` |
-| Gate editorial | 0 erros, 0 avisos |
-| Versão web | `docs/apostila/apostila-scada.html` (22 seções, 47 diagramas, 145 quadros, 31 figuras) |
+| Build | 0 erros LaTeX, 0 `Overfull \hbox`, 0 `Overfull \vbox` |
+| Gate editorial | 0 erros, 1 aviso: capítulo 2 tem 1 Mermaid após a remoção solicitada (mínimo: 2) |
+| Versão web | `docs/apostila/apostila-scada.html` (22 seções, 46 diagramas, 145 quadros, 32 figuras) |
+
+## Revisão técnico-editorial (2026-10-10)
+
+- Corrigidas distinções e afirmações sobre níveis ISA-95, SCADA/DCS, RTU versus I/O remoto, MTU, historizadores, Modbus, OPC UA, MQTT, PROFIBUS PA e IEC 62443.
+- Ajustadas prioridades/métricas de alarmes para não tratá-las como valores universais das normas; edições citadas aguardam confirmação nos catálogos oficiais antes de uso contratual.
+- Incluída `figuras/piramide_automacao.jpeg` como Figura 2.5, com nota de que mostra uma convenção tradicional de níveis 1–5 e não representa diretamente ISA-95 nem IIoT.
+- Corrigidas listas e paginação da tabela de protocolos. Master LaTeX compatibilizado com `\pandocbounded` do Pandoc 3.7.
+- Build: 259 páginas, 0 erros LaTeX, 0 `Overfull \hbox`/`\vbox`; gate editorial: 0 erros e 1 aviso intencional (capítulo 2 com 1 Mermaid após a remoção solicitada; mínimo de 2).
 
 ## Situação dos capítulos
 
 | # | Arquivo | Linhas | Figuras (real/placeholder) | Diagramas | Tabelas | Questões |
 |---|---|---|---|---|---|---|
 | 1 | `capitulo-01.md` | 242 | 0 / 4 | 2 | 3 | 6 |
-| 2 | `capitulo-02.md` | 270 | 0 / 5 | 2 | 2 | 6 |
+| 2 | `capitulo-02.md` | 259 | **1** / 4 | 1 | 2 | 6 |
 | 3 | `capitulo-03.md` | 303 | **2** / 1 | 2 | 4 | 6 |
-| 4 | `capitulo-04.md` | 299 | **6** / 2 | 2 | 4 | 6 |
-| 5 | `capitulo-05.md` | 283 | **3** / 3 | 4 | 3 | 6 |
+| 4 | `capitulo-04.md` | 316 | **6** / 2 | 2 | 4 | 6 |
+| 5 | `capitulo-05.md` | 296 | **3** / 3 | 4 | 3 | 6 |
 | 6 | `capitulo-06.md` | 227 | 0 / 5 | 2 | 4 | 6 |
 | 7 | `capitulo-07.md` | 439 | **2** / 2 | 2 | 4 | 6 |
 | 8 | `capitulo-08.md` | 290 | 0 / 3 | 2 | 6 | 6 |
 | 9 | `capitulo-09.md` | 282 | 0 / 4 | 2 | 4 | 6 |
-| 10 | `capitulo-10.md` | 387 | **3** / 2 | 3 | 7 | 10 |
+| 10 | `capitulo-10.md` | 398 | **3** / 2 | 3 | 7 | 10 |
 | 11 | `capitulo-11.md` | 343 | **3** / 0 | 3 | 6 | 10 |
 | 12 | `capitulo-12.md` | 345 | 0 / 3 | 2 | 7 | 10 |
 | 13 | `capitulo-13.md` | 345 | **1** / 3 | 4 | 9 | 10 |
 | 14 | `capitulo-14.md` | 430 | **4** / 0 | 3 | 8 | 9 |
 | 15 | `capitulo-15.md` | 336 | **2** / 1 | 2 | 6 | 9 |
-| 16 | `capitulo-16.md` | 331 | **2** / 1 | 2 | 6 | 9 |
+| 16 | `capitulo-16.md` | 349 | **2** / 1 | 2 | 8 | 9 |
 | 17 | `capitulo-17.md` | 292 | 0 / 3 | 2 | 3 | 9 |
 | 18 | `capitulo-18.md` | 295 | **1** / 2 | 2 | 3 | 9 |
 | 19 | `capitulo-19.md` | 300 | **2** / 1 | 2 | 4 | 10 |

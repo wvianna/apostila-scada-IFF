@@ -10,11 +10,11 @@ diagramas e atividades práticas.
 |---|---|
 | **Autor** | D.Sc. William da Silva Vianna |
 | **Versão** | 2.6 |
-| **Páginas (PDF)** | 257 |
+| **Páginas (PDF)** | 259 |
 | **Capítulos** | 20 + glossário |
 | **Estudo de caso** | em todos os 20 capítulos |
-| **Diagramas** | 47 (Mermaid, renderizados em PDF) |
-| **Figuras** | 31 reais (reproduzidas do material de origem, com crédito) + 48 posições com direção de arte |
+| **Diagramas** | 46 (Mermaid, renderizados em PDF) |
+| **Figuras** | 32 reais + 47 posições com direção de arte |
 | **Tabelas** | 64 legendadas |
 | **Questões de revisão** | 159 |
 | **Idioma** | pt-BR |

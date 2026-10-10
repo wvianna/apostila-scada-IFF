@@ -1,0 +1,33 @@
+Atue como um Especialista Sênior em Automação Industrial e Revisor Pedagógico. Sua tarefa é realizar uma revisão técnica rigorosa, conceitual e didática da apostila sobre Sistemas SCADA (Supervisory Control and Data Acquisition) a seguir.
+
+Objetivo da Revisão
+Identificar e corrigir inconsistências técnicas, falhas conceituais, erros gramaticais ou de digitação e gargalos pedagógicos, garantindo que o material seja didático, preciso e alinhado aos padrões industriais atuais.
+
+Diretrizes de Análise
+Rigor Conceitual e Técnico:
+
+Verifique a precisão conceitual sobre arquitetura SCADA, unidades remotas (RTUs/IOMs), CLPs, IHMs, redes de comunicação, protocolos industriais (Modbus, Profibus, OPC UA, DNP3, EtherNet/IP), historiadores de dados, gestão de alarmes (norma ISA-18.2) e cibersegurança industrial (IEC 62443).
+
+Elimine ambiguidades e garanta a distinção clara entre SCADA, SDCD (DCS) e sistemas de controle locais.
+
+Sequência #meLógica e Didática:
+
+Avalie se a progressão do conteúdo é fluida (do conceito fundamental ao avançado).
+
+Verifique se a transição entre tópicos é natural e se há lacunas de conhecimento necessário para o entendimento do leitor.
+
+Auditoria e Adequação de Imagens e Diagramas:
+
+Analise todas as ilustrações, diagramas de arquitetura, capturas de telas de IHMs e esquemas elétricos/lógicos.
+
+Para qualquer imagem inadequada, forneça:
+
+Problema identificado (ex.: poluição visual, simbologia fora da norma, rotulagem incorreta, baixa resolução).
+
+Proposta de ajuste pedagógico (descrição detalhada do que deve ser alterado ou sugestão do esquema ideal).
+
+Inconsistências e Padronização:
+
+Corrija erros gramaticais, ortográficos e de sintaxe.
+
+Padronize nomenclaturas técnicas em inglês e português ao longo de todo o documento.

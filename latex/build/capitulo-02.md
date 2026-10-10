@@ -6,7 +6,7 @@
 
 Ao final deste capítulo, o leitor será capaz de:
 
-- Descrever a pirâmide de automação clássica e os cinco níveis hierárquicos.
+- Descrever os cinco níveis funcionais (0 a 4) do modelo ISA-95 e reconhecer extensões didáticas da pirâmide.
 - Identificar as tecnologias e funções de cada nível.
 - Compreender como se dá a integração vertical e horizontal entre sistemas.
 - Analisar como o IIoT está transformando a hierarquia tradicional.
@@ -15,7 +15,7 @@ Ao final deste capítulo, o leitor será capaz de:
 
 ## A Pirâmide de Automação
 
-A **pirâmide de automação** é um modelo hierárquico amplamente utilizado para organizar e compreender os diferentes sistemas tecnológicos presentes em uma indústria. Desenvolvida com base no modelo **ISA-95** (*ANSI/ISA-95 — Enterprise-Control System Integration*), a pirâmide é dividida em cinco níveis, do chão de fábrica até a gestão corporativa.
+A **pirâmide de automação** é uma representação didática das funções industriais e de negócio. O modelo **ISA-95** (*Enterprise-Control System Integration*) define os níveis 0 a 4: processo físico, detecção/atuação, monitoramento e controle, operações de manufatura e planejamento/logística do negócio. Algumas representações acrescentam um nível corporativo acima do nível 4; essa extensão não deve ser apresentada como um nível adicional definido pela ISA-95.
 
 Cada nível possui:
 
@@ -24,7 +24,7 @@ Cada nível possui:
 - **Volume de dados** processados: os níveis superiores lidam com informações consolidadas; os inferiores, com sinais brutos em tempo real.
 
 > 🖼️ **[Figura 2.1 – Pirâmide de Automação Clássica (ISA-95)]**
-> *Pirâmide em cinco camadas coloridas (de baixo para cima): Campo → Controle → Supervisório → Gerenciamento → Corporativo. Cada nível com ícones representativos, exemplos de sistemas (CLP, SCADA, MES, ERP) e indicação de tempo de resposta típico (ms, s, min, horas, dias).*
+> *Pirâmide de cinco níveis, numerados de 0 a 4 conforme ISA-95: processo físico; sensores e atuadores; monitoramento e controle (CLP, DCS, SCADA conforme a função); operações de manufatura (MES/MOM); planejamento e logística do negócio (ERP). Mostrar a direção da integração sem sugerir que todo produto pertence exclusivamente a um único nível. Não incluir um nível 5 como se fosse parte da ISA-95.*
 
 ---
 
@@ -68,15 +68,15 @@ O **Nível 1** engloba todos os dispositivos que fazem a interface direta com o 
 
 ---
 
-## Nível 2 — Controle
+## Níveis 1 e 2 — Detecção, atuação, monitoramento e controle
 
-O **Nível 2** é responsável pelo controle automático do processo. Os equipamentos deste nível recebem os sinais dos sensores, executam os algoritmos de controle e enviam comandos aos atuadores.
+No **Nível 1**, os dispositivos fazem a interface com o processo e executam funções básicas de detecção e atuação. No **Nível 2**, sistemas de controle e supervisão monitoram o processo e executam ou apoiam o controle automático. A alocação exata de CLP, DCS, IHM e SCADA depende da arquitetura; a pirâmide representa funções, não uma regra física de localização.
 
 ### CLP — Controlador Lógico Programável
 
 O **CLP** é o equipamento dominante na automação discreta e em batelada. Suas características:
 
-- Programação em linguagens da norma **IEC 61131-3**: Ladder (LD), Blocos de Função (FBD), Texto Estruturado (ST), Lista de Instruções (IL), SFC.
+- Programação em linguagens da norma **IEC 61131-3**: Ladder Diagram (LD), Function Block Diagram (FBD), Structured Text (ST) e Sequential Function Chart (SFC). A Instruction List (IL), presente em edições antigas, foi removida da 4ª edição publicada em 2025; projetos legados ainda podem encontrá-la.
 - Alta confiabilidade e robustez para ambientes industriais.
 - Ciclos de varredura da ordem de **1 a 100 ms**.
 - Comunicação via Modbus, Profibus, Profinet, EtherNet/IP, OPC UA.
@@ -117,20 +117,20 @@ graph LR
 
 ---
 
-## Nível 3 — Supervisório (SCADA/HMI)
+## Nível 2 — Monitoramento e controle (inclui SCADA/HMI)
 
-O **Nível 3** é o nível **supervisório**: onde os operadores monitoram o processo, visualizam tendências históricas, respondem a alarmes e, quando necessário, fazem intervenções manuais.
+O **Nível 2** inclui funções de monitoramento e supervisão. Em muitas arquiteturas, é onde operam sistemas SCADA e estações de operação; controladores locais executam as malhas e sequências que precisam continuar funcionando sem depender da interface supervisória.
 
-Este nível é abordado em detalhes nos Capítulos 3 e 4. Em resumo:
+Essas funções são abordadas em detalhes nos Capítulos 3 e 4. Em resumo:
 
 - **HMI local:** painel com tela touchscreen instalado próximo ao equipamento.
 - **SCADA centralizado:** servidor com banco de dados, servidor de alarmes, cliente web e thin clients espalhados pela planta ou sala de controle.
 
 ---
 
-## Nível 4 — Gerenciamento de Produção (MES)
+## Nível 3 — Operações de Manufatura (MES/MOM)
 
-O **MES** (*Manufacturing Execution System*) conecta o chão de fábrica ao mundo corporativo. Suas funções incluem:
+O **MES** (*Manufacturing Execution System*) ou **MOM** (*Manufacturing Operations Management*) coordena e registra as operações de manufatura, fazendo a interface entre o controle da produção e as funções de negócio. Suas funções incluem:
 
 - **Rastreabilidade:** registro do histórico completo de cada lote produzido.
 - **Qualidade:** coleta de dados de qualidade e gestão de não-conformidades.
@@ -142,11 +142,11 @@ O **MES** (*Manufacturing Execution System*) conecta o chão de fábrica ao mund
 
 ---
 
-## Nível 5 — Corporativo (ERP)
+## Nível 4 — Planejamento e Logística do Negócio (ERP)
 
-O **ERP** (*Enterprise Resource Planning*) integra as funções de negócio da empresa: finanças, recursos humanos, logística, vendas e planejamento estratégico. Recebe do MES os dados consolidados de produção e os contextualiza com dados de negócio.
+O **ERP** (*Enterprise Resource Planning*) integra funções de negócio como finanças, recursos humanos, logística, vendas e planejamento. Troca informações com sistemas de operações de manufatura; essa integração não exige que todo dado de processo seja enviado diretamente ao ERP.
 
-**Integração ERP ↔ MES:** normatizada pela **ISA-95**, que define os modelos de informação e interfaces entre os dois sistemas.
+**Integração ERP ↔ MES/MOM:** a ISA-95 define modelos e atividades para a integração entre o domínio de negócio (Nível 4) e as operações de manufatura (Nível 3), além de terminologia e modelos relacionados.
 
 ---
 
@@ -178,23 +178,11 @@ O modelo tradicional de pirâmide foi concebido em uma época em que os sistemas
 - **Acesso direto sensor → nuvem:** dispositivos IIoT publicam dados diretamente em plataformas como AWS IoT ou Azure IoT Hub via MQTT, "pulando" os níveis da pirâmide.
 - **Analytics e IA:** algoritmos de aprendizado de máquina operam sobre dados históricos de processo, retroalimentando decisões de controle.
 
-```mermaid
-flowchart TB
-    subgraph TRAD["Modelo tradicional: em camadas"]
-        direction TB
-        L0["Campo"] --> L1["Controle"] --> L2["Supervisorio"] --> L3["MES"] --> L4["ERP"]
-    end
-    subgraph IIOT["Modelo IIoT: dado direto da borda"]
-        direction TB
-        C["Campo / Edge"] -->|MQTT / OPC UA| CL["Cloud / Analytics"]
-        CL --> ERP2["ERP / BI"]
-        CL -. "configuracao de retorno" .-> C
-    end
-    TRAD ~~~ IIOT
-```
+![Figura 2.5 – Pirâmide tradicional de automação industrial](../figuras/piramide_automacao.jpeg)
 
-> 🖼️ **[Figura 2.5 – Pirâmide clássica versus arquitetura IIoT]**
-> *Dois diagramas lado a lado: (esquerda) pirâmide tradicional de 5 níveis; (direita) arquitetura IIoT com Edge, Cloud e acesso direto. Destacar em vermelho as "conexões que pulam níveis" no modelo IIoT.*
+> **Fonte:** arquivo `piramide_automacao.jpeg` fornecido no repositório; autoria e fonte original não informadas.
+
+> 📌 **Nota:** a imagem representa uma convenção tradicional em cinco níveis (1 a 5), não uma representação direta dos níveis ISA-95 (0 a 4) definidos neste capítulo. Ela não representa a arquitetura IIoT.
 
 > ⚠️ **Atenção:** A convergência TI/OT traz desafios significativos de **cibersegurança**. Sistemas de controle que antes eram isolados fisicamente (*air gap*) passam a ter conectividade com redes externas, aumentando a superfície de ataque. Este tema é aprofundado no Capítulo 8.
 
@@ -210,7 +198,7 @@ diretamente na nuvem.
 
 **O que a pirâmide explica bem — nas duas plantas.**
 
-- **Integração vertical** entre os níveis 2 e 4: a ordem de produção desce, o resultado da
+- **Integração vertical** entre os níveis 3 e 4: a ordem de produção desce, o resultado da
   produção sobe.
 - **Separação de responsabilidade**: quem controla o quê e com qual requisito de tempo.
 - **Vocabulário comum**: quando alguém diz "nível 2", o escopo é o mesmo em qualquer unidade.
@@ -219,9 +207,9 @@ diretamente na nuvem.
 
 | Comportamento observado na planta B | Leitura pela pirâmide | Por que a leitura falha |
 |---|---|---|
-| Sensor de vibração publica na nuvem sem passar pelo CLP | Salto de níveis | A pirâmide pressupõe caminho único e ascendente |
-| Modelo analítico devolve *setpoint* ao CLP | Fluxo descendente do nível 4 para o 2 | Não há atividade de gestão de produção envolvida |
-| Dado bruto chega ao time de analytics antes do supervisório | Nível 1 comunicando com o nível 4 | A ordem hierárquica não se aplica ao caminho do dado |
+| Sensor de vibração publica na nuvem sem passar pelo CLP | Caminho direto entre campo e serviço externo | A pirâmide descreve níveis funcionais, não impõe um caminho único para os dados |
+| Modelo analítico propõe um *setpoint* ao CLP | Integração entre analytics e controle | A proposta deve passar por validação e autoridade de controle local antes de ser aplicada |
+| Dado bruto chega ao time de analytics antes do supervisório | Fluxos paralelos de dados | Os níveis funcionais não determinam a ordem de entrega de cada fluxo |
 
 **Conclusão de engenharia.** A pirâmide continua sendo o melhor **mapa de responsabilidades** —
 e é isso que ela deve ser usada para responder: onde mora a lógica de controle, quem decide o quê,
@@ -237,10 +225,10 @@ apoiado na pirâmide errada.
 
 ## Resumo
 
-- A **pirâmide de automação** organiza os sistemas industriais em cinco níveis: Campo (0), Instrumentação (1), Controle (2), Supervisório (3), Gerenciamento (4) e Corporativo (5).
+- A ISA-95 descreve cinco níveis funcionais, numerados de 0 a 4: processo físico; detecção e atuação; monitoramento e controle; operações de manufatura; planejamento e logística do negócio.
 - Cada nível tem função, tecnologia e velocidade de resposta específicas.
 - **CLP**, **DCS** e **RTU** são as tecnologias dominantes no nível de controle, cada uma adequada a um tipo de processo.
-- O **MES** conecta o chão de fábrica ao **ERP**, normatizado pela ISA-95.
+- O **MES/MOM** conecta as operações de manufatura às funções de negócio; a ISA-95 fornece modelos e terminologia para essa integração.
 - O **IIoT** está achatando a pirâmide, permitindo que dados de campo cheguem diretamente à nuvem e às ferramentas de analytics.
 
 ---
@@ -266,7 +254,8 @@ apoiado na pirâmide errada.
 
 ## Referências
 
-- ISA-95: *Enterprise-Control System Integration*. ISA, 2010.
+- ANSI/ISA-95.00.01: *Enterprise-Control System Integration — Models and Terminology*. ISA. Consultar a edição vigente no catálogo da ISA antes de especificações contratuais.
+- IEC 61131-3:2025: *Programmable Controllers — Part 3: Programming Languages*. IEC, 4ª ed., 2025.
 - NIST: *Guide to Industrial Control Systems (ICS) Security*. NIST SP 800-82 Rev. 2, 2015.
 - KAGERMANN, H. et al. *Recommendations for implementing the strategic initiative Industrie 4.0*. Acatech, 2013.
 - SIEMENS. *Totally Integrated Automation Portal (TIA Portal)*. siemens.com/tia.

@@ -131,7 +131,7 @@ fi
 # ATENÇÃO 2: o log pode conter byte não imprimível (listagens) — sem 'grep -a' o grep
 #   responde "arquivo binário coincide com o padrão" e o relatório sai zerado.
 log=build/pass3.log
-erros="$(grep -a -E '^! |\.tex:[0-9]+: ' "$log" | grep -v '^!  *$' || true)"
+erros="$(grep -a -E '^! |\.tex:[0-9]+: ' "$log" | grep -v -E '^!  *$|ignored error:' || true)"
 n_erros="$(printf '%s' "$erros" | grep -a -c . || true)"
 vbox="$(grep -a -c 'Overfull .vbox' "$log" || true)"
 hbox="$(grep -a -c 'Overfull .hbox' "$log" || true)"

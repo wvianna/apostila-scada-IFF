@@ -1,5 +1,4 @@
-\hypertarget{historiadores-e-suxe9ries-temporais}{%
-\chapter{Historiadores e Séries Temporais}\label{historiadores-e-suxe9ries-temporais}}
+\chapter{Historiadores e Séries Temporais}\label{historiadores-e-suxe9ries-temporais}
 
 \section*{Objetivos de Aprendizagem}
 
@@ -23,15 +22,14 @@ Ao final deste capítulo, o leitor será capaz de:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{a-pergunta-que-o-histuxf3rico-responde}{%
-\section{A pergunta que o histórico responde}\label{a-pergunta-que-o-histuxf3rico-responde}}
+\section{A pergunta que o histórico responde}\label{a-pergunta-que-o-histuxf3rico-responde}
 
 O histórico de processo atende a três públicos que fazem perguntas diferentes:
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Público
@@ -56,8 +54,7 @@ entre essas demandas --- e essa negociação é projeto, não parâmetro deixado
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{tenduxeancia-real-e-tenduxeancia-histuxf3rica}{%
-\section{Tendência real e tendência histórica}\label{tenduxeancia-real-e-tenduxeancia-histuxf3rica}}
+\section{Tendência real e tendência histórica}\label{tenduxeancia-real-e-tenduxeancia-histuxf3rica}
 
 São dois objetos diferentes, com armazenamento diferente.
 
@@ -74,7 +71,7 @@ São dois objetos diferentes, com armazenamento diferente.
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap16-tendencia-real.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 16.1  Tendência real com duas variáveis de nível, escala fixa e legenda}]{../figuras/cap16-tendencia-real.png}}
 \caption[Figura 16.1 -- Tendência real com duas variáveis de nível, escala fixa e legenda]{Figura 16.1 -- Tendência real com duas variáveis de nível, escala fixa e legenda. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~67 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
@@ -97,9 +94,9 @@ em outro.
 \textbf{Tabela 16.1 -- Tendência real \ensuremath{\times} tendência histórica}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Aspecto
@@ -122,24 +119,23 @@ Uso típico & Acompanhar a operação corrente & Diagnosticar, comparar, relatar
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{os-paruxe2metros-que-decidem-o-que-vocuxea-vai-ver-depois}{%
-\section{Os parâmetros que decidem o que você vai ver depois}\label{os-paruxe2metros-que-decidem-o-que-vocuxea-vai-ver-depois}}
+\section{Os parâmetros que decidem o que você vai ver depois}\label{os-paruxe2metros-que-decidem-o-que-vocuxea-vai-ver-depois}
 
 Quatro parâmetros definem o resultado de um gráfico de tendência, e todos os quatro são decididos
 muito antes de alguém precisar do histórico.
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap16-parametros-tendencia.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 16.2  Parâmetros de configuração de um gráfico de tendência}]{../figuras/cap16-parametros-tendencia.png}}
 \caption[Figura 16.2 -- Parâmetros de configuração de um gráfico de tendência]{Figura 16.2 -- Parâmetros de configuração de um gráfico de tendência. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~70 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
 \textbf{Tabela 16.2 -- Parâmetros do gráfico de tendência}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Parâmetro
@@ -177,8 +173,7 @@ faixa conhecida é o padrão; escala automática é ferramenta de investigação
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{por-que-banco-relacional-nuxe3o-uxe9-historiador}{%
-\section{Por que banco relacional não é historiador}\label{por-que-banco-relacional-nuxe3o-uxe9-historiador}}
+\section{Por que banco relacional não é historiador}\label{por-que-banco-relacional-nuxe3o-uxe9-historiador}
 
 Um banco de dados relacional resolve bem cadastro, venda, financeiro. Ele não foi projetado para o
 padrão de carga da indústria, que tem três características incômodas:
@@ -204,8 +199,8 @@ Um banco de dados de séries temporais (\emph{TSDB}) existe para esse padrão. O
 \textbf{Tabela 16.3 -- O que um TSDB acrescenta ao banco convencional}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Recurso
@@ -239,8 +234,7 @@ programável.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{compressuxe3o-o-que-o-histuxf3rico-decide-esquecer}{%
-\section{Compressão: o que o histórico decide esquecer}\label{compressuxe3o-o-que-o-histuxf3rico-decide-esquecer}}
+\section{Compressão: o que o histórico decide esquecer}\label{compressuxe3o-o-que-o-histuxf3rico-decide-esquecer}
 
 Historiador sem compressão é caro; historiador com compressão mal configurada é pior que caro,
 porque produz uma série que parece verdadeira e não é.
@@ -283,8 +277,7 @@ intervalo --- recurso que preserva a envoltória do sinal mesmo com poucos ponto
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{retenuxe7uxe3o-agregauxe7uxe3o-e-conformidade}{%
-\section{Retenção, agregação e conformidade}\label{retenuxe7uxe3o-agregauxe7uxe3o-e-conformidade}}
+\section{Retenção, agregação e conformidade}\label{retenuxe7uxe3o-agregauxe7uxe3o-e-conformidade}
 
 Reter tudo para sempre não é política de arquivo: é ausência de política. A prática é \textbf{reduzir
 resolução com o tempo}, mantendo a informação estatística do período.
@@ -292,11 +285,11 @@ resolução com o tempo}, mantendo a informação estatística do período.
 \textbf{Tabela 16.4 -- Política de retenção por classe de dado}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Classe
@@ -352,17 +345,16 @@ Três cuidados completam a política:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{histuxf3rico-de-processo-histuxf3rico-de-eventos}{%
-\section{\texorpdfstring{Histórico de processo \ensuremath{\times} histórico de eventos}{Histórico de processo  histórico de eventos}}\label{histuxf3rico-de-processo-histuxf3rico-de-eventos}}
+\section{\texorpdfstring{Histórico de processo \ensuremath{\times} histórico de eventos}{Histórico de processo  histórico de eventos}}\label{histuxf3rico-de-processo-histuxf3rico-de-eventos}
 
 São dois registros, com dois propósitos, e misturá-los prejudica os dois.
 
 \textbf{Tabela 16.5 -- Comparativo dos dois registros}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Aspecto
@@ -404,18 +396,17 @@ cinco consultas com o esforço aceitável é a ferramenta certa --- o resto é a
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{comparativo-das-soluuxe7uxf5es-de-historizauxe7uxe3o}{%
-\section{Comparativo das soluções de historização}\label{comparativo-das-soluuxe7uxf5es-de-historizauxe7uxe3o}}
+\section{Comparativo das soluções de historização}\label{comparativo-das-soluuxe7uxf5es-de-historizauxe7uxe3o}
 
 \textbf{Tabela 16.6 -- Famílias de solução}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Tecnologia
@@ -448,8 +439,7 @@ segunda responde à gestão.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estudo-de-caso-o-pico-que-o-histuxf3rico-nuxe3o-viu}{%
-\section{\texorpdfstring{Estudo de Caso --- O pico que o histórico não viu}{Estudo de Caso  O pico que o histórico não viu}}\label{estudo-de-caso-o-pico-que-o-histuxf3rico-nuxe3o-viu}}
+\section{\texorpdfstring{Estudo de Caso --- O pico que o histórico não viu}{Estudo de Caso  O pico que o histórico não viu}}\label{estudo-de-caso-o-pico-que-o-histuxf3rico-nuxe3o-viu}
 
 \textbf{Cenário.} Uma estação de bombeamento registrava a pressão de recalque em um historian configurado
 com taxa de amostragem de 30 s e tolerância de compressão de 2 \% da faixa. Em três meses, dois
@@ -478,8 +468,8 @@ minutos que antecederam cada partida --- e encontrou uma reta.
 \textbf{Decisão de engenharia.}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Medida
@@ -507,8 +497,7 @@ o transitório tem significado.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{resumo}{%
-\section{Resumo}\label{resumo}}
+\section{Resumo}\label{resumo}
 
 \begin{itemize}
 \tightlist
@@ -530,8 +519,7 @@ o transitório tem significado.
   A escolha da ferramenta sai das \textbf{cinco consultas} que o projeto precisa responder.
 \end{itemize}
 
-\hypertarget{questuxf5es-de-revisuxe3o}{%
-\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -556,8 +544,7 @@ o transitório tem significado.
   Um operador afirma que ``a pressão nunca passou de 8 bar'' e a engenharia mede 11 bar com um registrador independente. Que decisões de configuração do historian podem explicar a divergência?
 \end{enumerate}
 
-\hypertarget{referuxeancias}{%
-\section{Referências}\label{referuxeancias}}
+\section{Referências}\label{referuxeancias}
 
 \begin{itemize}
 \tightlist

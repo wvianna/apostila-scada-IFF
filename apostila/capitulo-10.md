@@ -62,7 +62,7 @@ Essa confusão aparece em quase toda especificação de SCADA.
 
 Uma falha de instrumento pode ter consequência alta (perde-se a medição de vazão de um reator) e urgência baixa (há redundância e o processo continua seguro por horas). Prioridade alta, portanto, não é sinônimo de "coisa grave": é "aja agora".
 
-**Tabela 10.2 – Matriz usual de prioridade por tempo de resposta**
+**Tabela 10.2 – Exemplo de categorias de prioridade por tempo de resposta**
 
 | Prioridade | Tempo de resposta esperado | Referência de apresentação |
 |---|---|---|
@@ -74,6 +74,10 @@ Uma falha de instrumento pode ter consequência alta (perde-se a medição de va
 A distribuição de prioridades também é um critério de qualidade: em um sistema maduro, a maior parte dos alarmes é de prioridade baixa e média, e a prioridade crítica é rara. Um sistema em que metade dos alarmes é crítica está mal priorizado, por definição.
 
 > 💡 **Dica:** antes de discutir prioridade, responda por escrito, para cada alarme: *"qual é a ação esperada do operador e em quanto tempo ela precisa começar?"* Alarmes que não sobrevivem a essa pergunta são candidatos a remoção, não a reclassificação.
+Os nomes das prioridades, os tempos e os sinais visuais desta tabela são um exemplo didático. Cada
+planta deve defini-los na filosofia de alarmes, considerando consequências, tempo disponível e
+capacidade de resposta do operador; não são limites universais impostos pela ISA-18.2 ou pela IEC
+62682.
 
 ### 10.2.2 Ajustes que definem o comportamento
 
@@ -92,14 +96,19 @@ Três parâmetros determinam se um alarme é útil ou ruído:
 
 Quatro referências dominam o assunto, e elas **não são equivalentes**.
 
+As edições abaixo são as identificadas na bibliografia desta apostila. Como não foi possível
+consultar nesta revisão os catálogos oficiais ISA, IEC, EEMUA e NAMUR, elas não são declaradas aqui
+como as edições atualmente vigentes; confirme status, edição e escopo antes de especificar ou
+contratar.
+
 **Tabela 10.3 – Comparação das referências normativas**
 
 | Referência | Natureza | Escopo e uso típico |
 |---|---|---|
-| **ANSI/ISA-18.2** | Norma (ISA) | Gerenciamento de alarmes na indústria de processo; define o ciclo de vida; edição vigente de 2016 (a primeira é de 2009) |
-| **IEC 62682** | Norma (IEC) | Mesmo escopo em base internacional, alinhada à ISA-18.2; edição vigente de **2022**, que substitui a de 2014 |
-| **EEMUA 191** | Guia de engenharia (EEMUA) | Projeto, gestão e contratação de sistemas de alarme; traz valores de referência de desempenho; 3ª edição, 2013 |
-| **NAMUR NA 102** | Recomendação (NAMUR) | Gerenciamento de alarmes na indústria química e farmacêutica; publicada em 2003, referência histórica que influenciou as normas |
+| **ANSI/ISA-18.2** | Norma (ISA) | Gerenciamento de alarmes na indústria de processo; a edição identificada nesta bibliografia é a de 2016 (1ª edição: 2009) |
+| **IEC 62682** | Norma (IEC) | Gerenciamento de alarmes na indústria de processo; edição identificada nesta bibliografia: 2ª edição, 2022 |
+| **EEMUA 191** | Guia de engenharia (EEMUA) | Projeto, gestão e contratação de sistemas de alarme; a edição identificada nesta bibliografia é a 3ª, de 2013 |
+| **NAMUR NA 102** | Recomendação (NAMUR) | Gerenciamento de alarmes na indústria química e farmacêutica; a edição identificada nesta bibliografia é de 2003 |
 
 Notas de uso, verificadas na documentação pública dos organismos:
 
@@ -214,7 +223,7 @@ horário, prioridade e botão de reconhecimento — a separação que a Seção 
 
 ### 10.6.1 Como o alarme chega ao operador
 
-A ergonomia de telas e a sinalização de alarmes são tratadas pela **ISA-101** (*Human-Machine Interfaces for Process Automation Systems*), a principal referência global para o projeto de **IHM e SCADA de alta performance**. Ela está no material de origem desta apostila (inclui o simpósio ISA-101 realizado em São Paulo, com aplicação em saneamento).
+A ergonomia de telas e a sinalização de alarmes podem ser orientadas pela **ISA-101** (*Human-Machine Interfaces for Process Automation Systems*), referência de engenharia para interfaces de sistemas de automação de processo. Ela está no material de origem desta apostila (inclui o simpósio ISA-101 realizado em São Paulo, com aplicação em saneamento).
 
 > 📌 **Nota:** a ISA-101 **não é um software SCADA**. É um conjunto de diretrizes e padrões de engenharia para criar telas eficientes: o pacote de supervisão é escolhido à parte, e a norma diz **como** a informação deve ser apresentada ao operador. Comprar um SCADA não garante uma IHM de alta performance — projetá-la, sim.
 
@@ -229,9 +238,9 @@ O gerenciamento de alarmes tratado nas Seções 10.1 a 10.5 é o outro lado da m
 
 Aplicando esses princípios à tela de alarmes:
 
-- **Cor com significado único:** vermelho para prioridade crítica, âmbar para média, ciano/azul para informação. Nunca usar vermelho para decoração.
-- **Posição estável:** a lista de alarmes não deve reordenar a cada segundo; quem reordena esconde o alarme novo.
-- **Som distinto por prioridade**, com silenciamento temporário e auditável.
+- **Cor consistente:** seguir a filosofia da planta, não usar cor apenas como decoração e oferecer outros sinais de prioridade além da cor.
+- **Lista previsível:** apresentar horário, estado e critério de ordenação de modo consistente; mudanças de ordenação não devem ocultar alarmes novos ou dificultar o acompanhamento.
+- **Som projetado para a operação:** definir avisos sonoros conforme a filosofia e evitar diferenças que acrescentem ruído ou fadiga; registrar o silenciamento quando aplicável.
 - **Agrupamento:** a tela precisa indicar a **área** afetada, não apenas a tag.
 - **Taxa de atualização coerente** com a dinâmica do processo — atualizar 10 vezes por segundo um valor que muda por hora só consome rede e desvia atenção.
 
@@ -244,6 +253,8 @@ O acompanhamento é o que dá objetividade à discussão. As métricas mais usad
 | Métrica | Como se lê | Referência usualmente citada |
 |---|---|---|
 | Taxa média de alarmes | Alarmes por hora por operador | Máximo da ordem de 10 alarmes a cada 10 minutos |
+| Taxa média de alarmes | Alarmes por hora por operador | Picos da ordem de 10 alarmes em 10 minutos indicam sobrecarga a investigar |
+📌 **Nota:** os números da tabela são referências orientativas, não critérios universais de aceitação. Confirme a fonte, a edição e o contexto antes de compará-los ou incluí-los em contrato; as taxas toleráveis dependem da situação operacional e da estratégia de resposta.
 | Volume diário | Alarmes por dia por operador | Cerca de 150 alarmes/dia como meta de sistema maduro |
 | Alarmes repetitivos | Percentual que chattering | Pequena fração do total; reduzir com deadband e atraso |
 | Alarmes fixos | Ativos por mais de 24 h | Tendência a zero |

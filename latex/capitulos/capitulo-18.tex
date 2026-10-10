@@ -1,5 +1,4 @@
-\hypertarget{integrauxe7uxe3o-scada-clp-iot-cloud}{%
-\chapter{Integração SCADA + CLP + IoT + Cloud}\label{integrauxe7uxe3o-scada-clp-iot-cloud}}
+\chapter{Integração SCADA + CLP + IoT + Cloud}\label{integrauxe7uxe3o-scada-clp-iot-cloud}
 
 \section*{Objetivos de Aprendizagem}
 
@@ -21,18 +20,17 @@ Ao final deste capítulo, o leitor será capaz de:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{quatro-mundos-um-dado-suxf3}{%
-\section{Quatro mundos, um dado só}\label{quatro-mundos-um-dado-suxf3}}
+\section{Quatro mundos, um dado só}\label{quatro-mundos-um-dado-suxf3}
 
 O CLP, o SCADA, o mundo IoT e a nuvem têm requisitos que não se parecem:
 
 \textbf{Tabela 18.1 -- Requisitos que precisam conviver}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Camada
@@ -65,17 +63,16 @@ outra. O Capítulo 6 já estabeleceu que IoT/IIoT não substituem SCADA; aqui a 
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{onde-cada-decisuxe3o-deve-morar}{%
-\section{Onde cada decisão deve morar}\label{onde-cada-decisuxe3o-deve-morar}}
+\section{Onde cada decisão deve morar}\label{onde-cada-decisuxe3o-deve-morar}
 
 Esta é a tabela que evita a maior parte dos erros de arquitetura. Ela é curta de propósito.
 
 \textbf{Tabela 18.2 -- Alocação de funções por camada}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Função
@@ -106,7 +103,7 @@ mesmo assim só para comandos que não afetem segurança.
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap18-camada-abstracao.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 18.1  Camada de abstração: onde o software de supervisão se separa do hardware de controle}]{../figuras/cap18-camada-abstracao.png}}
 \caption[Figura 18.1 -- Camada de abstração: onde o software de supervisão se separa do hardware de controle]{Figura 18.1 -- Camada de abstração: onde o software de supervisão se separa do hardware de controle. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~24 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
@@ -118,14 +115,12 @@ saber como cada um funciona.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{a-sequuxeancia-de-dados-passo-a-passo}{%
-\section{A sequência de dados, passo a passo}\label{a-sequuxeancia-de-dados-passo-a-passo}}
+\section{A sequência de dados, passo a passo}\label{a-sequuxeancia-de-dados-passo-a-passo}
 
 Integração se aprende seguindo o dado. Os cinco arranjos abaixo são progressivos e cada um acrescenta
 uma peça; todos são usados em plantas reais.
 
-\hypertarget{vuxe1lvula-solenoide-comandada-por-clp}{%
-\subsection{Válvula solenoide comandada por CLP}\label{vuxe1lvula-solenoide-comandada-por-clp}}
+\subsection{Válvula solenoide comandada por CLP}\label{vuxe1lvula-solenoide-comandada-por-clp}
 
 \textbf{Sequência:} o operador aciona o botão na IHM \ensuremath{\rightarrow} o SCADA escreve \passthrough{\lstinline!1!} no tag de comando \ensuremath{\rightarrow} o driver
 grava na memória imagem do CLP \ensuremath{\rightarrow} a lógica energiza a saída \ensuremath{\rightarrow} a solenoide abre \ensuremath{\rightarrow} o sensor de fim de
@@ -141,8 +136,7 @@ no tempo esperado, deve existir alarme de falha de atuação --- e não um botã
 \textbf{Limitação:} o comando pelo supervisório não é proteção. Se a válvula precisa fechar por segurança,
 quem fecha é o intertravamento, não a IHM.
 
-\hypertarget{clp-scada}{%
-\subsection{\texorpdfstring{CLP \ensuremath{\rightarrow} SCADA}{CLP  SCADA}}\label{clp-scada}}
+\subsection{\texorpdfstring{CLP \ensuremath{\rightarrow} SCADA}{CLP  SCADA}}\label{clp-scada}
 
 \textbf{Sequência:} leitura da memória do CLP pelo driver \ensuremath{\rightarrow} escalonamento para unidade de engenharia \ensuremath{\rightarrow}
 validação de faixa \ensuremath{\rightarrow} avaliação de alarme \ensuremath{\rightarrow} atualização do objeto na tela \ensuremath{\rightarrow} gravação no historizador.
@@ -156,8 +150,7 @@ instrumento e no mesmo instante.
 \textbf{Limitação:} o SCADA é não determinístico --- o atraso da tela não é erro, mas precisa ser conhecido
 (Capítulo 15).
 
-\hypertarget{clp-mqtt-plataforma-iiot}{%
-\subsection{\texorpdfstring{CLP \ensuremath{\rightarrow} MQTT \ensuremath{\rightarrow} plataforma IIoT}{CLP  MQTT  plataforma IIoT}}\label{clp-mqtt-plataforma-iiot}}
+\subsection{\texorpdfstring{CLP \ensuremath{\rightarrow} MQTT \ensuremath{\rightarrow} plataforma IIoT}{CLP  MQTT  plataforma IIoT}}\label{clp-mqtt-plataforma-iiot}
 
 \textbf{Sequência:} a função de cliente MQTT no CLP ou no gateway publica no tópico de telemetria com o
 identificador do dispositivo \ensuremath{\rightarrow} a plataforma recebe, registra a telemetria e dispara a cadeia de
@@ -177,8 +170,7 @@ com um valor fora da faixa no motor de alarme.
 }{\fbox{\parbox{0.9\linewidth}{\small Diagrama Mermaid ainda não renderizado: capitulo-18-m2. Rode scripts/render-mermaid.sh.}}}
 \end{center}
 
-\hypertarget{sensor-node-red-mqtt-plataforma}{%
-\subsection{\texorpdfstring{Sensor \ensuremath{\rightarrow} Node-RED \ensuremath{\rightarrow} MQTT \ensuremath{\rightarrow} plataforma}{Sensor  Node-RED  MQTT  plataforma}}\label{sensor-node-red-mqtt-plataforma}}
+\subsection{\texorpdfstring{Sensor \ensuremath{\rightarrow} Node-RED \ensuremath{\rightarrow} MQTT \ensuremath{\rightarrow} plataforma}{Sensor  Node-RED  MQTT  plataforma}}\label{sensor-node-red-mqtt-plataforma}
 
 \textbf{Sequência:} Node-RED lê a fonte (Modbus, serial, HTTP ou simulador) \ensuremath{\rightarrow} normaliza nome e unidade \ensuremath{\rightarrow}
 injeta o carimbo de tempo \ensuremath{\rightarrow} publica em MQTT \ensuremath{\rightarrow} a plataforma persiste e apresenta.
@@ -192,8 +184,7 @@ antigo como se fosse atual.
 \textbf{Limitação:} Node-RED é excelente para prototipar e mediar, e não é ambiente de controle nem de
 garantia temporal (Capítulo 7).
 
-\hypertarget{scada-historiador-dashboard}{%
-\subsection{SCADA + historiador + dashboard}\label{scada-historiador-dashboard}}
+\subsection{SCADA + historiador + dashboard}\label{scada-historiador-dashboard}
 
 \textbf{Sequência:} o SCADA coleta e disponibiliza por OPC UA \ensuremath{\rightarrow} o historiador assina as variáveis com
 intervalo de amostragem e faixa morta definidos \ensuremath{\rightarrow} o dashboard consulta o histórico por período e
@@ -216,8 +207,7 @@ histórico --- se for grande, a faixa morta ou o filtro estão escondendo o tran
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{onde-a-integrauxe7uxe3o-costuma-quebrar}{%
-\section{Onde a integração costuma quebrar}\label{onde-a-integrauxe7uxe3o-costuma-quebrar}}
+\section{Onde a integração costuma quebrar}\label{onde-a-integrauxe7uxe3o-costuma-quebrar}
 
 Nenhuma dessas falhas é de protocolo. Todas são de projeto, e todas aparecem no mesmo lugar: no
 número que está errado na tela de alguém.
@@ -225,9 +215,9 @@ número que está errado na tela de alguém.
 \textbf{Tabela 18.3 -- Falhas típicas e sua origem}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Sintoma
@@ -251,8 +241,7 @@ Consumo de dados estourou a franquia & Publicação periódica de tudo & Publica
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{como-provar-que-a-integrauxe7uxe3o-funciona}{%
-\section{Como provar que a integração funciona}\label{como-provar-que-a-integrauxe7uxe3o-funciona}}
+\section{Como provar que a integração funciona}\label{como-provar-que-a-integrauxe7uxe3o-funciona}
 
 Integração não se valida lendo configuração; valida-se \textbf{injetando perturbação}. O roteiro mínimo:
 
@@ -289,8 +278,7 @@ só se sabe que ainda não falhou de forma visível.
 
 \end{caixadica}
 
-\hypertarget{estudo-de-caso-a-integrauxe7uxe3o-que-duplicou-os-alarmes}{%
-\section{\texorpdfstring{Estudo de Caso --- A integração que duplicou os alarmes}{Estudo de Caso  A integração que duplicou os alarmes}}\label{estudo-de-caso-a-integrauxe7uxe3o-que-duplicou-os-alarmes}}
+\section{\texorpdfstring{Estudo de Caso --- A integração que duplicou os alarmes}{Estudo de Caso  A integração que duplicou os alarmes}}\label{estudo-de-caso-a-integrauxe7uxe3o-que-duplicou-os-alarmes}
 
 \textbf{Cenário.} Uma indústria de alimentos integrou o SCADA existente a uma plataforma IIoT para dar
 visão de indicadores à gestão. Seis meses depois, a plataforma foi liberada também para a supervisão
@@ -316,8 +304,8 @@ de errado na tela do SCADA''. A análise mostrou três problemas sobrepostos:
 \textbf{Decisão de engenharia.}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Problema
@@ -345,8 +333,7 @@ de prioridade média --- o que foi aceito como decisão de projeto, não como ef
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{resumo}{%
-\section{Resumo}\label{resumo}}
+\section{Resumo}\label{resumo}
 
 \begin{itemize}
 \tightlist
@@ -368,8 +355,7 @@ de prioridade média --- o que foi aceito como decisão de projeto, não como ef
   Nenhuma dessas arquiteturas substitui CLP e SCADA no controle, na proteção e na segurança funcional.
 \end{itemize}
 
-\hypertarget{questuxf5es-de-revisuxe3o}{%
-\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -394,8 +380,7 @@ de prioridade média --- o que foi aceito como decisão de projeto, não como ef
   Uma planta quer publicar 800 variáveis por MQTT a cada 5 s em enlace 4G com franquia de 20 GB mensais. Estime o volume, critique a proposta e apresente uma arquitetura alternativa.
 \end{enumerate}
 
-\hypertarget{referuxeancias}{%
-\section{Referências}\label{referuxeancias}}
+\section{Referências}\label{referuxeancias}
 
 \begin{itemize}
 \tightlist

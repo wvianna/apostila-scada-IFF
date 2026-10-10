@@ -1,5 +1,4 @@
-\hypertarget{gerenciamento-de-alarmes}{%
-\chapter{Gerenciamento de Alarmes}\label{gerenciamento-de-alarmes}}
+\chapter{Gerenciamento de Alarmes}\label{gerenciamento-de-alarmes}
 
 \section*{Objetivos de Aprendizagem}
 
@@ -25,8 +24,7 @@ Ao final deste capítulo, o leitor será capaz de:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{o-problema-que-o-gerenciamento-de-alarmes-resolve}{%
-\section{O problema que o gerenciamento de alarmes resolve}\label{o-problema-que-o-gerenciamento-de-alarmes-resolve}}
+\section{O problema que o gerenciamento de alarmes resolve}\label{o-problema-que-o-gerenciamento-de-alarmes-resolve}
 
 Um sistema de alarmes é a última linha de defesa entre uma condição anormal e um acidente. Quando funciona, o operador é avisado exatamente do que importa, no momento em que ainda pode agir. Quando não funciona, o operador recebe centenas de mensagens simultâneas e passa a ignorá-las --- ou, pior, desativa o som do sistema.
 
@@ -63,17 +61,16 @@ Alguns efeitos medíveis de um sistema de alarmes mal projetado:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{conceitos-e-taxonomia}{%
-\section{Conceitos e taxonomia}\label{conceitos-e-taxonomia}}
+\section{Conceitos e taxonomia}\label{conceitos-e-taxonomia}
 
 A primeira dificuldade prática é terminológica: em muitos projetos, ``alarme'', ``evento'' e ``aviso'' são usados como sinônimos. Não são.
 
 \textbf{Tabela 10.1 -- Termos essenciais de gerenciamento de alarmes}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Termo
@@ -97,8 +94,7 @@ Exemplo
 
 A definição operacional de alarme tem duas partes que não podem ser separadas: \textbf{existe uma resposta possível} e \textbf{existe tempo para executá-la}. Se não há ação a tomar, não é alarme --- é registro. Se o operador tem 30 segundos para agir e a tela mostra o alarme em uma página que ele abre em 40 segundos, também não é alarme: é informação histórica.
 
-\hypertarget{prioridade-e-severidade-nuxe3o-suxe3o-a-mesma-coisa}{%
-\subsection{Prioridade e severidade não são a mesma coisa}\label{prioridade-e-severidade-nuxe3o-suxe3o-a-mesma-coisa}}
+\subsection{Prioridade e severidade não são a mesma coisa}\label{prioridade-e-severidade-nuxe3o-suxe3o-a-mesma-coisa}
 
 Essa confusão aparece em quase toda especificação de SCADA.
 
@@ -112,12 +108,12 @@ Essa confusão aparece em quase toda especificação de SCADA.
 
 Uma falha de instrumento pode ter consequência alta (perde-se a medição de vazão de um reator) e urgência baixa (há redundância e o processo continua seguro por horas). Prioridade alta, portanto, não é sinônimo de ``coisa grave'': é ``aja agora''.
 
-\textbf{Tabela 10.2 -- Matriz usual de prioridade por tempo de resposta}
+\textbf{Tabela 10.2 -- Exemplo de categorias de prioridade por tempo de resposta}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Prioridade
@@ -141,11 +137,14 @@ A distribuição de prioridades também é um critério de qualidade: em um sist
 \begin{caixadica}
 
 \textbf{Dica:} antes de discutir prioridade, responda por escrito, para cada alarme: \emph{``qual é a ação esperada do operador e em quanto tempo ela precisa começar?''} Alarmes que não sobrevivem a essa pergunta são candidatos a remoção, não a reclassificação.
+Os nomes das prioridades, os tempos e os sinais visuais desta tabela são um exemplo didático. Cada
+planta deve defini-los na filosofia de alarmes, considerando consequências, tempo disponível e
+capacidade de resposta do operador; não são limites universais impostos pela ISA-18.2 ou pela IEC
+62682.
 
 \end{caixadica}
 
-\hypertarget{ajustes-que-definem-o-comportamento}{%
-\subsection{Ajustes que definem o comportamento}\label{ajustes-que-definem-o-comportamento}}
+\subsection{Ajustes que definem o comportamento}\label{ajustes-que-definem-o-comportamento}
 
 Três parâmetros determinam se um alarme é útil ou ruído:
 
@@ -168,17 +167,21 @@ Três parâmetros determinam se um alarme é útil ou ruído:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{normas-e-o-escopo-de-cada-uma}{%
-\section{Normas e o escopo de cada uma}\label{normas-e-o-escopo-de-cada-uma}}
+\section{Normas e o escopo de cada uma}\label{normas-e-o-escopo-de-cada-uma}
 
 Quatro referências dominam o assunto, e elas \textbf{não são equivalentes}.
+
+As edições abaixo são as identificadas na bibliografia desta apostila. Como não foi possível
+consultar nesta revisão os catálogos oficiais ISA, IEC, EEMUA e NAMUR, elas não são declaradas aqui
+como as edições atualmente vigentes; confirme status, edição e escopo antes de especificar ou
+contratar.
 
 \textbf{Tabela 10.3 -- Comparação das referências normativas}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Referência
@@ -191,10 +194,10 @@ Escopo e uso típico
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\textbf{ANSI/ISA-18.2} & Norma (ISA) & Gerenciamento de alarmes na indústria de processo; define o ciclo de vida; edição vigente de 2016 (a primeira é de 2009) \\
-\textbf{IEC 62682} & Norma (IEC) & Mesmo escopo em base internacional, alinhada à ISA-18.2; edição vigente de \textbf{2022}, que substitui a de 2014 \\
-\textbf{EEMUA 191} & Guia de engenharia (EEMUA) & Projeto, gestão e contratação de sistemas de alarme; traz valores de referência de desempenho; 3ª edição, 2013 \\
-\textbf{NAMUR NA 102} & Recomendação (NAMUR) & Gerenciamento de alarmes na indústria química e farmacêutica; publicada em 2003, referência histórica que influenciou as normas \\
+\textbf{ANSI/ISA-18.2} & Norma (ISA) & Gerenciamento de alarmes na indústria de processo; a edição identificada nesta bibliografia é a de 2016 (1ª edição: 2009) \\
+\textbf{IEC 62682} & Norma (IEC) & Gerenciamento de alarmes na indústria de processo; edição identificada nesta bibliografia: 2ª edição, 2022 \\
+\textbf{EEMUA 191} & Guia de engenharia (EEMUA) & Projeto, gestão e contratação de sistemas de alarme; a edição identificada nesta bibliografia é a 3ª, de 2013 \\
+\textbf{NAMUR NA 102} & Recomendação (NAMUR) & Gerenciamento de alarmes na indústria química e farmacêutica; a edição identificada nesta bibliografia é de 2003 \\
 \end{longtable}
 
 Notas de uso, verificadas na documentação pública dos organismos:
@@ -225,8 +228,7 @@ Notas de uso, verificadas na documentação pública dos organismos:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{ciclo-de-vida}{%
-\section{Ciclo de vida}\label{ciclo-de-vida}}
+\section{Ciclo de vida}\label{ciclo-de-vida}
 
 Normas e guias organizam o trabalho em etapas. O ciclo é iterativo: a saída da auditoria alimenta a filosofia.
 
@@ -239,9 +241,9 @@ Normas e guias organizam o trabalho em etapas. O ciclo é iterativo: a saída da
 \textbf{Tabela 10.4 -- O que cada etapa entrega}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Etapa
@@ -274,16 +276,15 @@ Auditoria & O programa funciona como previsto? & Relatório de auditoria e plano
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{racionalizauxe7uxe3o-na-pruxe1tica}{%
-\section{Racionalização na prática}\label{racionalizauxe7uxe3o-na-pruxe1tica}}
+\section{Racionalização na prática}\label{racionalizauxe7uxe3o-na-pruxe1tica}
 
 Racionalizar é documentar, alarme por alarme, por que ele existe e o que o operador deve fazer. A saída é uma ficha (no jargão em inglês, \emph{Alarm Basis Form} ou \emph{rationalization record}).
 
 \textbf{Tabela 10.5 -- Campos de uma ficha de racionalização}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Campo
@@ -307,8 +308,7 @@ Responsável e revisão & Quem aprovou e quando revalidar \\
 
 Um teste rápido de qualidade: se a coluna ``ação esperada'' está vazia ou diz ``verificar o processo'', o alarme ainda não foi racionalizado.
 
-\hypertarget{um-exemplo-completo}{%
-\subsection{Um exemplo completo}\label{um-exemplo-completo}}
+\subsection{Um exemplo completo}\label{um-exemplo-completo}
 
 Considere um alarme de \textbf{alta temperatura} no mancal de uma bomba de processo.
 
@@ -336,7 +336,7 @@ Considere um alarme de \textbf{alta temperatura} no mancal de uma bomba de proce
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap10-sinotico-alarmes.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 10.3  Sinalização de estado no sinótico, com o alarme fora da tela de processo}]{../figuras/cap10-sinotico-alarmes.png}}
 \caption[Figura 10.3 -- Sinalização de estado no sinótico, com o alarme fora da tela de processo]{Figura 10.3 -- Sinalização de estado no sinótico, com o alarme fora da tela de processo. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~135 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
@@ -348,13 +348,11 @@ horário, prioridade e botão de reconhecimento --- a separação que a Seção 
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{apresentauxe7uxe3o-ao-operador-e-desempenho}{%
-\section{Apresentação ao operador e desempenho}\label{apresentauxe7uxe3o-ao-operador-e-desempenho}}
+\section{Apresentação ao operador e desempenho}\label{apresentauxe7uxe3o-ao-operador-e-desempenho}
 
-\hypertarget{como-o-alarme-chega-ao-operador}{%
-\subsection{Como o alarme chega ao operador}\label{como-o-alarme-chega-ao-operador}}
+\subsection{Como o alarme chega ao operador}\label{como-o-alarme-chega-ao-operador}
 
-A ergonomia de telas e a sinalização de alarmes são tratadas pela \textbf{ISA-101} (\emph{Human-Machine Interfaces for Process Automation Systems}), a principal referência global para o projeto de \textbf{IHM e SCADA de alta performance}. Ela está no material de origem desta apostila (inclui o simpósio ISA-101 realizado em São Paulo, com aplicação em saneamento).
+A ergonomia de telas e a sinalização de alarmes podem ser orientadas pela \textbf{ISA-101} (\emph{Human-Machine Interfaces for Process Automation Systems}), referência de engenharia para interfaces de sistemas de automação de processo. Ela está no material de origem desta apostila (inclui o simpósio ISA-101 realizado em São Paulo, com aplicação em saneamento).
 
 \begin{caixanota}
 
@@ -383,28 +381,27 @@ Aplicando esses princípios à tela de alarmes:
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Cor com significado único:} vermelho para prioridade crítica, âmbar para média, ciano/azul para informação. Nunca usar vermelho para decoração.
+  \textbf{Cor consistente:} seguir a filosofia da planta, não usar cor apenas como decoração e oferecer outros sinais de prioridade além da cor.
 \item
-  \textbf{Posição estável:} a lista de alarmes não deve reordenar a cada segundo; quem reordena esconde o alarme novo.
+  \textbf{Lista previsível:} apresentar horário, estado e critério de ordenação de modo consistente; mudanças de ordenação não devem ocultar alarmes novos ou dificultar o acompanhamento.
 \item
-  \textbf{Som distinto por prioridade}, com silenciamento temporário e auditável.
+  \textbf{Som projetado para a operação:} definir avisos sonoros conforme a filosofia e evitar diferenças que acrescentem ruído ou fadiga; registrar o silenciamento quando aplicável.
 \item
   \textbf{Agrupamento:} a tela precisa indicar a \textbf{área} afetada, não apenas a tag.
 \item
   \textbf{Taxa de atualização coerente} com a dinâmica do processo --- atualizar 10 vezes por segundo um valor que muda por hora só consome rede e desvia atenção.
 \end{itemize}
 
-\hypertarget{muxe9tricas-de-desempenho}{%
-\subsection{Métricas de desempenho}\label{muxe9tricas-de-desempenho}}
+\subsection{Métricas de desempenho}\label{muxe9tricas-de-desempenho}
 
 O acompanhamento é o que dá objetividade à discussão. As métricas mais usadas:
 
 \textbf{Tabela 10.6 -- Métricas usuais e valores de referência citados}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Métrica
@@ -418,12 +415,15 @@ Referência usualmente citada
 \bottomrule\noalign{}
 \endlastfoot
 Taxa média de alarmes & Alarmes por hora por operador & Máximo da ordem de 10 alarmes a cada 10 minutos \\
-Volume diário & Alarmes por dia por operador & Cerca de 150 alarmes/dia como meta de sistema maduro \\
-Alarmes repetitivos & Percentual que chattering & Pequena fração do total; reduzir com deadband e atraso \\
-Alarmes fixos & Ativos por mais de 24 h & Tendência a zero \\
-Distribuição por prioridade & Fração de críticos & Críticos como minoria clara do total \\
-Tempo de resposta & Intervalo entre alarme e ação & Compatível com o tempo de resposta definido na ficha \\
+Taxa média de alarmes & Alarmes por hora por operador & Picos da ordem de 10 alarmes em 10 minutos indicam sobrecarga a investigar \\
 \end{longtable}
+
+\textbf{Nota:} os números da tabela são referências orientativas, não critérios universais de aceitação. Confirme a fonte, a edição e o contexto antes de compará-los ou incluí-los em contrato; as taxas toleráveis dependem da situação operacional e da estratégia de resposta.
+\textbar{} Volume diário \textbar{} Alarmes por dia por operador \textbar{} Cerca de 150 alarmes/dia como meta de sistema maduro \textbar{}
+\textbar{} Alarmes repetitivos \textbar{} Percentual que chattering \textbar{} Pequena fração do total; reduzir com deadband e atraso \textbar{}
+\textbar{} Alarmes fixos \textbar{} Ativos por mais de 24 h \textbar{} Tendência a zero \textbar{}
+\textbar{} Distribuição por prioridade \textbar{} Fração de críticos \textbar{} Críticos como minoria clara do total \textbar{}
+\textbar{} Tempo de resposta \textbar{} Intervalo entre alarme e ação \textbar{} Compatível com o tempo de resposta definido na ficha \textbar{}
 
 \begin{caixanota}
 
@@ -433,11 +433,9 @@ Tempo de resposta & Intervalo entre alarme e ação & Compatível com o tempo de
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{alarmes-em-scada-e-em-plataformas-iiot}{%
-\section{Alarmes em SCADA e em plataformas IIoT}\label{alarmes-em-scada-e-em-plataformas-iiot}}
+\section{Alarmes em SCADA e em plataformas IIoT}\label{alarmes-em-scada-e-em-plataformas-iiot}
 
-\hypertarget{no-scada-cluxe1ssico}{%
-\subsection{No SCADA clássico}\label{no-scada-cluxe1ssico}}
+\subsection{No SCADA clássico}\label{no-scada-cluxe1ssico}
 
 O servidor de supervisão mantém o motor de alarmes:
 
@@ -455,7 +453,7 @@ O servidor de supervisão mantém o motor de alarmes:
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap10-estados-alarme.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 10.4  Diagrama de estados de uma variável de alarme}]{../figuras/cap10-estados-alarme.png}}
 \caption[Figura 10.4 -- Diagrama de estados de uma variável de alarme]{Figura 10.4 -- Diagrama de estados de uma variável de alarme. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~61 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
@@ -468,7 +466,7 @@ distinção e não consegue auditar quem agiu, quando e sobre qual condição.
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap10-historico-alarmes.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 10.5  Registro de eventos de alarme com estado, prioridade, valor e limite}]{../figuras/cap10-historico-alarmes.png}}
 \caption[Figura 10.5 -- Registro de eventos de alarme com estado, prioridade, valor e limite]{Figura 10.5 -- Registro de eventos de alarme com estado, prioridade, valor e limite. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~116 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
@@ -484,8 +482,7 @@ diferentes.
 
 \end{caixaatencao}
 
-\hypertarget{na-borda-e-na-plataforma}{%
-\subsection{Na borda e na plataforma}\label{na-borda-e-na-plataforma}}
+\subsection{Na borda e na plataforma}\label{na-borda-e-na-plataforma}
 
 Em arquiteturas com MQTT e plataformas IIoT, o alarme pode ser gerado em três lugares: no CLP (intertravamento e proteção), no \emph{gateway} de borda (primeira avaliação de limites) e na plataforma (correlação, notificação, acompanhamento e relatório).
 
@@ -500,9 +497,9 @@ No ThingsBoard, o alarme é uma \textbf{entidade} com tipo, severidade e estado 
 A divisão de responsabilidade recomendada:
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Onde
@@ -523,8 +520,7 @@ SCADA & Supervisão e comando do operador & Ser o único repositório de eventos
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estudo-de-caso-alarmes-de-uma-estauxe7uxe3o-de-bombeamento}{%
-\section{\texorpdfstring{Estudo de caso --- alarmes de uma estação de bombeamento}{Estudo de caso  alarmes de uma estação de bombeamento}}\label{estudo-de-caso-alarmes-de-uma-estauxe7uxe3o-de-bombeamento}}
+\section{\texorpdfstring{Estudo de caso --- alarmes de uma estação de bombeamento}{Estudo de caso  alarmes de uma estação de bombeamento}}\label{estudo-de-caso-alarmes-de-uma-estauxe7uxe3o-de-bombeamento}
 
 \textbf{Cenário.} Estação com quatro bombas, uma em operação e três em espera, controlando vazão para um reservatório a 12 km. Instrumentação: pressão de sucção e descarga, temperatura de mancal, corrente do motor, nível do reservatório. Comunicação: CLP local com o SCADA por rádio; telemetria para a nuvem por MQTT via \emph{gateway}.
 
@@ -555,8 +551,7 @@ SCADA & Supervisão e comando do operador & Ser o único repositório de eventos
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{atividade-pruxe1tica}{%
-\section{Atividade prática}\label{atividade-pruxe1tica}}
+\section{Atividade prática}\label{atividade-pruxe1tica}
 
 Em grupos de três, com a lista de alarmes fictícia fornecida pelo professor (ou extraída de um projeto real, anonimizado):
 
@@ -577,8 +572,7 @@ Em grupos de três, com a lista de alarmes fictícia fornecida pelo professor (o
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{resumo}{%
-\section{Resumo}\label{resumo}}
+\section{Resumo}\label{resumo}
 
 \begin{itemize}
 \tightlist
@@ -600,8 +594,7 @@ Em grupos de três, com a lista de alarmes fictícia fornecida pelo professor (o
   Em arquiteturas IIoT, o alarme pode ser gerado no CLP, na borda e na plataforma --- sem transferir à nuvem nenhuma função de proteção.
 \end{itemize}
 
-\hypertarget{questuxf5es-de-revisuxe3o}{%
-\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -628,8 +621,7 @@ Em grupos de três, com a lista de alarmes fictícia fornecida pelo professor (o
   Em uma arquitetura com CLP, \emph{gateway} e plataforma em nuvem, qual camada deve concentrar a proteção do processo e por quê?
 \end{enumerate}
 
-\hypertarget{referuxeancias}{%
-\section{Referências}\label{referuxeancias}}
+\section{Referências}\label{referuxeancias}
 
 \begin{itemize}
 \tightlist

@@ -1,5 +1,4 @@
-\hypertarget{thingsboard}{%
-\chapter{ThingsBoard}\label{thingsboard}}
+\chapter{ThingsBoard}\label{thingsboard}
 
 \section*{Objetivos de Aprendizagem}
 
@@ -27,17 +26,16 @@ Ao final deste capítulo, o leitor será capaz de:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{o-que-uxe9-o-thingsboard-e-onde-ele-se-encaixa}{%
-\section{O que é o ThingsBoard e onde ele se encaixa}\label{o-que-uxe9-o-thingsboard-e-onde-ele-se-encaixa}}
+\section{O que é o ThingsBoard e onde ele se encaixa}\label{o-que-uxe9-o-thingsboard-e-onde-ele-se-encaixa}
 
 O ThingsBoard é uma plataforma de código aberto para \textbf{coleta, processamento, visualização e gestão de dados de dispositivos IoT e IIoT}. Ele oferece três modos de uso:
 
 \textbf{Tabela 12.1 -- Modos de uso}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Modo
@@ -73,17 +71,16 @@ A documentação oficial concentra a maior parte dos exemplos em três domínios
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{modelo-de-entidades}{%
-\section{Modelo de entidades}\label{modelo-de-entidades}}
+\section{Modelo de entidades}\label{modelo-de-entidades}
 
 Entender o modelo de entidades é o que separa ``usar a plataforma'' de ``usar a plataforma corretamente''.
 
 \textbf{Tabela 12.2 -- Entidades principais}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Entidade
@@ -114,17 +111,16 @@ A hierarquia recomendada para processo industrial é: \textbf{ativo} representa 
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{telemetria-e-atributos}{%
-\section{Telemetria e atributos}\label{telemetria-e-atributos}}
+\section{Telemetria e atributos}\label{telemetria-e-atributos}
 
 A distinção é conceitual e tem consequência direta em custo de armazenamento e desempenho.
 
 \textbf{Tabela 12.3 -- Telemetria \ensuremath{\times} atributos}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Aspecto
@@ -155,17 +151,16 @@ Os \textbf{escopos de atributo} definem quem lê e quem escreve:
   \textbf{Atributo de cliente} (\emph{client scope}): publicado pelo dispositivo e visível na plataforma. Útil para metadados do próprio equipamento.
 \end{itemize}
 
-\hypertarget{mqtt-tuxf3picos-e-formato}{%
-\subsection{MQTT: tópicos e formato}\label{mqtt-tuxf3picos-e-formato}}
+\subsection{MQTT: tópicos e formato}\label{mqtt-tuxf3picos-e-formato}
 
 O dispositivo autentica com o \textbf{token de acesso} e publica em tópicos definidos.
 
 \textbf{Tabela 12.4 -- Tópicos MQTT de dispositivo}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Operação
@@ -211,8 +206,7 @@ O primeiro formato usa o horário de recebimento na plataforma. O segundo e o te
 
 \end{caixaatencao}
 
-\hypertarget{http-e-rest}{%
-\subsection{HTTP e REST}\label{http-e-rest}}
+\subsection{HTTP e REST}\label{http-e-rest}
 
 Para dispositivos sem MQTT ou para integração com sistemas externos, a plataforma expõe:
 
@@ -225,8 +219,7 @@ A mesma estrutura de \emph{payload} é aceita. O segundo \emph{endpoint} é usad
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{rule-engine}{%
-\section{Rule engine}\label{rule-engine}}
+\section{Rule engine}\label{rule-engine}
 
 O motor de regras é o núcleo de processamento: cada mensagem (telemetria, alteração de atributo, evento de ciclo de vida, chamada RPC) percorre uma \textbf{rule chain} (\emph{cadeia de regras}), composta por nós conectados.
 
@@ -239,8 +232,8 @@ O motor de regras é o núcleo de processamento: cada mensagem (telemetria, alte
 Nós mais usados em um projeto de supervisão:
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Nó
@@ -269,8 +262,7 @@ Kafka / MQTT / REST & Publica a mensagem em sistemas externos \\
 
 Um nó comum é o \textbf{Message Type Switch}, que separa o fluxo: mensagens \passthrough{\lstinline!Post telemetry!}, \passthrough{\lstinline!Post attributes!} e \passthrough{\lstinline!RPC Request!} seguem caminhos diferentes na mesma cadeia.
 
-\hypertarget{alarme-como-entidade}{%
-\subsection{Alarme como entidade}\label{alarme-como-entidade}}
+\subsection{Alarme como entidade}\label{alarme-como-entidade}
 
 No ThingsBoard o alarme é uma \textbf{entidade} com estado. Os campos relevantes observáveis na documentação oficial:
 
@@ -309,8 +301,7 @@ O nó \textbf{Clear Alarm} encerra o alarme quando a condição normaliza --- e 
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{rpc-comando-e-consulta}{%
-\section{\texorpdfstring{RPC --- comando e consulta}{RPC  comando e consulta}}\label{rpc-comando-e-consulta}}
+\section{\texorpdfstring{RPC --- comando e consulta}{RPC  comando e consulta}}\label{rpc-comando-e-consulta}
 
 RPC (\emph{Remote Procedure Call}) permite trocar comandos e respostas entre plataforma e dispositivo.
 
@@ -333,8 +324,7 @@ Cuidado de engenharia: RPC é um canal de \textbf{comando}, e comando exige auto
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{dashboards-e-visualizauxe7uxe3o}{%
-\section{Dashboards e visualização}\label{dashboards-e-visualizauxe7uxe3o}}
+\section{Dashboards e visualização}\label{dashboards-e-visualizauxe7uxe3o}
 
 Os dashboards da plataforma oferecem painéis de série temporal, indicadores, tabelas, mapas e widgets de alarme. O que muda em relação ao capítulo 11 é a \textbf{origem do dado}: aqui o painel consulta a própria plataforma, e não um banco externo.
 
@@ -361,25 +351,22 @@ Diretrizes que continuam valendo integralmente:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{integrauxe7uxe3o-com-clp-e-com-node-red}{%
-\section{Integração com CLP e com Node-RED}\label{integrauxe7uxe3o-com-clp-e-com-node-red}}
+\section{Integração com CLP e com Node-RED}\label{integrauxe7uxe3o-com-clp-e-com-node-red}
 
-\hypertarget{direto-do-clp}{%
-\subsection{Direto do CLP}\label{direto-do-clp}}
+\subsection{Direto do CLP}\label{direto-do-clp}
 
 CLPs com função de cliente MQTT publicam telemetria diretamente, desde que o \emph{payload} siga o formato esperado e o token esteja protegido. Como token em CLP é difícil de rotacionar, o padrão mais defensável é \textbf{não} expor a credencial no controlador.
 
-\hypertarget{por-gateway-de-borda}{%
-\subsection{Por gateway de borda}\label{por-gateway-de-borda}}
+\subsection{Por gateway de borda}\label{por-gateway-de-borda}
 
 O \emph{gateway} concentra credenciais, fila local e conversão de protocolo. A plataforma define tópicos específicos para esse papel:
 
 \textbf{Tabela 12.5 -- Tópicos MQTT de gateway (prefixo \passthrough{\lstinline!v1/gateway/!})}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Tópico
@@ -409,8 +396,7 @@ Esse desenho é o que viabiliza o caso clássico: \textbf{um gateway para N disp
 
 \end{caixafigura}
 
-\hypertarget{com-node-red}{%
-\subsection{Com Node-RED}\label{com-node-red}}
+\subsection{Com Node-RED}\label{com-node-red}
 
 O Node-RED atua como camada de integração e normalização --- papel discutido no capítulo 7:
 
@@ -428,8 +414,7 @@ Vantagens: conversão de unidades e escalas no fluxo, agregação, cálculo de i
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estudo-de-caso-monitoramento-de-frota-de-transmissores}{%
-\section{\texorpdfstring{Estudo de caso --- monitoramento de frota de transmissores}{Estudo de caso  monitoramento de frota de transmissores}}\label{estudo-de-caso-monitoramento-de-frota-de-transmissores}}
+\section{\texorpdfstring{Estudo de caso --- monitoramento de frota de transmissores}{Estudo de caso  monitoramento de frota de transmissores}}\label{estudo-de-caso-monitoramento-de-frota-de-transmissores}
 
 \textbf{Cenário.} Uma estação de tratamento possui 24 transmissores de pressão e nível em campo, conectados a dois CLPs. Objetivo: acompanhar falhas de instrumento e condições anormais sem depender do operador para perceber o problema.
 
@@ -438,9 +423,9 @@ Vantagens: conversão de unidades e escalas no fluxo, agregação, cálculo de i
 \textbf{Regras implementadas.}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Condição
@@ -480,8 +465,7 @@ Bateria abaixo de 20\% (onde aplicável) & Manutenção preventiva & WARNING \\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{atividade-pruxe1tica}{%
-\section{Atividade prática}\label{atividade-pruxe1tica}}
+\section{Atividade prática}\label{atividade-pruxe1tica}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -506,8 +490,7 @@ Bateria abaixo de 20\% (onde aplicável) & Manutenção preventiva & WARNING \\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{resumo}{%
-\section{Resumo}\label{resumo}}
+\section{Resumo}\label{resumo}
 
 \begin{itemize}
 \tightlist
@@ -531,8 +514,7 @@ Bateria abaixo de 20\% (onde aplicável) & Manutenção preventiva & WARNING \\
   A plataforma automatiza o ciclo operacional do alarme, mas não substitui a disciplina de gerenciamento de alarmes.
 \end{itemize}
 
-\hypertarget{questuxf5es-de-revisuxe3o}{%
-\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -559,8 +541,7 @@ Bateria abaixo de 20\% (onde aplicável) & Manutenção preventiva & WARNING \\
   Um projeto pretende usar ThingsBoard em nuvem para fechar uma válvula automaticamente quando a pressão exceder 12 bar. Avalie tecnicamente a proposta e apresente uma alternativa.
 \end{enumerate}
 
-\hypertarget{referuxeancias}{%
-\section{Referências}\label{referuxeancias}}
+\section{Referências}\label{referuxeancias}
 
 \begin{itemize}
 \tightlist

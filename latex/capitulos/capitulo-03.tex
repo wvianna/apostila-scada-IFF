@@ -1,5 +1,4 @@
-\hypertarget{sistemas-supervisuxf3rios-scada-e-hmi}{%
-\chapter{\texorpdfstring{Sistemas Supervisórios --- SCADA e HMI}{Sistemas Supervisórios  SCADA e HMI}}\label{sistemas-supervisuxf3rios-scada-e-hmi}}
+\chapter{\texorpdfstring{Sistemas Supervisórios --- SCADA e HMI}{Sistemas Supervisórios  SCADA e HMI}}\label{sistemas-supervisuxf3rios-scada-e-hmi}
 
 \section*{Objetivos de Aprendizagem}
 
@@ -19,8 +18,7 @@ Ao final deste capítulo, o leitor será capaz de:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{o-que-uxe9-scada}{%
-\section{O que é SCADA?}\label{o-que-uxe9-scada}}
+\section{O que é SCADA?}\label{o-que-uxe9-scada}
 
 \textbf{SCADA} (\emph{Supervisory Control and Data Acquisition} --- Controle Supervisório e Aquisição de Dados) é um sistema de software e hardware que permite \textbf{monitorar e controlar remotamente processos industriais e infraestruturas críticas} a partir de uma central de operações.
 
@@ -42,21 +40,21 @@ O nome descreve bem suas funções essenciais:
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap03-janela-ihm.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 3.1  Janela de IHM de um sistema supervisório}]{../figuras/cap03-janela-ihm.png}}
 \caption[Figura 3.1 -- Janela de IHM de um sistema supervisório]{Figura 3.1 -- Janela de IHM de um sistema supervisório. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~51 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
-A tela acima reúne os elementos que a ISA-101 --- principal referência global para o projeto de \textbf{IHM/SCADA de alta performance} (Seção 10.6.1) --- trata como camada de operação: o sinótico do
-processo à esquerda, a \textbf{barra de navegação} à direita (acesso a processo, tendência, alarmes e
-visão geral), a data e a hora de referência no canto inferior e a indicação de estado de cada
 equipamento sobre o próprio desenho. Repare que a quantidade de informação é deliberadamente
-pequena: o detalhamento pertence aos níveis de tela seguintes, não à visão de área --- princípio
 desenvolvido no Capítulo 11.
+A tela permite identificar elementos comuns de uma aplicação supervisória: sinótico, barra de
+navegação, indicação de estados e referência de data e hora. É uma captura de software de geração
+anterior e serve para reconhecer esses componentes, não como modelo de conformidade com a ISA-101
+nem como recomendação visual atual. Os critérios de projeto de alta performance são discutidos nos
+Capítulos 10 e 11.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{funuxe7uxf5es-principais-de-um-scada}{%
-\section{Funções Principais de um SCADA}\label{funuxe7uxf5es-principais-de-um-scada}}
+\section{Funções Principais de um SCADA}\label{funuxe7uxf5es-principais-de-um-scada}
 
 Um sistema SCADA moderno oferece as seguintes funções. Elas não são independentes: todas
 dependem do mesmo conjunto de dados adquiridos do processo.
@@ -67,13 +65,11 @@ dependem do mesmo conjunto de dados adquiridos do processo.
 }{\fbox{\parbox{0.9\linewidth}{\small Diagrama Mermaid ainda não renderizado: capitulo-03-m1. Rode scripts/render-mermaid.sh.}}}
 \end{center}
 
-\hypertarget{aquisiuxe7uxe3o-de-dados}{%
-\subsection{Aquisição de Dados}\label{aquisiuxe7uxe3o-de-dados}}
+\subsection{Aquisição de Dados}\label{aquisiuxe7uxe3o-de-dados}
 
 Coleta cíclica de variáveis analógicas (temperatura, pressão, vazão) e digitais (status de bombas, posição de válvulas, alarmes) a partir dos equipamentos de campo. A frequência de coleta pode variar de milissegundos a minutos, dependendo da criticidade da variável.
 
-\hypertarget{visualizauxe7uxe3o-hmi-centralizado}{%
-\subsection{Visualização (HMI Centralizado)}\label{visualizauxe7uxe3o-hmi-centralizado}}
+\subsection{Visualização (HMI Centralizado)}\label{visualizauxe7uxe3o-hmi-centralizado}
 
 Apresentação gráfica do processo em \textbf{sinóticos} animados, onde:
 - Válvulas mudam de cor conforme seu estado (aberta/fechada).
@@ -81,8 +77,7 @@ Apresentação gráfica do processo em \textbf{sinóticos} animados, onde:
 - Valores numéricos atualizam em tempo real.
 - Gráficos de tendência mostram a evolução da variável ao longo do tempo.
 
-\hypertarget{gerenciamento-de-alarmes}{%
-\subsection{Gerenciamento de Alarmes}\label{gerenciamento-de-alarmes}}
+\subsection{Gerenciamento de Alarmes}\label{gerenciamento-de-alarmes}
 
 \begin{itemize}
 \tightlist
@@ -102,8 +97,7 @@ Apresentação gráfica do processo em \textbf{sinóticos} animados, onde:
 
 \end{caixaatencao}
 
-\hypertarget{controle-supervisuxf3rio}{%
-\subsection{Controle Supervisório}\label{controle-supervisuxf3rio}}
+\subsection{Controle Supervisório}\label{controle-supervisuxf3rio}
 
 O operador pode enviar comandos ao processo através do SCADA:
 - Alteração de setpoints de controladores PID.
@@ -111,8 +105,7 @@ O operador pode enviar comandos ao processo através do SCADA:
 - Partida e parada de motores.
 - Execução de sequências de operação.
 
-\hypertarget{historizauxe7uxe3o}{%
-\subsection{Historização}\label{historizauxe7uxe3o}}
+\subsection{Historização}\label{historizauxe7uxe3o}
 
 Armazenamento de séries temporais de dados de processo em banco de dados otimizado para esse fim. Permite:
 - Análise de tendências históricas.
@@ -122,8 +115,7 @@ Armazenamento de séries temporais de dados de processo em banco de dados otimiz
 
 \textbf{Bancos de dados de processo populares:} OSIsoft PI System (agora AVEVA PI), Honeywell Uniformance, InfluxDB (open-source), TimescaleDB.
 
-\hypertarget{relatuxf3rios}{%
-\subsection{Relatórios}\label{relatuxf3rios}}
+\subsection{Relatórios}\label{relatuxf3rios}
 
 Geração automática de relatórios operacionais, de qualidade e de desempenho de equipamentos (OEE), em formatos PDF, Excel ou dashboards web.
 
@@ -136,18 +128,17 @@ Geração automática de relatórios operacionais, de qualidade e de desempenho 
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{scada-dcs-hmi-local}{%
-\section{\texorpdfstring{SCADA \ensuremath{\times} DCS \ensuremath{\times} HMI Local}{SCADA  DCS  HMI Local}}\label{scada-dcs-hmi-local}}
+\section{\texorpdfstring{SCADA \ensuremath{\times} DCS \ensuremath{\times} HMI Local}{SCADA  DCS  HMI Local}}\label{scada-dcs-hmi-local}
 
 Uma dúvida comum entre estudantes e profissionais é a diferença entre SCADA, DCS e HMI. A \textbf{Tabela 3.1} resume as principais distinções:
 
 \textbf{Tabela 3.1 -- Comparativo SCADA \ensuremath{\times} DCS \ensuremath{\times} HMI Local}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Critério
@@ -162,26 +153,25 @@ DCS
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\textbf{Escopo} & Um equipamento ou célula & Planta inteira ou múltiplos sites & Processo contínuo integrado \\
-\textbf{Localização} & Junto ao equipamento & Sala de controle centralizada & Sala de controle + campo \\
-\textbf{Controle} & Visualização + comandos locais & Supervisório (via CLP/RTU) & Controle distribuído nativo \\
-\textbf{Conectividade} & Serial, Ethernet & WAN, rádio, fibra, 4G & Rede proprietária de campo \\
-\textbf{Histórico} & Limitado ou nenhum & Banco de dados de processo & Banco de dados integrado \\
-\textbf{Redundância} & Geralmente sem & Servidores redundantes & Redundância total nativa \\
+\textbf{Escopo típico} & Máquina ou célula & Planta, infraestrutura ou múltiplos sites & Processo integrado, frequentemente contínuo \\
+\textbf{Distribuição} & Painel próximo ao equipamento & Controle local com supervisão central ou distribuída & Controladores e estações integrados em uma arquitetura de controle \\
+\textbf{Controle} & Comandos e, conforme a aplicação, funções locais & Supervisão e comandos; malhas críticas ficam em controladores locais & Controle distribuído integrado; funções locais continuam essenciais \\
+\textbf{Conectividade} & Rede local & LAN, WAN, rádio, fibra ou redes celulares & Redes de controle e integração; não necessariamente proprietárias \\
+\textbf{Histórico} & Ausente ou de escopo limitado & Pode integrar historizador dedicado & Pode integrar historização, conforme arquitetura \\
+\textbf{Redundância} & Depende do equipamento & Opção de projeto conforme disponibilidade requerida & Opção frequente em sistemas críticos, não garantia inerente \\
 \textbf{Aplicação típica} & Máquina CNC, bomba, compressor & Oleoduto, ETAP, subestação & Refinaria, petroquímica, papel e celulose \\
 \textbf{Custo relativo} & Baixo & Médio & Alto \\
 \end{longtable}
 
 \begin{caixadica}
 
-\textbf{Dica:} Na prática moderna, as fronteiras entre SCADA e DCS estão se apagando. Sistemas como AVEVA System Platform e Honeywell Experion são, simultaneamente, SCADA e DCS --- com controle nativo distribuído e supervisão centralizada na mesma plataforma.
+\textbf{Dica:} As funções podem se sobrepor e produtos podem reunir recursos de supervisão e controle. A classificação como SCADA ou DCS depende da arquitetura implantada e de onde residem as funções de controle, não apenas do nome comercial da plataforma.
 
 \end{caixadica}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{gerauxe7uxf5es-do-scada}{%
-\section{Gerações do SCADA}\label{gerauxe7uxf5es-do-scada}}
+\section{Gerações do SCADA}\label{gerauxe7uxf5es-do-scada}
 
 A evolução do SCADA ocorreu em quatro gerações bem definidas:
 
@@ -200,15 +190,18 @@ A evolução do SCADA ocorreu em quatro gerações bem definidas:
 - OPC (OLE for Process Control) como padrão de integração.
 - Interfaces gráficas Windows, banco de dados SQL.
 
-\textbf{Geração 4 --- IoT / Cloud SCADA (2010--presente)}
+\textbf{Tendências recentes --- conectividade e serviços distribuídos (desde os anos 2010)}
 - Integração nativa com IIoT, MQTT, OPC UA.
-- SCADA como serviço (SaaS) na nuvem.
-- Acesso via navegador web e aplicativos móveis.
-- Analytics, Machine Learning e IA embarcados.
+- Opções de implantação locais, híbridas ou em nuvem; a nuvem não é adequada a toda função de controle.
+- Acesso por navegador e dispositivos móveis, sujeito a requisitos de disponibilidade, segurança e ergonomia.
+- Análise de dados e modelos de aprendizado de máquina podem complementar a supervisão.
+
+Essa evolução não é universal nem substitui automaticamente gerações anteriores: sistemas de
+diferentes períodos coexistem, e a escolha depende dos requisitos da aplicação.
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap03-sala-convencional.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 3.3  Sala de controle com painel de instrumentos convencionais}]{../figuras/cap03-sala-convencional.png}}
 \caption[Figura 3.3 -- Sala de controle com painel de instrumentos convencionais]{Figura 3.3 -- Sala de controle com painel de instrumentos convencionais. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~15 (fotografia de Solomon, 2005, adaptada pelos autores).}
 \end{figure}
 
@@ -227,11 +220,9 @@ Cada geração resolveu o problema da anterior e criou o seu próprio:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{principais-plataformas-scada}{%
-\section{Principais Plataformas SCADA}\label{principais-plataformas-scada}}
+\section{Principais Plataformas SCADA}\label{principais-plataformas-scada}
 
-\hypertarget{plataformas-comerciais}{%
-\subsection{Plataformas Comerciais}\label{plataformas-comerciais}}
+\subsection{Plataformas Comerciais}\label{plataformas-comerciais}
 
 \textbf{AVEVA System Platform (ex-Wonderware)}
 - Uma das plataformas mais difundidas globalmente.
@@ -240,7 +231,7 @@ Cada geração resolveu o problema da anterior e criou o seu próprio:
 
 \textbf{Ignition (Inductive Automation)}
 - Licenciamento por servidor (não por tag), modelo altamente econômico.
-- Baseado em Java, com designer web --- sem instalação no cliente.
+- Plataforma comercial, com designer web e clientes que reduzem a necessidade de instalação local.
 - Módulos para SCADA, IIoT (MQTT), MES e relatórios.
 - Comunidade open-source ativa.
 
@@ -255,41 +246,39 @@ Cada geração resolveu o problema da anterior e criou o seu próprio:
 \textbf{Honeywell Experion PKS}
 - Plataforma DCS+SCADA integrada para grandes processos contínuos.
 
-\hypertarget{plataformas-open-source-e-gratuitas}{%
-\subsection{Plataformas Open-Source e Gratuitas}\label{plataformas-open-source-e-gratuitas}}
+\subsection{Software livre e ferramentas adjacentes}\label{software-livre-e-ferramentas-adjacentes}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
-Plataforma
+Software
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Características
+Categoria e características
 \end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Ideal para
+Uso típico
 \end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\textbf{ScadaBR} & Brasileira, baseada em Java, suporte a Modbus/DNP3/SNMP & Projetos educacionais e PMEs \\
-\textbf{OpenSCADA} & Linux-first, modular, suporte a SNMP e Modbus & Ambientes Linux industriais \\
-\textbf{Node-RED} & Programação visual (flow-based), extensível, leve & IIoT, prototipagem, supervisão simples \\
-\textbf{Grafana + InfluxDB} & Dashboard + banco de dados de série temporal & Visualização e analytics de dados históricos \\
+\textbf{ScadaBR} & SCADA de código aberto, baseado em Java & Ensino e aplicações cuja validação atenda aos requisitos do projeto \\
+\textbf{OpenSCADA} & Plataforma modular de código aberto & Integração e supervisão em ambientes compatíveis \\
+\textbf{Node-RED} & Ferramenta de integração e programação visual de código aberto & IIoT, prototipagem e fluxos auxiliares \\
+\textbf{Grafana + InfluxDB} & Visualização e armazenamento de séries temporais & Tendências históricas e análise; não substituem por si só um SCADA de operação \\
 \end{longtable}
 
 \begin{caixanota}
 
-\textbf{Nota:} O \textbf{ScadaBR} é especialmente relevante no contexto educacional brasileiro por ser open-source, em português e já ter sido utilizado em projetos de pesquisa em diversas universidades brasileiras. O Node-RED é detalhado no Capítulo 7.
+\textbf{Nota:} ferramentas de código aberto podem compor uma arquitetura supervisória, mas licenciamento aberto não comprova adequação para operação crítica. Avalie suporte, redundância, controle de acesso, auditoria, recuperação e validação operacional. O Node-RED é detalhado no Capítulo 7 e não é, sozinho, equivalente a um SCADA industrial.
 
 \end{caixanota}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{requisitos-para-implantauxe7uxe3o-de-um-scada}{%
-\section{Requisitos para Implantação de um SCADA}\label{requisitos-para-implantauxe7uxe3o-de-um-scada}}
+\section{Requisitos para Implantação de um SCADA}\label{requisitos-para-implantauxe7uxe3o-de-um-scada}
 
 Ao especificar e implantar um sistema SCADA, os seguintes aspectos devem ser considerados:
 
@@ -316,8 +305,7 @@ Aspecto & Questões a Responder \\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estudo-de-caso-migrauxe7uxe3o-de-um-scada-de-gerauxe7uxe3o-3-para-gerauxe7uxe3o-4}{%
-\section{\texorpdfstring{Estudo de Caso --- Migração de um SCADA de geração 3 para geração 4}{Estudo de Caso  Migração de um SCADA de geração 3 para geração 4}}\label{estudo-de-caso-migrauxe7uxe3o-de-um-scada-de-gerauxe7uxe3o-3-para-gerauxe7uxe3o-4}}
+\section{\texorpdfstring{Estudo de Caso --- Migração de um SCADA de geração 3 para geração 4}{Estudo de Caso  Migração de um SCADA de geração 3 para geração 4}}\label{estudo-de-caso-migrauxe7uxe3o-de-um-scada-de-gerauxe7uxe3o-3-para-gerauxe7uxe3o-4}
 
 \textbf{Cenário.} Distribuidora de água com 42 estações de bombeamento, elevatórias e reservatórios
 distribuídos em quatro municípios. O SCADA atual é de geração 3: rodou sobre Windows Server
@@ -343,9 +331,9 @@ problema é que ninguém consegue mantê-lo.
 \textbf{Estratégia adotada --- em camadas, não em big bang.}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Etapa
@@ -376,8 +364,7 @@ numeração de tags e de \emph{timestamps} entre os dois ambientes.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{resumo}{%
-\section{Resumo}\label{resumo}}
+\section{Resumo}\label{resumo}
 
 \begin{itemize}
 \tightlist
@@ -393,8 +380,7 @@ numeração de tags e de \emph{timestamps} entre os dois ambientes.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{questuxf5es-de-revisuxe3o}{%
-\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}
 
 \textbf{Conceituais:}
 
@@ -433,8 +419,7 @@ numeração de tags e de \emph{timestamps} entre os dois ambientes.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{referuxeancias}{%
-\section{Referências}\label{referuxeancias}}
+\section{Referências}\label{referuxeancias}
 
 \begin{itemize}
 \tightlist

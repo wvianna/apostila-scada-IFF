@@ -93,8 +93,8 @@ Forma de empacotar uma aplicação com suas dependências em uma imagem versiona
 **Dashboard**  
 Painel que reúne indicadores, tendências, estados e alarmes para apoiar decisão. Sem contexto (faixa normal, limite e período) o valor exibido não informa.
 
-**DCS** (*Distributed Control System* — Sistema de Controle Distribuído*)  
-Sistema de controle para processos contínuos de grande escala, com controle distribuído em múltiplos controladores de campo e banco de dados centralizado.
+**DCS** (*Distributed Control System* — Sistema de Controle Distribuído*)
+Sistema integrado de controle distribuído, comum em processos contínuos. Funções de controle, operação e engenharia são organizadas em controladores e estações; topologia, redundância e armazenamento dependem do projeto e do produto.
 
 **Deadband (faixa morta)**  
 Diferença necessária entre o valor de disparo e o de limpeza de um alarme, evitando que ele oscile em torno do limite.
@@ -102,8 +102,8 @@ Diferença necessária entre o valor de disparo e o de limpeza de um alarme, evi
 **Deriva (drift)**  
 Perda de validade de um modelo ou de um baseline em produção, causada por mudança do processo, do sensor ou da relação entre as variáveis. Silenciosa: o sistema continua respondendo, com confiança, errado.
 
-**Digital Twin (Gêmeo Digital)**  
-Representação virtual dinâmica de um ativo físico, processo ou sistema que sincroniza em tempo real com seu equivalente real, permitindo simulação e otimização.
+**Digital Twin (Gêmeo Digital)**
+Representação digital de um ativo, processo ou sistema, vinculada a dados e modelos do domínio físico. Atualização, sincronização e capacidade de simulação variam conforme o caso; nem todo gêmeo digital opera em tempo real.
 
 **DMZ Industrial**  
 *Demilitarized Zone* — zona de rede intermediária entre a rede corporativa (TI) e a rede industrial (OT), contendo sistemas que precisam trocar dados com ambos os lados (ex.: historiador, servidor web).
@@ -191,7 +191,7 @@ Organização das telas de um supervisório do geral para o particular, com barr
 Protocolo que superpõe comunicação digital (FSK — Frequency Shift Keying) sobre o sinal analógico 4-20 mA, permitindo configuração e diagnóstico remoto de instrumentos.
 
 **Historiador (historian)**  
-Sistema que armazena séries temporais de processo, com compressão por exceção e consulta por intervalo. Distingue-se do histórico de eventos, que registra ocorrências com estado, prioridade e reconhecimento.
+Sistema para armazenar e consultar séries temporais de processo. Pode oferecer compressão por exceção e outras técnicas de redução; distingue-se do histórico de eventos, que registra ocorrências com estado, prioridade e reconhecimento.
 
 **HMI** (*Human-Machine Interface* — Interface Homem-Máquina*)  
 Dispositivo ou software que apresenta o estado do processo ao operador e permite intervenções. Pode ser local (painel touchscreen) ou centralizado (estação SCADA).
@@ -204,13 +204,13 @@ Arquitetura de sistema projetada para minimizar o tempo de inatividade, tipicame
 ## I
 
 **IEC 61131-3**  
-Norma internacional que define cinco linguagens de programação para CLPs: Ladder (LD), Blocos de Função (FBD), Texto Estruturado (ST), Lista de Instruções (IL) e Diagrama de Função Sequencial (SFC).
+Norma internacional que especifica linguagens de programação para controladores programáveis. A 4ª edição (2025) mantém LD, FBD, ST e SFC e remove a antiga Instruction List (IL); código legado ainda pode utilizá-la.
 
 **IEC 62443**  
-Família de normas internacionais para cibersegurança em sistemas de automação e controle industrial (IACS).
+Família de normas para cibersegurança em sistemas de automação e controle industrial (IACS), com requisitos para organizações, sistemas e componentes. Zonas e conduítes apoiam a segmentação; os níveis de segurança-alvo dependem de análise de risco e requisitos do sistema.
 
 **IEC 62682**  
-Norma internacional de gerenciamento de alarmes para indústrias de processo, alinhada à ISA-18.2; edição vigente de 2022, que substitui a de 2014.
+Norma internacional de gerenciamento de alarmes para indústrias de processo, alinhada à ISA-18.2. A 2ª edição foi publicada em 2022; confirme o status e a edição aplicável no catálogo IEC antes de citá-la como vigente.
 
 **IHM de alta performance** (*High Performance HMI*)  
 Estilo de projeto de IHM difundido pela ISA-101: fundo neutro, cor reservada a alarme e anomalia, hierarquia de telas navegável, mínimo de elementos decorativos e foco em consciência situacional e tempo de resposta.
@@ -222,16 +222,16 @@ Aplicação do paradigma IoT ao ambiente industrial, com requisitos rigorosos de
 Banco de dados de séries temporais muito usado com o Grafana. O dado medido entra como *field* e o ativo como *tag* — inverter isso destrói o desempenho.
 
 **ISA-18.2**  
-Norma ISA para gerenciamento de sistemas de alarmes em indústrias de processo; edição vigente de 2016 (a primeira é de 2009).
+Norma ISA para gerenciamento de sistemas de alarmes em indústrias de processo. A edição citada nesta apostila é a de 2016; confirme no catálogo ISA se há revisão ou reafirmação posterior antes de uso contratual.
 
 **ISA-88**  
 Norma ISA para controle de processos em batelada (*batch control*): define modelos de receita, equipamentos e fases de processo.
 
 **ISA-95**  
-Norma ISA para integração entre sistemas de controle industrial e sistemas corporativos (MES e ERP).
+Norma ISA para integração entre sistemas de controle industrial e sistemas corporativos. O modelo de níveis 0 a 4 distingue processo físico, detecção/atuação, controle/monitoramento, operações de manufatura e planejamento/logística do negócio.
 
 **ISA-101**  
-Norma ISA de projeto de interfaces homem-máquina (IHM) para sistemas de automação de processo — principal referência global de **IHM/SCADA de alta performance**: foco cognitivo, uso estratégico de cores, hierarquia da informação e decisão rápida. **Não é um software SCADA**, e sim um conjunto de diretrizes de engenharia para telas eficientes.
+Norma ISA de projeto de interfaces homem-máquina para sistemas de automação de processo. Orienta aspectos como hierarquia de telas, apresentação e interação; não é um software SCADA nem, isoladamente, garante uma IHM de alta performance.
 
 ---
 
@@ -259,9 +259,6 @@ Modelo que descreve os estados possíveis de um equipamento ou de um procediment
 **Mapa de memória (tabela de alocação)**  
 Documento que relaciona cada tagname do supervisório ao endereço real do hardware de aquisição/controle e ao driver de comunicação responsável pela leitura.
 
-**Mapa de memória (tabela de alocação)**  
-Documento que relaciona cada tagname do supervisório ao endereço real do hardware de aquisição/controle e ao driver de comunicação responsável pela leitura.
-
 **Manutenção preditiva**  
 Nível de manutenção em que a intervenção é programada a partir da projeção de falha em janela útil. Exige histórico longo com eventos rotulados; a baseada em condição registra o desvio e o limite que o caracteriza.
 
@@ -275,7 +272,7 @@ Sistema que conecta o chão de fábrica ao ERP: rastreabilidade de lotes, qualid
 Autenticação multifator — exige dois ou mais fatores de verificação (senha + token + biometria) para acesso a sistemas críticos.
 
 **Modbus**  
-Protocolo de comunicação serial criado pela Modicon em 1979. Disponível nas variantes RTU (serial), ASCII e TCP/IP (Ethernet). O mais difundido na indústria.
+Protocolo de aplicação industrial, criado pela Modicon em 1979. Modbus RTU e ASCII são variantes seriais; Modbus TCP transporta mensagens Modbus sobre TCP/IP e não encapsula simplesmente o quadro RTU. O alcance depende da rede.
 
 **MPC** (*Model Predictive Control*)  
 Estratégia de controle avançado que utiliza um modelo matemático do processo para prever comportamento futuro e calcular a ação de controle ótima considerando restrições.
@@ -313,7 +310,7 @@ Despesas operacionais recorrentes — energia, manutenção, assinaturas de soft
 Padrão de interoperabilidade entre softwares SCADA e CLPs no ambiente Windows, baseado em COM/DCOM. Predecessor do OPC UA.
 
 **OPC UA** (*OPC Unified Architecture*)  
-Versão moderna e plataforma-independente do OPC: segurança nativa (TLS), modelo de informação orientado a objetos, suporte a Linux e embarcados. Porta padrão: 4840.
+Arquitetura de interoperabilidade independente de plataforma, com serviços e modelos de informação. Pode usar certificados X.509 e modos de assinatura e criptografia; os recursos dependem da política e da configuração. A porta 4840 é convencional para `opc.tcp`.
 
 **OT** (*Operational Technology*)  
 Hardware e software que detecta ou causa mudanças por meio do monitoramento e/ou controle direto de equipamentos físicos, processos e eventos industriais. Contrasta com TI (*Information Technology*).
@@ -338,7 +335,7 @@ Urgência da resposta do operador, derivada da consequência e do tempo disponí
 Protocolo Ethernet industrial da Siemens/PI (PROFIBUS & PROFINET International), sucessor do Profibus. Suporta RT (Real-Time) e IRT (Isochronous Real-Time) para motion control.
 
 **Profibus**  
-Protocolo de fieldbus serial criado na Alemanha em 1987. Variantes: DP (automação discreta, até 12 Mbps) e PA (instrumentação de processo em zonas de risco).
+PROFIBUS é uma família de fieldbus serial; DP é usado em automação e PA em instrumentação de processo. Velocidade, topologia e uso em área classificada dependem da variante e do projeto do barramento.
 
 **Provisionamento (as code)**  
 Configuração de dashboards, fontes de dados e alertas por arquivo versionado, em vez de ajustes manuais pela interface — o que dá auditabilidade e repetibilidade.
@@ -350,7 +347,7 @@ Protocolo de sincronização com precisão de sub-microssegundo em rede local, u
 Código associado a cada valor lido que informa se a leitura é válida (`Good`), incerta (`Uncertain`) ou inválida (`Bad`). Deve ser exibido na tela em vez de substituído por zero.
 
 **QoS** (*Quality of Service*)  
-Nível de garantia de entrega no MQTT: 0 (at-most-once), 1 (at-least-once), 2 (exactly-once).
+Nível de entrega de mensagens no MQTT: 0 (no máximo uma vez), 1 (pelo menos uma vez) e 2 (intercâmbio QoS 2). QoS 2 não garante execução exatamente uma vez de um efeito externo da aplicação.
 
 ---
 
@@ -364,9 +361,6 @@ Lógica no controlador que grava o código do primeiro sensor a atuar em um ende
 
 **Resolução de entrada analógica**  
 Menor degrau que o conversor A/D consegue representar, dado pelo número de bits da faixa. Não deve ser confundida com exatidão nem com ruído.
-
-**Retenção (política de)**  
-Conjunto de regras que define por quanto tempo cada classe de dado é mantida e com que resolução, prevendo agregação, cópia de segurança e descarte planejado.
 
 **Retenção (política de)**  
 Conjunto de regras que define por quanto tempo cada classe de dado é mantida e com que resolução, prevendo agregação, cópia de segurança e descarte planejado.

@@ -28,12 +28,13 @@ O nome descreve bem suas funções essenciais:
 
 > **Fonte:** *Livro SCADA — versão para análise*, p. 51 (Machado, Pontes e Vianna, reproduzida com crédito).
 
-A tela acima reúne os elementos que a ISA-101 — principal referência global para o projeto de **IHM/SCADA de alta performance** (Seção 10.6.1) — trata como camada de operação: o sinótico do
-processo à esquerda, a **barra de navegação** à direita (acesso a processo, tendência, alarmes e
-visão geral), a data e a hora de referência no canto inferior e a indicação de estado de cada
 equipamento sobre o próprio desenho. Repare que a quantidade de informação é deliberadamente
-pequena: o detalhamento pertence aos níveis de tela seguintes, não à visão de área — princípio
 desenvolvido no Capítulo 11.
+A tela permite identificar elementos comuns de uma aplicação supervisória: sinótico, barra de
+navegação, indicação de estados e referência de data e hora. É uma captura de software de geração
+anterior e serve para reconhecer esses componentes, não como modelo de conformidade com a ISA-101
+nem como recomendação visual atual. Os critérios de projeto de alta performance são discutidos nos
+Capítulos 10 e 11.
 
 ---
 
@@ -110,16 +111,16 @@ Uma dúvida comum entre estudantes e profissionais é a diferença entre SCADA, 
 
 | Critério | HMI Local | SCADA | DCS |
 |---|---|---|---|
-| **Escopo** | Um equipamento ou célula | Planta inteira ou múltiplos sites | Processo contínuo integrado |
-| **Localização** | Junto ao equipamento | Sala de controle centralizada | Sala de controle + campo |
-| **Controle** | Visualização + comandos locais | Supervisório (via CLP/RTU) | Controle distribuído nativo |
-| **Conectividade** | Serial, Ethernet | WAN, rádio, fibra, 4G | Rede proprietária de campo |
-| **Histórico** | Limitado ou nenhum | Banco de dados de processo | Banco de dados integrado |
-| **Redundância** | Geralmente sem | Servidores redundantes | Redundância total nativa |
+| **Escopo típico** | Máquina ou célula | Planta, infraestrutura ou múltiplos sites | Processo integrado, frequentemente contínuo |
+| **Distribuição** | Painel próximo ao equipamento | Controle local com supervisão central ou distribuída | Controladores e estações integrados em uma arquitetura de controle |
+| **Controle** | Comandos e, conforme a aplicação, funções locais | Supervisão e comandos; malhas críticas ficam em controladores locais | Controle distribuído integrado; funções locais continuam essenciais |
+| **Conectividade** | Rede local | LAN, WAN, rádio, fibra ou redes celulares | Redes de controle e integração; não necessariamente proprietárias |
+| **Histórico** | Ausente ou de escopo limitado | Pode integrar historizador dedicado | Pode integrar historização, conforme arquitetura |
+| **Redundância** | Depende do equipamento | Opção de projeto conforme disponibilidade requerida | Opção frequente em sistemas críticos, não garantia inerente |
 | **Aplicação típica** | Máquina CNC, bomba, compressor | Oleoduto, ETAP, subestação | Refinaria, petroquímica, papel e celulose |
 | **Custo relativo** | Baixo | Médio | Alto |
 
-> 💡 **Dica:** Na prática moderna, as fronteiras entre SCADA e DCS estão se apagando. Sistemas como AVEVA System Platform e Honeywell Experion são, simultaneamente, SCADA e DCS — com controle nativo distribuído e supervisão centralizada na mesma plataforma.
+> 💡 **Dica:** As funções podem se sobrepor e produtos podem reunir recursos de supervisão e controle. A classificação como SCADA ou DCS depende da arquitetura implantada e de onde residem as funções de controle, não apenas do nome comercial da plataforma.
 
 ---
 
@@ -142,11 +143,14 @@ A evolução do SCADA ocorreu em quatro gerações bem definidas:
 - OPC (OLE for Process Control) como padrão de integração.
 - Interfaces gráficas Windows, banco de dados SQL.
 
-**Geração 4 — IoT / Cloud SCADA (2010–presente)**
+**Tendências recentes — conectividade e serviços distribuídos (desde os anos 2010)**
 - Integração nativa com IIoT, MQTT, OPC UA.
-- SCADA como serviço (SaaS) na nuvem.
-- Acesso via navegador web e aplicativos móveis.
-- Analytics, Machine Learning e IA embarcados.
+- Opções de implantação locais, híbridas ou em nuvem; a nuvem não é adequada a toda função de controle.
+- Acesso por navegador e dispositivos móveis, sujeito a requisitos de disponibilidade, segurança e ergonomia.
+- Análise de dados e modelos de aprendizado de máquina podem complementar a supervisão.
+
+Essa evolução não é universal nem substitui automaticamente gerações anteriores: sistemas de
+diferentes períodos coexistem, e a escolha depende dos requisitos da aplicação.
 
 ![Figura 3.3 – Sala de controle com painel de instrumentos convencionais](../figuras/cap03-sala-convencional.png)
 
@@ -179,7 +183,7 @@ flowchart TB
 
 **Ignition (Inductive Automation)**
 - Licenciamento por servidor (não por tag), modelo altamente econômico.
-- Baseado em Java, com designer web — sem instalação no cliente.
+- Plataforma comercial, com designer web e clientes que reduzem a necessidade de instalação local.
 - Módulos para SCADA, IIoT (MQTT), MES e relatórios.
 - Comunidade open-source ativa.
 
@@ -194,16 +198,16 @@ flowchart TB
 **Honeywell Experion PKS**
 - Plataforma DCS+SCADA integrada para grandes processos contínuos.
 
-### Plataformas Open-Source e Gratuitas
+### Software livre e ferramentas adjacentes
 
-| Plataforma | Características | Ideal para |
+| Software | Categoria e características | Uso típico |
 |---|---|---|
-| **ScadaBR** | Brasileira, baseada em Java, suporte a Modbus/DNP3/SNMP | Projetos educacionais e PMEs |
-| **OpenSCADA** | Linux-first, modular, suporte a SNMP e Modbus | Ambientes Linux industriais |
-| **Node-RED** | Programação visual (flow-based), extensível, leve | IIoT, prototipagem, supervisão simples |
-| **Grafana + InfluxDB** | Dashboard + banco de dados de série temporal | Visualização e analytics de dados históricos |
+| **ScadaBR** | SCADA de código aberto, baseado em Java | Ensino e aplicações cuja validação atenda aos requisitos do projeto |
+| **OpenSCADA** | Plataforma modular de código aberto | Integração e supervisão em ambientes compatíveis |
+| **Node-RED** | Ferramenta de integração e programação visual de código aberto | IIoT, prototipagem e fluxos auxiliares |
+| **Grafana + InfluxDB** | Visualização e armazenamento de séries temporais | Tendências históricas e análise; não substituem por si só um SCADA de operação |
 
-> 📌 **Nota:** O **ScadaBR** é especialmente relevante no contexto educacional brasileiro por ser open-source, em português e já ter sido utilizado em projetos de pesquisa em diversas universidades brasileiras. O Node-RED é detalhado no Capítulo 7.
+> 📌 **Nota:** ferramentas de código aberto podem compor uma arquitetura supervisória, mas licenciamento aberto não comprova adequação para operação crítica. Avalie suporte, redundância, controle de acesso, auditoria, recuperação e validação operacional. O Node-RED é detalhado no Capítulo 7 e não é, sozinho, equivalente a um SCADA industrial.
 
 ---
 

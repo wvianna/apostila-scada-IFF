@@ -1,5 +1,4 @@
-\hypertarget{tags-variuxe1veis-estados-e-eventos}{%
-\chapter{Tags, Variáveis, Estados e Eventos}\label{tags-variuxe1veis-estados-e-eventos}}
+\chapter{Tags, Variáveis, Estados e Eventos}\label{tags-variuxe1veis-estados-e-eventos}
 
 \section*{Objetivos de Aprendizagem}
 
@@ -21,8 +20,7 @@ Ao final deste capítulo, o leitor será capaz de:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{o-tag-uxe9-o-contrato-entre-o-campo-e-a-tela}{%
-\section{O tag é o contrato entre o campo e a tela}\label{o-tag-uxe9-o-contrato-entre-o-campo-e-a-tela}}
+\section{O tag é o contrato entre o campo e a tela}\label{o-tag-uxe9-o-contrato-entre-o-campo-e-a-tela}
 
 Um sistema supervisório não ``lê instrumentos'': ele lê \textbf{tags}. Entre o transmissor de nível instalado no tanque e o número que aparece na tela do operador existem vários elos, e cada um deles guarda uma representação diferente do mesmo dado.
 
@@ -39,10 +37,10 @@ Quanto à \textbf{origem da atualização}, o tag se classifica em duas classes:
 \textbf{Tabela 14.1 -- Tag interno e tag de I/O}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Classe
@@ -71,17 +69,16 @@ O conjunto dos cadastros forma o \textbf{banco de dados de tagnames}, que é a e
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{anatomia-de-um-cadastro-de-tag}{%
-\section{Anatomia de um cadastro de tag}\label{anatomia-de-um-cadastro-de-tag}}
+\section{Anatomia de um cadastro de tag}\label{anatomia-de-um-cadastro-de-tag}
 
 O cadastro é curto, mas cada campo tem consequência prática na operação. Os campos essenciais são:
 
 \textbf{Tabela 14.2 -- Campos de um cadastro de tag}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Campo
@@ -103,7 +100,7 @@ Exemplo
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap14-dicionario-tagnames.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 14.1  Dicionário de tagnames: cadastro com tipo, contexto, modo de leitura e ponto inicial}]{../figuras/cap14-dicionario-tagnames.png}}
 \caption[Figura 14.1 -- Dicionário de tagnames: cadastro com tipo, contexto, modo de leitura e ponto inicial]{Figura 14.1 -- Dicionário de tagnames: cadastro com tipo, contexto, modo de leitura e ponto inicial. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~99 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
@@ -120,12 +117,12 @@ comunicação.
 \textbf{Tabela 14.3 -- Exemplo de mapa de memória}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 TAG
@@ -163,8 +160,7 @@ parada.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{tipos-resoluuxe7uxe3o-e-escalonamento}{%
-\section{Tipos, resolução e escalonamento}\label{tipos-resoluuxe7uxe3o-e-escalonamento}}
+\section{Tipos, resolução e escalonamento}\label{tipos-resoluuxe7uxe3o-e-escalonamento}
 
 Os tags primitivos fundamentais são três: \textbf{discreto} (\emph{bit}, \emph{bool}, \emph{discrete}), \textbf{numérico}
 (inteiro ou real) e \textbf{caracter} (mensagem ou texto). Os compostos são associações de primitivos ---
@@ -176,8 +172,7 @@ as variantes sem sinal. O supervisório não precisa suportar todos eles: ele pr
 informação} na conversão. Um contador de 32 bits lido como inteiro de 16 bits estoura em 32.768 e
 volta a zero --- e o histórico passa a mostrar um consumo que ``reinicia'' sozinho.
 
-\hypertarget{da-faixa-bruta-uxe0-unidade-de-engenharia}{%
-\subsection{Da faixa bruta à unidade de engenharia}\label{da-faixa-bruta-uxe0-unidade-de-engenharia}}
+\subsection{Da faixa bruta à unidade de engenharia}\label{da-faixa-bruta-uxe0-unidade-de-engenharia}
 
 A entrada analógica de um CLP não entrega graus Celsius nem litros por segundo: entrega um número
 inteiro proporcional ao sinal elétrico. Com resolução de 15 bits, o conversor A/D divide a faixa de
@@ -199,10 +194,10 @@ Exemplo: LT100, entrada 4 a 20 mA em 12 bits (0 a 4095)
 \textbf{Tabela 14.4 -- Faixas brutas usuais e a resolução correspondente}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Resolução
@@ -238,8 +233,7 @@ cheio, \emph{setpoint} de teste) e confira os dois extremos.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{o-tag-na-tela-representauxe7uxe3o-de-discretos-e-analuxf3gicos}{%
-\section{O tag na tela: representação de discretos e analógicos}\label{o-tag-na-tela-representauxe7uxe3o-de-discretos-e-analuxf3gicos}}
+\section{O tag na tela: representação de discretos e analógicos}\label{o-tag-na-tela-representauxe7uxe3o-de-discretos-e-analuxf3gicos}
 
 A variável discreta corresponde a 1 bit e assume apenas dois estados. Ela é apresentada por três
 formas básicas:
@@ -258,7 +252,7 @@ formas básicas:
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap14-variavel-discreta.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 14.2  Representação de uma variável discreta: a mesma bomba ligada e desligada}]{../figuras/cap14-variavel-discreta.png}}
 \caption[Figura 14.2 -- Representação de uma variável discreta: a mesma bomba ligada e desligada]{Figura 14.2 -- Representação de uma variável discreta: a mesma bomba ligada e desligada. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~55 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
@@ -268,10 +262,10 @@ A escolha do objeto é uma decisão de ergonomia, não de estética.
 \textbf{Tabela 14.5 -- Formas de apresentação instantânea da variável analógica}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Objeto dinâmico
@@ -299,8 +293,7 @@ tela em que quase tudo é colorido não informa nada.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{amostragem-varredura-e-qualidade-do-dado}{%
-\section{Amostragem, varredura e qualidade do dado}\label{amostragem-varredura-e-qualidade-do-dado}}
+\section{Amostragem, varredura e qualidade do dado}\label{amostragem-varredura-e-qualidade-do-dado}
 
 Todo valor que chega ao supervisório é uma \textbf{amostra}, não um contínuo. Quem define a frequência
 dessa amostragem é a taxa de varredura do protocolo (o \emph{polling}), no caso de leitura periódica, ou
@@ -314,7 +307,7 @@ janela, ou se aumenta a taxa.
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap14-taxa-amostragem.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 14.3  Taxa de amostragem inadequada: a curva plotada difere da variação real}]{../figuras/cap14-taxa-amostragem.png}}
 \caption[Figura 14.3 -- Taxa de amostragem inadequada: a curva plotada difere da variação real]{Figura 14.3 -- Taxa de amostragem inadequada: a curva plotada difere da variação real. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~68 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
@@ -324,8 +317,7 @@ curva cheia é o que o operador vê com uma amostra por minuto. A variável osci
 intervalo e o operador enxergou uma oscilação lenta --- informação suficiente para tomar a decisão
 errada. Vazão responde mais rápido que temperatura, e a taxa de amostragem deve refletir isso.
 
-\hypertarget{qualidade-o-valor-sozinho-nuxe3o-basta}{%
-\subsection{Qualidade: o valor sozinho não basta}\label{qualidade-o-valor-sozinho-nuxe3o-basta}}
+\subsection{Qualidade: o valor sozinho não basta}\label{qualidade-o-valor-sozinho-nuxe3o-basta}
 
 Todo valor lido carrega, na arquitetura moderna, um \textbf{código de qualidade} ao lado do número. No
 OPC UA (Capítulo 13), esse campo é o \passthrough{\lstinline!StatusCode!}; em plataformas IIoT, é um atributo de qualidade
@@ -334,9 +326,9 @@ ou um simples indicador de \emph{timestamp} antigo.
 \textbf{Tabela 14.6 -- O que a qualidade indica}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Situação
@@ -379,8 +371,7 @@ substituí-lo por um valor padrão.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estados-quando-o-valor-nuxe3o-conta-a-histuxf3ria}{%
-\section{Estados: quando o valor não conta a história}\label{estados-quando-o-valor-nuxe3o-conta-a-histuxf3ria}}
+\section{Estados: quando o valor não conta a história}\label{estados-quando-o-valor-nuxe3o-conta-a-histuxf3ria}
 
 Saber que a bomba está ligada não diz se ela está funcionando. Esse é o limite do tag discreto: ele
 responde ``ligado'' ou ``desligado'', mas a operação precisa saber se o equipamento está \textbf{partindo},
@@ -432,8 +423,7 @@ exclusivos acabarem ligados ao mesmo tempo.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{eventos-e-alarmes-a-diferenuxe7a-que-evita-a-sobrecarga}{%
-\section{Eventos e alarmes: a diferença que evita a sobrecarga}\label{eventos-e-alarmes-a-diferenuxe7a-que-evita-a-sobrecarga}}
+\section{Eventos e alarmes: a diferença que evita a sobrecarga}\label{eventos-e-alarmes-a-diferenuxe7a-que-evita-a-sobrecarga}
 
 O supervisório precisa distinguir duas coisas que o senso comum trata como uma só:
 
@@ -455,7 +445,7 @@ Os eventos têm três proveniências, e cada uma delas dispara ações diferente
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap14-eventos.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 14.4  Eventos de processo, de operação e de sistema que disparam scripts}]{../figuras/cap14-eventos.png}}
 \caption[Figura 14.4 -- Eventos de processo, de operação e de sistema que disparam scripts]{Figura 14.4 -- Eventos de processo, de operação e de sistema que disparam scripts. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~72 (figura de Seixas, 2002, reproduzida com crédito na obra de Machado, Pontes e Vianna).}
 \end{figure}
 
@@ -471,9 +461,9 @@ sequência de perguntas:
 \textbf{Tabela 14.7 -- Tipos de evento e quando a rotina é executada}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Proveniência
@@ -518,8 +508,7 @@ gerenciamento de alarmes de processo. O detalhamento está no Capítulo 10.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{comparativo-tag-cluxe1ssico-nuxf3-opc-ua-e-muxe9trica-iot}{%
-\section{Comparativo: tag clássico, nó OPC UA e métrica IoT}\label{comparativo-tag-cluxe1ssico-nuxf3-opc-ua-e-muxe9trica-iot}}
+\section{Comparativo: tag clássico, nó OPC UA e métrica IoT}\label{comparativo-tag-cluxe1ssico-nuxf3-opc-ua-e-muxe9trica-iot}
 
 O conceito de tag sobreviveu a três gerações de tecnologia. O que mudou foi onde a informação
 adicional --- tipo, unidade, faixa, qualidade, carimbo de tempo --- é declarada e quem a mantém.
@@ -527,12 +516,12 @@ adicional --- tipo, unidade, faixa, qualidade, carimbo de tempo --- é declarada
 \textbf{Tabela 14.8 -- O mesmo dado em três modelos}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Tecnologia
@@ -567,8 +556,7 @@ MQTT para a nuvem. O que não pode divergir é o \textbf{nome e o significado} d
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estudo-de-caso-mapa-de-tags-de-uma-estauxe7uxe3o-de-bombeamento}{%
-\section{\texorpdfstring{Estudo de Caso --- Mapa de tags de uma estação de bombeamento}{Estudo de Caso  Mapa de tags de uma estação de bombeamento}}\label{estudo-de-caso-mapa-de-tags-de-uma-estauxe7uxe3o-de-bombeamento}}
+\section{\texorpdfstring{Estudo de Caso --- Mapa de tags de uma estação de bombeamento}{Estudo de Caso  Mapa de tags de uma estação de bombeamento}}\label{estudo-de-caso-mapa-de-tags-de-uma-estauxe7uxe3o-de-bombeamento}
 
 \textbf{Cenário.} Uma estação de bombeamento de água opera com três conjuntos motobomba e um painel de
 supervisão local. A equipe herdou um projeto em que a tela do supervisório foi montada por
@@ -596,9 +584,9 @@ em uma folha dentro do painel.
 \textbf{Decisão de engenharia.}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Problema
@@ -626,8 +614,7 @@ foi de diagnóstico e de confiabilidade do dado, não de disponibilidade do sist
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{resumo}{%
-\section{Resumo}\label{resumo}}
+\section{Resumo}\label{resumo}
 
 \begin{itemize}
 \tightlist
@@ -651,8 +638,7 @@ foi de diagnóstico e de confiabilidade do dado, não de disponibilidade do sist
   O conceito de tag sobreviveu ao OPC UA e ao MQTT: o que mudou foi o lugar onde tipo, unidade e qualidade são declarados.
 \end{itemize}
 
-\hypertarget{questuxf5es-de-revisuxe3o}{%
-\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -677,8 +663,7 @@ foi de diagnóstico e de confiabilidade do dado, não de disponibilidade do sist
   Um projeto publica a mesma variável no supervisório, no servidor OPC UA e no broker MQTT com três nomes diferentes. Descreva dois problemas concretos que essa escolha cria e proponha uma correção.
 \end{enumerate}
 
-\hypertarget{referuxeancias}{%
-\section{Referências}\label{referuxeancias}}
+\section{Referências}\label{referuxeancias}
 
 \begin{itemize}
 \tightlist

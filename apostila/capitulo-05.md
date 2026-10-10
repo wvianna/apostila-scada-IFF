@@ -59,9 +59,10 @@ graph TD
 O **Modbus** foi criado pela Modicon em 1979 e é um dos protocolos mais simples e amplamente suportados no mundo. Sua popularidade se deve à especificação aberta, gratuita e fácil de implementar.
 
 **Variantes:**
+
 - **Modbus RTU:** comunicação serial (RS-232 ou RS-485), codificação binária compacta. Máximo de 247 escravos por barramento RS-485.
 - **Modbus ASCII:** comunicação serial, codificação hexadecimal. Raramente usado hoje.
-- **Modbus TCP/IP:** encapsula o Modbus RTU sobre TCP, na porta 502. Permite comunicação via Ethernet com distâncias ilimitadas.
+- **Modbus TCP:** transporta mensagens do protocolo de aplicação Modbus sobre TCP/IP, normalmente na porta 502. Usa o cabeçalho MBAP e não encapsula simplesmente o quadro serial RTU; o alcance depende da infraestrutura de rede entre os nós.
 
 **Modelo de dados Modbus:**
 
@@ -87,12 +88,14 @@ as estações mestre por um quadro especial, o que evita colisão sem precisar d
 O **Profibus** (*Process Field Bus*) foi desenvolvido na Alemanha em 1987 e tornou-se o protocolo de fieldbus mais utilizado na Europa para automação discreta e de processo.
 
 **Variantes:**
-- **Profibus DP** (*Decentralized Peripherals*): otimizado para comunicação rápida com CLPs e módulos de I/O distribuído. Velocidades até 12 Mbps.
-- **Profibus PA** (*Process Automation*): para instrumentação de processo em zonas de risco (alimentação e comunicação pelo mesmo par de fios — barramento intrínseco).
 
-**Limitações:** padrão aberto e publicado (séries IEC 61158/61784), mas com certificação obrigatória
-para conformidade; não trafega nativamente sobre IP — a evolução sobre Ethernet é o **PROFINET**;
-e o diagnóstico é menos imediato que o de uma rede IP.
+- **Profibus DP** (*Decentralized Peripherals*): otimizado para comunicação rápida com CLPs e módulos de I/O distribuído. Velocidades até 12 Mbps.
+- **PROFIBUS PA** (*Process Automation*): para instrumentação de processo; dados e alimentação podem compartilhar o mesmo par. O uso em área classificada e a segurança intrínseca dependem do projeto do segmento, das barreiras/acopladores e dos parâmetros dos dispositivos.
+
+**Limitações:** padrão aberto e publicado (séries IEC 61158/61784), com requisitos de conformidade
+e certificação definidos pelo ecossistema PROFIBUS; não trafega nativamente sobre IP — uma opção
+Ethernet industrial é o **PROFINET**. O diagnóstico depende das ferramentas e da integração
+disponíveis, não apenas de o protocolo usar ou não IP.
 
 ### 5.3.3 DNP3
 
@@ -132,7 +135,9 @@ O **OPC UA** (*Unified Architecture*), lançado em 2008 pela OPC Foundation, res
 
 - **Plataforma-independente:** funciona em Linux, embarcados, CLPs modernos — não mais dependente de Windows.
 - **Modelo de informação orientado a objetos:** dados são expostos como objetos com tipos, métodos e eventos — muito mais rico que endereços de registradores.
-- **Segurança nativa:** TLS/SSL e assinatura de certificados embutidos no protocolo.
+- **Segurança:** mecanismos definidos pelo OPC UA incluem certificados X.509, autenticação de
+    aplicações e modos de segurança para assinatura e criptografia de mensagens. O perfil efetivo
+    depende da política de segurança, do transporte e da configuração de cliente e servidor.
 - **Transporte flexível:** TCP binário (eficiente) ou HTTPS/WebSocket (firewall-friendly).
 - **Publisher-Subscriber:** adicionado no OPC UA Pub/Sub, permitindo comunicação via MQTT ou UDP multicast — integração nativa com IIoT.
 
@@ -145,7 +150,7 @@ flowchart TB
 > 🖼️ **[Figura 5.4 – Arquitetura OPC UA: servidor no CLP, cliente no SCADA]**
 > *Diagrama mostrando CLP com OPC UA Server integrado, conectado via rede Ethernet ao servidor SCADA (OPC UA Client). Indicar as operações: Read, Write, Subscribe, Browse. Destacar o certificado de segurança na conexão.*
 
-> 📌 **Nota:** O OPC UA é hoje o protocolo preferido para integração SCADA-CLP em novos projetos. Todos os grandes fabricantes de CLP (Siemens, Rockwell, Beckhoff, Schneider) oferecem servidores OPC UA nativos em seus equipamentos.
+> 📌 **Nota:** OPC UA é uma opção adequada quando a integração SCADA–CLP requer modelo de informação, descoberta e serviços padronizados. A compatibilidade deve ser confirmada por modelo, firmware, licenciamento e perfil suportado; não presuma que todo CLP de qualquer linha tenha servidor OPC UA habilitado.
 
 ### 5.4.2 MQTT
 
@@ -166,14 +171,16 @@ graph TD
 > *Diagrama colorido mostrando múltiplos publishers (CLPs, sensores IIoT, edge gateways) publicando em um broker central (mosquitto). Múltiplos subscribers (SCADA, banco de dados, dashboards, mobile app) recebendo dados por tópicos. Destacar a escalabilidade horizontal.*
 
 **Características técnicas:**
+
 - Leve: overhead mínimo (cabeçalho de 2 bytes) — ideal para dispositivos com memória e banda limitadas.
-- **QoS** (*Quality of Service*): 3 níveis: 0 (at-most-once), 1 (at-least-once), 2 (exactly-once).
+- **QoS** (*Quality of Service*): três níveis de entrega de mensagens: 0 (no máximo uma vez), 1 (pelo menos uma vez) e 2 (uma vez no intercâmbio MQTT). QoS 2 não garante que a aplicação execute um efeito de negócio exatamente uma vez após reconexões ou reprocessamento.
 - **Retained messages:** o broker armazena o último valor de cada tópico; novos subscribers recebem imediatamente.
 - **Last Will and Testament (LWT):** mensagem publicada automaticamente se o cliente desconectar inesperadamente — mecanismo de detecção de falha.
-- Porta padrão: 1883 (TCP) ou 8883 (TLS).
+- Portas convencionais: 1883 para MQTT sobre TCP sem TLS e 8883 para MQTT sobre TLS. A segurança depende da configuração de TLS, autenticação e autorização no broker e nos clientes.
 - **Sparkplug B:** especificação sobre MQTT com esquema de dados padronizado para IIoT industrial — define payloads, timestamps e gerenciamento de sessão.
 
 **Brokers MQTT populares:**
+
 - **Mosquitto** (Eclipse Foundation) — open-source, leve, amplamente usado.
 - **HiveMQ** — enterprise, alta escalabilidade, clustering.
 - **EMQX** — alta performance, suporte a MQTT 5.0.
@@ -181,7 +188,7 @@ graph TD
 
 ### 5.4.3 PROFINET
 
-O **PROFINET** é o sucessor do Profibus para redes Ethernet industrial, desenvolvido pela Siemens e padronizado pela PI (PROFIBUS & PROFINET International).
+O **PROFINET** é um padrão de comunicação para Ethernet industrial desenvolvido pela PI (PROFIBUS & PROFINET International). É uma opção para aplicações que usam PROFIBUS ou outras redes de campo, mas não é uma substituição direta em todos os projetos.
 
 - **PROFINET RT** (*Real-Time*): para I/O distribuído — ciclos de 1–4 ms.
 - **PROFINET IRT** (*Isochronous Real-Time*): para motion control — ciclos de 250 µs com sincronismo de relógio.
@@ -190,6 +197,14 @@ O **PROFINET** é o sucessor do Profibus para redes Ethernet industrial, desenvo
 ### 5.4.4 EtherNet/IP
 
 O **EtherNet/IP** (*Ethernet Industrial Protocol*) é o protocolo da Rockwell Automation e ODVA para automação discreta. Usa o protocolo CIP (*Common Industrial Protocol*) encapsulado em TCP/UDP/IP. Muito utilizado no ecossistema Allen-Bradley.
+
+Esses protocolos atendem a funções diferentes e podem coexistir na mesma arquitetura. A seleção
+deve considerar aplicação, desempenho, interoperabilidade, segurança, ciclo de vida e capacidade
+de manutenção, não apenas se o protocolo é descrito como clássico ou moderno.
+
+Uma mesma planta pode combinar protocolos de campo e de integração, usando gateways quando as
+interfaces não forem compatíveis. A tabela resume características típicas; a seleção final exige
+verificar versão, perfil, limites, diagnóstico e suporte no equipamento escolhido.
 
 ---
 
@@ -200,12 +215,12 @@ O **EtherNet/IP** (*Ethernet Industrial Protocol*) é o protocolo da Rockwell Au
 | Protocolo | Camada Física | Topologia | Velocidade | Segurança | Aplicação Principal |
 |---|---|---|---|---|---|
 | Modbus RTU | RS-485 | Barramento | 9,6k–115,2 kbps | Nenhuma nativa | CLP ↔ instrumento |
-| Modbus TCP | Ethernet | Estrela/Anel | 10/100 Mbps | Opcional (TLS) | CLP ↔ SCADA |
-| Profibus DP | RS-485 | Barramento | até 12 Mbps | Nenhuma | Automação discreta EU |
+| Modbus TCP | Ethernet / TCP/IP | Conforme a rede IP | Limitada pela rede | Modbus Security: TLS | CLP–SCADA |
+| PROFIBUS DP | RS-485 | Barramento | até 12 Mbps | Nenhuma nativa | Automação discreta |
 | DNP3 | Serial / TCP | Barramento / Estrela | variável | SAv5 opcional | SCADA energia/água |
 | OPC DA | Ethernet (DCOM) | Estrela | variável | Windows DCOM | SCADA legado Windows |
-| **OPC UA** | Ethernet / qualquer | Qualquer | variável | TLS + certificado | SCADA moderno, IIoT |
-| **MQTT** | Ethernet / 4G / Wi-Fi | Pub/Sub (broker) | variável | TLS opcional | IIoT, telemetria, cloud |
+| **OPC UA** | Ethernet / IP | Cliente-servidor ou Pub/Sub | variável | X.509; segurança conforme perfil | Integração semântica e troca de dados |
+| **MQTT** | Ethernet / redes IP | Pub/Sub (broker) | variável | TLS e autorização no broker | IIoT, telemetria, nuvem |
 | PROFINET | Ethernet | Estrela/Anel | 100 Mbps | Opcional | I/O distribuído Siemens |
 | EtherNet/IP | Ethernet | Estrela | 100 Mbps / 1 Gbps | CIPsecurity | I/O Rockwell/AB |
 
@@ -214,8 +229,6 @@ O **EtherNet/IP** (*Ethernet Industrial Protocol*) é o protocolo da Rockwell Au
 ## 5.6 Estudo de Caso — Integração Modbus + OPC UA + MQTT
 
 **Contexto:** Uma planta química possui CLPs Siemens S7-1500 (OPC UA nativo) e instrumentos de campo com Modbus RTU (transmissores antigos sem Ethernet).
-
-**Solução de integração:**
 
 ```mermaid
 flowchart TB
@@ -246,7 +259,7 @@ pelo número de equipamentos.
 - Redes industriais priorizam **determinismo e disponibilidade**; redes corporativas priorizam **largura de banda e confidencialidade**.
 - **Modbus** (1979) é o protocolo mais simples e difundido; ainda amplamente utilizado em instrumentação.
 - **DNP3** é o padrão para SCADA de infraestrutura crítica (energia, água).
-- **OPC UA** é o protocolo preferido para integração moderna SCADA-CLP, com segurança nativa e modelo de informação rico.
+- **OPC UA** oferece serviços e modelos de informação úteis à integração SCADA–CLP; segurança efetiva requer perfil compatível, certificados e configuração adequada.
 - **MQTT** domina o IIoT: leve, escalável, arquitetura pub/sub com broker central.
 - A integração multiprotocolo via gateways e OPC UA é a realidade de plantas industriais com equipamentos de diferentes gerações.
 

@@ -85,29 +85,28 @@ do HTML e a ordem do livro saem) e o glossário.
 
 ## 5. Próximos passos sugeridos (em ordem de retorno)
 
-1. **Continuar a extração de figuras** para as 48 posições restantes (cobertura atual: 31 reais).
-   O caminho já está provado: `pdfimages -list` para achar as páginas → `pdfimages -png -f P -l P` →
-   conferir qualidade numa folha de contato (`montage` ou uma montagem simples com PIL) → **conferir
-   a legenda na página do PDF** (`pdftotext -layout -f P -l P`) para não batizar a figura errada →
-   inserir como `![Figura N.M – Título](../figuras/nome.png)` com a linha `> **Fonte:**` logo
-   depois. Prioridade: capítulos 6, 8 e 9 (15 placeholders) e 1 e 2 (9 placeholders). Reutilizar
-   apenas material do próprio curso; material ISA fica como direção de arte até ser redesenhado.
+1. **Continuar a extração de figuras** para as 47 posições restantes (cobertura atual: 32 reais).
+  O fluxo é: `pdfimages -list` para localizar → extrair → conferir a imagem e a legenda na página
+  original → inserir no Markdown com a linha `> **Fonte:**`. Prioridade: capítulos 6, 8 e 9 (12
+  placeholders) e 1 e 2 (8 placeholders). Material ISA continua em direção de arte até ser
+  redesenhado com fonte/licença apropriada.
 
-   **Mapa já levantado nesta rodada** (não repetir o garimpo):
+  **Mapa já levantado nesta rodada:**
 
-   | Fonte | Páginas com figura aproveitável | Serve para |
-   |---|---|---|
-   | `Sistemas Supervisórios — parte 1` | p. 5 (pirâmide da automação, níveis 0–5) | Figura 2.1 |
-   | `Sistemas Supervisórios — parte 1` | p. 8–14 (arquiteturas SCADA níveis 1/2/3) | Figuras 2.3/2.4 |
-   | `Sistemas Supervisórios — parte 2` | p. 2 (telas de dois supervisórios), p. 7 e 9 (sinótico × CLP), p. 10 (mapa de memória) | cap. 3 e 14 (14 já usa a p. 10 como tabela) |
-   | `IIoT e suas Tecnologias Aderentes` | p. 3 (as 4 revoluções industriais), p. 10–12 (comunicação de dados, LoRaWAN), p. 16 (publish-subscribe MQTT) | Figuras 1.2, 6.x e 5.5 |
-   | `Livro SCADA` | Fig. 4 (p. 24), 14 (p. 35), 21 (p. 67), 23 (p. 70) — as demais úteis já foram usadas | cap. 4, 11 e 14 |
-   | `IoT.pdf` | p. 14–23 (grades de plataformas e diagramas do ThingsBoard) | cap. 12 |
+  | Fonte | Páginas com figura aproveitável | Serve para |
+  |---|---|---|
+  | `Sistemas Supervisórios — parte 1` | p. 5 (pirâmide da automação, níveis 0–5) | Figura 2.1 |
+  | `figuras/piramide_automacao.jpeg` | arquivo do projeto; origem original não informada; convenção 1–5, não ISA-95 | Figura 2.5 |
+  | `Sistemas Supervisórios — parte 1` | p. 8–14 (arquiteturas SCADA níveis 1/2/3) | Figuras 2.3/2.4 |
+  | `Sistemas Supervisórios — parte 2` | p. 2 (telas de dois supervisórios), p. 7 e 9 (sinótico × CLP), p. 10 (mapa de memória) | cap. 3 e 14 |
+  | `IIoT e suas Tecnologias Aderentes` | p. 3 (as 4 revoluções industriais), p. 10–12 (comunicação de dados, LoRaWAN), p. 16 (publish-subscribe MQTT) | Figuras 1.2, 6.x e 5.5 |
+  | `Livro SCADA` | Fig. 4 (p. 24), 14 (p. 35), 21 (p. 67), 23 (p. 70) — as demais úteis já foram usadas | cap. 4, 11 e 14 |
+  | `IoT.pdf` | p. 14–23 (grades de plataformas e diagramas do ThingsBoard) | cap. 12 |
 
-   Esgotadas: as páginas 20–33 do `Livro SCADA` (todas as figuras de arquitetura já estão na
-   apostila) e as páginas 89–139 (telas de InTouch/Elipse, que só repetem tutoriais).
+  Esgotadas: páginas 20–33 do `Livro SCADA` e páginas 89–139 (telas de InTouch/Elipse repetitivas).
 2. **Renumerar os capítulos** (agora é o passo de maior efeito). O conjunto está completo: 20
-   capítulos, 257 páginas, gate e build limpos. A ordem atual é a de criação — a apostila abre com
+  capítulos, 259 páginas e 46 diagramas Mermaid; o gate tem um aviso intencional no capítulo 2,
+  que ficou com um Mermaid após a remoção solicitada. A ordem atual é a de criação — a apostila abre com
    arquitetura e protocolos e só no fim trata de aquisição, tags, historiadores, borda e projeto.
    Ordem proposta, do fundamento à aplicação:
 

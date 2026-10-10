@@ -66,6 +66,22 @@
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 \providecommand{\passthrough}[1]{#1}
 
+% Pandoc 3.2+ wraps images without explicit dimensions in \pandocbounded.
+% Keep its official sizing behavior in this custom master.
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{%
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi
+}
+\makeatother
+
 % ---------------------------------------------------------------------
 %  Tipografia e mancha  (ATENÇÃO: \tabcolsep entra na largura de p{}:
 %  cada coluna ocupa x + 2\tabcolsep. Orçamento: ~14,6 cm em 3 colunas

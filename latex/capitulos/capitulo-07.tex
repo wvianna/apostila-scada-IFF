@@ -1,5 +1,4 @@
-\hypertarget{node-red-como-interface-supervisuxf3ria}{%
-\chapter{Node-RED como Interface Supervisória}\label{node-red-como-interface-supervisuxf3ria}}
+\chapter{Node-RED como Interface Supervisória}\label{node-red-como-interface-supervisuxf3ria}
 
 \section*{Objetivos de Aprendizagem}
 
@@ -19,8 +18,7 @@ Ao final deste capítulo, o leitor será capaz de:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{o-que-uxe9-node-red}{%
-\section{O que é Node-RED?}\label{o-que-uxe9-node-red}}
+\section{O que é Node-RED?}\label{o-que-uxe9-node-red}
 
 O \textbf{Node-RED} é uma plataforma de programação visual \emph{flow-based} desenvolvida pela IBM em 2013, inicialmente para conectar dispositivos de hardware, APIs e serviços online de forma rápida. Tornou-se open-source e hoje é mantido pela \textbf{OpenJS Foundation}.
 
@@ -53,16 +51,16 @@ quem tem protocolo industrial, normaliza e entrega para quem consome dado.
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap07-editor-node-red.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 7.1  Interface do editor Node-RED}]{../figuras/cap07-editor-node-red.png}}
 \caption[Figura 7.1 -- Interface do editor Node-RED]{Figura 7.1 -- Interface do editor Node-RED. \textbf{Fonte:} \emph{Node-RED --- Interface de Supervisão} (material do curso), p.~13.}
 \end{figure}
 
 O editor é uma única página web dividida em quatro regiões, cada uma com um papel definido:
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Região
@@ -87,11 +85,9 @@ anterior do flow.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{instalauxe7uxe3o-e-configurauxe7uxe3o}{%
-\section{Instalação e Configuração}\label{instalauxe7uxe3o-e-configurauxe7uxe3o}}
+\section{Instalação e Configuração}\label{instalauxe7uxe3o-e-configurauxe7uxe3o}
 
-\hypertarget{instalauxe7uxe3o-via-npm-linux-raspberry-pi}{%
-\subsection{Instalação via npm (Linux / Raspberry Pi)}\label{instalauxe7uxe3o-via-npm-linux-raspberry-pi}}
+\subsection{Instalação via npm (Linux / Raspberry Pi)}\label{instalauxe7uxe3o-via-npm-linux-raspberry-pi}
 
 \begin{lstlisting}[language=bash]
 # Instalar Node.js (versão LTS recomendada)
@@ -105,8 +101,7 @@ sudo npm install -g --unsafe-perm node-red
 node-red
 \end{lstlisting}
 
-\hypertarget{instalauxe7uxe3o-via-docker}{%
-\subsection{Instalação via Docker}\label{instalauxe7uxe3o-via-docker}}
+\subsection{Instalação via Docker}\label{instalauxe7uxe3o-via-docker}
 
 \begin{lstlisting}[language=bash]
 docker run -it -p 1880:1880 \
@@ -114,8 +109,7 @@ docker run -it -p 1880:1880 \
   --name mynodered nodered/node-red
 \end{lstlisting}
 
-\hypertarget{acessando-o-editor}{%
-\subsection{Acessando o Editor}\label{acessando-o-editor}}
+\subsection{Acessando o Editor}\label{acessando-o-editor}
 
 Abra o navegador em: \passthrough{\lstinline!http://localhost:1880!}
 
@@ -127,18 +121,16 @@ Abra o navegador em: \passthrough{\lstinline!http://localhost:1880!}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{conceitos-fundamentais}{%
-\section{Conceitos Fundamentais}\label{conceitos-fundamentais}}
+\section{Conceitos Fundamentais}\label{conceitos-fundamentais}
 
-\hypertarget{nodes-nuxf3s}{%
-\subsection{Nodes (Nós)}\label{nodes-nuxf3s}}
+\subsection{Nodes (Nós)}\label{nodes-nuxf3s}
 
 Os \textbf{nodes} são os blocos de construção do Node-RED. Cada node realiza uma função específica:
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Categoria
@@ -159,8 +151,7 @@ Função
 \textbf{Utilitários} & \passthrough{\lstinline!delay!}, \passthrough{\lstinline!trigger!}, \passthrough{\lstinline!rbe!} (report-by-exception) & Controle de fluxo \\
 \end{longtable}
 
-\hypertarget{flows-e-wires}{%
-\subsection{Flows e Wires}\label{flows-e-wires}}
+\subsection{Flows e Wires}\label{flows-e-wires}
 
 Um \textbf{flow} é uma sequência de nodes conectados por \textbf{wires} (fios). Cada wire transporta uma mensagem (\passthrough{\lstinline!msg!}) do node anterior para o próximo.
 
@@ -185,8 +176,7 @@ A mensagem é um objeto JSON com campos padrão:
   Campos adicionais podem ser adicionados em qualquer node.
 \end{itemize}
 
-\hypertarget{context-contexto}{%
-\subsection{Context (Contexto)}\label{context-contexto}}
+\subsection{Context (Contexto)}\label{context-contexto}
 
 O Node-RED permite armazenar dados persistentes em três escopos:
 
@@ -211,11 +201,9 @@ return msg;
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{aquisiuxe7uxe3o-de-dados-via-modbus-tcp}{%
-\section{Aquisição de Dados via Modbus TCP}\label{aquisiuxe7uxe3o-de-dados-via-modbus-tcp}}
+\section{Aquisição de Dados via Modbus TCP}\label{aquisiuxe7uxe3o-de-dados-via-modbus-tcp}
 
-\hypertarget{instalando-o-node-modbus}{%
-\subsection{Instalando o Node Modbus}\label{instalando-o-node-modbus}}
+\subsection{Instalando o Node Modbus}\label{instalando-o-node-modbus}
 
 No editor Node-RED, acesse \textbf{Menu \ensuremath{\rightarrow} Manage Palette \ensuremath{\rightarrow} Install} e instale:
 
@@ -223,8 +211,7 @@ No editor Node-RED, acesse \textbf{Menu \ensuremath{\rightarrow} Manage Palette 
 node-red-contrib-modbus
 \end{lstlisting}
 
-\hypertarget{flow-leitura-de-temperatura-via-modbus-tcp}{%
-\subsection{Flow: Leitura de Temperatura via Modbus TCP}\label{flow-leitura-de-temperatura-via-modbus-tcp}}
+\subsection{Flow: Leitura de Temperatura via Modbus TCP}\label{flow-leitura-de-temperatura-via-modbus-tcp}
 
 \begin{lstlisting}
 [Modbus Read] ---> [Function (converter)] ---> [MQTT Out]
@@ -261,11 +248,9 @@ return msg;
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{comunicauxe7uxe3o-mqtt-no-node-red}{%
-\section{Comunicação MQTT no Node-RED}\label{comunicauxe7uxe3o-mqtt-no-node-red}}
+\section{Comunicação MQTT no Node-RED}\label{comunicauxe7uxe3o-mqtt-no-node-red}
 
-\hypertarget{configurando-conexuxe3o-com-broker-mqtt}{%
-\subsection{Configurando Conexão com Broker MQTT}\label{configurando-conexuxe3o-com-broker-mqtt}}
+\subsection{Configurando Conexão com Broker MQTT}\label{configurando-conexuxe3o-com-broker-mqtt}
 
 Os nodes \passthrough{\lstinline!mqtt in!} e \passthrough{\lstinline!mqtt out!} compartilham uma configuração de broker:
 
@@ -281,8 +266,7 @@ Os nodes \passthrough{\lstinline!mqtt in!} e \passthrough{\lstinline!mqtt out!} 
   \textbf{Username/Password:} credenciais (se o broker exigir autenticação).
 \end{itemize}
 
-\hypertarget{flow-assinatura-de-tuxf3pico-mqtt-e-alarme}{%
-\subsection{Flow: Assinatura de Tópico MQTT e Alarme}\label{flow-assinatura-de-tuxf3pico-mqtt-e-alarme}}
+\subsection{Flow: Assinatura de Tópico MQTT e Alarme}\label{flow-assinatura-de-tuxf3pico-mqtt-e-alarme}
 
 \begin{lstlisting}
 // Node function: verificar temperatura e gerar alarme
@@ -302,13 +286,11 @@ return null; // não propagar se temperatura normal
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{dashboard-interface-de-supervisuxe3o-web}{%
-\section{\texorpdfstring{Dashboard --- Interface de Supervisão Web}{Dashboard  Interface de Supervisão Web}}\label{dashboard-interface-de-supervisuxe3o-web}}
+\section{\texorpdfstring{Dashboard --- Interface de Supervisão Web}{Dashboard  Interface de Supervisão Web}}\label{dashboard-interface-de-supervisuxe3o-web}
 
 O módulo \passthrough{\lstinline!node-red-dashboard!} transforma flows em interfaces web responsivas acessíveis pelo navegador.
 
-\hypertarget{instalauxe7uxe3o}{%
-\subsection{Instalação}\label{instalauxe7uxe3o}}
+\subsection{Instalação}\label{instalauxe7uxe3o}
 
 \begin{lstlisting}
 Menu -> Manage Palette -> Install -> node-red-dashboard
@@ -316,13 +298,12 @@ Menu -> Manage Palette -> Install -> node-red-dashboard
 
 O dashboard fica acessível em: \passthrough{\lstinline!http://localhost:1880/ui!}
 
-\hypertarget{widgets-disponuxedveis}{%
-\subsection{Widgets Disponíveis}\label{widgets-disponuxedveis}}
+\subsection{Widgets Disponíveis}\label{widgets-disponuxedveis}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Widget
@@ -347,7 +328,7 @@ Uso típico
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap07-dashboard-node-red.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 7.3  Dashboard Node-RED: painel de supervisão}]{../figuras/cap07-dashboard-node-red.png}}
 \caption[Figura 7.3 -- Dashboard Node-RED: painel de supervisão]{Figura 7.3 -- Dashboard Node-RED: painel de supervisão. \textbf{Fonte:} \emph{Node-RED --- Interface de Supervisão} (material do curso), p.~4.}
 \end{figure}
 
@@ -358,8 +339,7 @@ atenção didática. Primeiro, os blocos de \emph{status} no topo repetem a mesm
 mesmo quadro --- recurso comum em supervisão de acesso e logística, mas que \textbf{não} deve competir
 com as variáveis de processo pela atenção do operador.
 
-\hypertarget{exemplo-de-flow-completo-com-dashboard}{%
-\subsection{Exemplo de Flow Completo com Dashboard}\label{exemplo-de-flow-completo-com-dashboard}}
+\subsection{Exemplo de Flow Completo com Dashboard}\label{exemplo-de-flow-completo-com-dashboard}
 
 \begin{lstlisting}
 [mqtt in] --> [function: payload] --> [gauge: temperatura]
@@ -371,20 +351,17 @@ com as variáveis de processo pela atenção do operador.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{integrauxe7uxe3o-com-influxdb-e-grafana}{%
-\section{Integração com InfluxDB e Grafana}\label{integrauxe7uxe3o-com-influxdb-e-grafana}}
+\section{Integração com InfluxDB e Grafana}\label{integrauxe7uxe3o-com-influxdb-e-grafana}
 
 Para histórico e visualização avançada, o Node-RED integra-se facilmente com InfluxDB:
 
-\hypertarget{instalauxe7uxe3o-1}{%
-\subsection{Instalação}\label{instalauxe7uxe3o-1}}
+\subsection{Instalação}\label{instalauxe7uxe3o-1}
 
 \begin{lstlisting}
 node-red-contrib-influxdb
 \end{lstlisting}
 
-\hypertarget{node-influxdb-out}{%
-\subsection{\texorpdfstring{Node \texttt{influxdb\ out}}{Node influxdb out}}\label{node-influxdb-out}}
+\subsection{\texorpdfstring{Node \texttt{influxdb\ out}}{Node influxdb out}}\label{node-influxdb-out}
 
 Configuração:
 - Host: \passthrough{\lstinline!localhost!} (ou IP do servidor InfluxDB)
@@ -417,15 +394,14 @@ O \textbf{Grafana} se conecta ao InfluxDB como fonte de dados e exibe dashboards
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{node-red-versus-scada-comercial}{%
-\section{Node-RED versus SCADA Comercial}\label{node-red-versus-scada-comercial}}
+\section{Node-RED versus SCADA Comercial}\label{node-red-versus-scada-comercial}
 
 \textbf{Tabela 7.1 -- Comparativo Node-RED \ensuremath{\times} SCADA Comercial}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Critério
@@ -474,8 +450,7 @@ papel, com o comando e a proteção no CLP e no SCADA, e a integração no Node-
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estudo-de-caso-node-red-como-camada-de-integrauxe7uxe3o-em-uma-planta-piloto}{%
-\section{\texorpdfstring{Estudo de Caso --- Node-RED como camada de integração em uma planta-piloto}{Estudo de Caso  Node-RED como camada de integração em uma planta-piloto}}\label{estudo-de-caso-node-red-como-camada-de-integrauxe7uxe3o-em-uma-planta-piloto}}
+\section{\texorpdfstring{Estudo de Caso --- Node-RED como camada de integração em uma planta-piloto}{Estudo de Caso  Node-RED como camada de integração em uma planta-piloto}}\label{estudo-de-caso-node-red-como-camada-de-integrauxe7uxe3o-em-uma-planta-piloto}
 
 \textbf{Cenário.} Planta-piloto de uma indústria de alimentos, com um CLP de médio porte controlando um
 tanque de mistura e temperatura. O CLP não tem OPC UA nem MQTT: expõe Modbus TCP. A equipe de
@@ -496,7 +471,7 @@ trechos, cada um com um papel claro:
   (escala e \emph{offset} do transmissor), aplica o \emph{deadband} de 0,2 \ensuremath{^\circ}C e marca a qualidade do dado
   quando o CLP não responde.
 \item
-  \textbf{Distribuição} --- os mesmos dados vão para três destinos: \passthrough{\lstinline!mqtt out!} para o broker, \passthrough{\lstinline!influxdb    out!} para o banco de séries temporais e \passthrough{\lstinline!ui\_gauge!} / \passthrough{\lstinline!ui\_chart!} para o dashboard web.
+  \textbf{Distribuição} --- os mesmos dados vão para três destinos: \passthrough{\lstinline!mqtt out!} para o broker, \passthrough{\lstinline!influxdb out!} para o banco de séries temporais e \passthrough{\lstinline!ui\_gauge!} / \passthrough{\lstinline!ui\_chart!} para o dashboard web.
 \end{enumerate}
 
 \begin{lstlisting}
@@ -535,8 +510,7 @@ rodando ao lado, agora consumindo OPC UA e servindo a plataforma de analytics.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{resumo}{%
-\section{Resumo}\label{resumo}}
+\section{Resumo}\label{resumo}
 
 \begin{itemize}
 \tightlist
@@ -556,8 +530,7 @@ rodando ao lado, agora consumindo OPC UA e servindo a plataforma de analytics.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{questuxf5es-de-revisuxe3o}{%
-\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}
 
 \textbf{Conceituais:}
 
@@ -596,8 +569,7 @@ rodando ao lado, agora consumindo OPC UA e servindo a plataforma de analytics.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{referuxeancias}{%
-\section{Referências}\label{referuxeancias}}
+\section{Referências}\label{referuxeancias}
 
 \begin{itemize}
 \tightlist

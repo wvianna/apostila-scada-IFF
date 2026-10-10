@@ -13,17 +13,17 @@ Ao final deste capítulo, o leitor será capaz de:
 
 ## 8.1 OT Security: Por que é Diferente?
 
-A cibersegurança em **OT** (*Operational Technology*) segue princípios distintos da segurança em **TI** (*Information Technology*). A tríade clássica de segurança **CIA** (Confidencialidade, Integridade, Disponibilidade) tem pesos diferentes:
+A cibersegurança em **OT** (*Operational Technology*) segue princípios distintos da segurança em **TI** (*Information Technology*). A tríade clássica **CIA** (Confidencialidade, Integridade e Disponibilidade) continua relevante, mas não existe uma ordem universal de prioridade: os impactos sobre segurança de pessoas, meio ambiente, processo e continuidade precisam ser avaliados para cada sistema.
 
-**Tabela 8.1 – Prioridades CIA: TI × OT**
+**Tabela 8.1 – Ênfases de risco frequentes: TI × OT**
 
-| Prioridade | TI (Corporativa) | OT (Industrial) |
+| Aspecto | TI (Corporativa) | OT (Industrial) |
 |---|---|---|
-| **1ª** | Confidencialidade | **Disponibilidade** |
-| **2ª** | Integridade | **Integridade** |
-| **3ª** | Disponibilidade | Confidencialidade |
+| Impacto frequentemente enfatizado | Exposição de dados e privacidade | Segurança de pessoas, processo e continuidade operacional |
+| Risco de integridade | Alteração de dados ou transações | Comandos ou valores manipulados podem afetar o processo físico |
+| Risco de disponibilidade | Interrupção de serviços e negócios | Perda de supervisão ou controle pode causar consequências físicas e operacionais |
 
-Na OT, **parar um sistema pode significar:** explosão em uma refinaria, blackout em uma cidade, contaminação de abastecimento de água, acidentes com operadores. A segurança das **pessoas** e do **processo** está acima da confidencialidade dos dados.
+Na OT, **parar um sistema pode significar** perda de produção, interrupção de serviço essencial ou riscos à segurança de pessoas e ao meio ambiente. A prioridade entre confidencialidade, integridade e disponibilidade depende da análise de risco e do contexto operacional.
 
 **Outras diferenças críticas:**
 
@@ -84,22 +84,22 @@ O conceito central da IEC 62443-3-2 é dividir o sistema em **zonas** (*Security
 
 ```mermaid
 flowchart TB
-    subgraph Z1["Zona corporativa - SL1"]
+    subgraph Z1["Zona corporativa"]
         ERP["ERP / e-mail / Internet"]
     end
     subgraph Z2["DMZ industrial"]
         HIST["Historiador / servidor web"]
         PATCH["Servidor de patches"]
     end
-    subgraph Z3["Zona supervisoria - SL2"]
+    subgraph Z3["Zona supervisoria"]
         SCADA["Servidor SCADA"]
         HMI["Estacoes HMI"]
     end
-    subgraph Z4["Zona de controle - SL3"]
+    subgraph Z4["Zona de controle"]
         CLP["CLPs"]
         RTU["RTUs"]
     end
-    subgraph Z5["Zona de seguranca funcional - SL4"]
+    subgraph Z5["Zona de seguranca funcional"]
         SIS["Sistema de seguranca"]
     end
     ERP -->|"firewall"| HIST
@@ -109,18 +109,18 @@ flowchart TB
 ```
 
 > 🖼️ **[Figura 8.2 – Modelo de zonas e condutos IEC 62443]**
-> *Diagrama de zonas concêntricas ou em camadas: Zona Corporativa (exterior) → DMZ Industrial → Zona Supervisória → Zona de Controle → Zona de Segurança (centro, mais protegida). Firewalls e diodos de dados entre cada zona. Cores indicando nível de segurança crescente.*
+> *Diagrama de zonas funcionais conectadas por condutos controlados: Zona Corporativa, DMZ Industrial, Supervisão, Controle e Sistema Instrumentado de Segurança. Mostrar fronteiras, fluxos permitidos e pontos de aplicação de controles, sem atribuir automaticamente um SL às zonas nem sugerir que a criticidade sempre cresce em direção ao centro.*
 
 ### 8.4.2 Security Levels (SL)
 
-A norma define quatro **Níveis de Segurança** (*Security Level*):
+A IEC 62443 descreve níveis de segurança (**SL**) associados à capacidade de resistência requerida para um sistema ou componente. A seleção do **SL-alvo** resulta da análise de risco e dos requisitos de segurança; não se atribui um nível apenas pelo nome ou posição da zona. SL 0 indica ausência de requisitos específicos, e SL 1 a 4 representam capacidades progressivamente maiores contra ameaças intencionais.
 
 | SL | Proteção contra | Descrição |
 |---|---|---|
-| **SL 1** | Causas não intencionais | Erros humanos, falhas acidentais |
-| **SL 2** | Atacantes com baixa habilidade e motivação | Script kiddies, ataques oportunistas |
-| **SL 3** | Atacantes sofisticados, motivados | Hackers patrocinados por concorrentes |
-| **SL 4** | Atores estatais, recursos ilimitados | Ataques como Stuxnet |
+| **SL 1** | Violações casuais ou acidentais | Erros e uso indevido não deliberado |
+| **SL 2** | Ataques intencionais com meios simples e recursos limitados | Ameaça com competências e motivação limitadas |
+| **SL 3** | Ataques intencionais com meios sofisticados e recursos moderados | Ameaça com competências e motivação moderadas |
+| **SL 4** | Ataques intencionais com meios sofisticados e recursos extensos | Ameaça com competências e motivação elevadas |
 
 ---
 
@@ -129,11 +129,11 @@ A norma define quatro **Níveis de Segurança** (*Security Level*):
 ### 8.5.1 Segmentação de Redes
 
 > 🖼️ **[Figura 8.3 – Segmentação em zonas, com o tráfego permitido e o bloqueado]**
-> *Diagrama de blocos com quatro zonas empilhadas (corporativa, DMZ industrial, supervisória e de controle), mostrando as setas de tráfego permitido e as bloqueadas. Anotar junto a cada seta o protocolo e a porta, e destacar os pontos de inspeção: firewall industrial e proxy reverso. Incluir legenda com o nível de segurança (SL) de cada zona.*
+> *Diagrama de blocos com zonas corporativa, DMZ industrial, supervisória e de controle. Mostrar apenas os fluxos explicitamente permitidos e bloqueados, os pontos de inspeção (firewalls e proxies) e os protocolos/portas do cenário ilustrado. Não pré-atribuir SL às zonas: indicar que os alvos dependem de análise de risco.*
 
-- Isolar completamente a rede OT da rede corporativa com **firewall industrial** (ex.: Fortinet FortiGate, Cisco ASA, Schneider Electric ConneXium).
+- Segmentar a rede OT da rede corporativa com **firewall industrial** e regras explícitas de comunicação; isolamento físico pode ser apropriado em certos casos, mas não substitui a análise dos caminhos de manutenção e troca de dados.
 - Criar **DMZ Industrial** para sistemas que precisam compartilhar dados com TI (historiador, servidor web de relatórios).
-- Usar **diodos de dados** (*data diodes*) em pontos onde apenas fluxo unidirecional é necessário — fisicamente impossível de hackear de volta.
+- Usar **diodos de dados** (*data diodes*) quando a arquitetura exigir fluxo unidirecional. Eles impõem uma direção de comunicação no enlace protegido, mas não tornam invulneráveis os sistemas conectados nem eliminam outros caminhos de retorno.
 
 ### 8.5.2 Controle de Acesso Remoto
 
@@ -254,9 +254,9 @@ firewall. A segmentação precisa vir acompanhada de registro de tráfego nas fr
 
 ## Resumo
 
-- Segurança OT prioriza **disponibilidade** acima de confidencialidade — ao contrário da TI.
+- Em OT, a análise de risco deve considerar disponibilidade, integridade, confidencialidade e, sobretudo, as consequências à segurança de pessoas e ao processo; não há uma ordenação universal que sirva a todo sistema.
 - Sistemas SCADA foram projetados para disponibilidade, não para segurança; a convergência TI/OT os expôs a ameaças digitais.
-- A **IEC 62443** estrutura a segurança industrial em zonas, condutos e níveis de segurança (SL1–SL4).
+- A **IEC 62443** estrutura a segurança industrial em zonas e condutos e define níveis de segurança; os SL-alvo são selecionados a partir da análise de risco.
 - Boas práticas essenciais: segmentação de rede, DMZ industrial, VPN com MFA, monitoramento passivo e treinamento de operadores.
 - Ferramentas especializadas como Claroty e Dragos permitem monitoramento OT sem impactar o processo.
 
@@ -283,7 +283,7 @@ firewall. A segmentação precisa vir acompanhada de registro de tráfego nas fr
 
 ## Referências
 
-- IEC 62443: *Security for Industrial Automation and Control Systems* (séries 1 a 4). IEC, 2018–2023.
+- IEC 62443: *Security for Industrial Automation and Control Systems* (séries 1 a 4; consultar a edição vigente de cada parte aplicável no catálogo IEC).
 - NIST SP 800-82 Rev. 3: *Guide to OT Security*. NIST, 2023.
 - ANEEL Resolução Normativa nº 964/2021. Disponível em: aneel.gov.br.
 - LANGNER, R. *Stuxnet: Dissecting a Cyberwarfare Weapon*. IEEE Security & Privacy, 2011.

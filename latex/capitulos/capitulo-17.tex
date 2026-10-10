@@ -1,5 +1,4 @@
-\hypertarget{edge-computing-na-induxfastria}{%
-\chapter{Edge Computing na Indústria}\label{edge-computing-na-induxfastria}}
+\chapter{Edge Computing na Indústria}\label{edge-computing-na-induxfastria}
 
 \section*{Objetivos de Aprendizagem}
 
@@ -21,8 +20,7 @@ Ao final deste capítulo, o leitor será capaz de:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{por-que-a-borda-existe}{%
-\section{Por que a borda existe}\label{por-que-a-borda-existe}}
+\section{Por que a borda existe}\label{por-que-a-borda-existe}
 
 A pergunta que cria a borda não é tecnológica, é econômica: \textbf{vale transportar este dado?} Enviar
 todas as variáveis de uma planta, na resolução do controlador, para um servidor distante custa
@@ -68,8 +66,7 @@ nuvem. Para efeito de projeto, o que importa é a hierarquia de agregação, nã
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{o-que-uma-borda-faz-e-o-que-acontece-quando-falta}{%
-\section{\texorpdfstring{O que uma borda faz --- e o que acontece quando falta}{O que uma borda faz  e o que acontece quando falta}}\label{o-que-uma-borda-faz-e-o-que-acontece-quando-falta}}
+\section{\texorpdfstring{O que uma borda faz --- e o que acontece quando falta}{O que uma borda faz  e o que acontece quando falta}}\label{o-que-uma-borda-faz-e-o-que-acontece-quando-falta}
 
 Uma borda de campo acumula três funções distintas. Tratá-las como uma só é a origem da maioria dos
 projetos frustrados.
@@ -77,9 +74,9 @@ projetos frustrados.
 \textbf{Tabela 17.1 -- As três funções da borda}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Função
@@ -109,8 +106,7 @@ executa a função de segurança do processo.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{o-gateway-na-pruxe1tica}{%
-\section{O gateway na prática}\label{o-gateway-na-pruxe1tica}}
+\section{O gateway na prática}\label{o-gateway-na-pruxe1tica}
 
 O gateway é o equipamento que materializa a borda. Suas duas faces têm nomes próprios:
 
@@ -137,8 +133,7 @@ de digitação mas não elimina a necessidade de revisão.
 
 \end{caixafigura}
 
-\hypertarget{store-and-forward-o-teste-que-separa-projeto-de-improviso}{%
-\subsection{Store and forward: o teste que separa projeto de improviso}\label{store-and-forward-o-teste-que-separa-projeto-de-improviso}}
+\subsection{Store and forward: o teste que separa projeto de improviso}\label{store-and-forward-o-teste-que-separa-projeto-de-improviso}
 
 Guardar dados quando o enlace cai parece simples e não é. Quatro decisões definem se a fila local
 serve para alguma coisa:
@@ -178,8 +173,7 @@ não como se tudo tivesse acontecido no instante da reconexão.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{reduzir-na-borda-filtro-agregauxe7uxe3o-e-evento}{%
-\section{Reduzir na borda: filtro, agregação e evento}\label{reduzir-na-borda-filtro-agregauxe7uxe3o-e-evento}}
+\section{Reduzir na borda: filtro, agregação e evento}\label{reduzir-na-borda-filtro-agregauxe7uxe3o-e-evento}
 
 O ganho da borda aparece quando ela \textbf{reduz} o dado antes de publicá-lo. As técnicas são as mesmas do
 Capítulo 15, aplicadas na publicação:
@@ -193,10 +187,10 @@ Capítulo 15, aplicadas na publicação:
 \textbf{Tabela 17.2 -- Estratégias de redução na borda}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Estratégia
@@ -229,8 +223,7 @@ aplicado na borda --- não digitado duas vezes.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{edge-analytics-o-que-cabe-e-o-que-nuxe3o-cabe}{%
-\section{Edge analytics: o que cabe e o que não cabe}\label{edge-analytics-o-que-cabe-e-o-que-nuxe3o-cabe}}
+\section{Edge analytics: o que cabe e o que não cabe}\label{edge-analytics-o-que-cabe-e-o-que-nuxe3o-cabe}
 
 Há um entusiasmo previsível em rodar análise preditiva no gateway. Vale separar o que é razoável do
 que é propaganda:
@@ -263,8 +256,7 @@ automação de integração contínua usada em software corporativo chegue à bo
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{operar-uma-frota-de-gateways}{%
-\section{Operar uma frota de gateways}\label{operar-uma-frota-de-gateways}}
+\section{Operar uma frota de gateways}\label{operar-uma-frota-de-gateways}
 
 Um gateway isolado é fácil. Cinquenta gateways espalhados por uma cidade são um problema de
 operação, não de eletrônica. O que muda:
@@ -272,8 +264,8 @@ operação, não de eletrônica. O que muda:
 \textbf{Tabela 17.3 -- Requisitos de operação em escala}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Requisito
@@ -315,8 +307,7 @@ segunda, sim.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{seguranuxe7a-e-a-borda}{%
-\section{Segurança e a borda}\label{seguranuxe7a-e-a-borda}}
+\section{Segurança e a borda}\label{seguranuxe7a-e-a-borda}
 
 A borda aumenta a superfície de ataque: é um computador com sistema operacional, rede, acesso a
 dispositivos industriais e conexão para fora (Capítulo 8). O que a torna administrável:
@@ -339,8 +330,7 @@ dispositivos industriais e conexão para fora (Capítulo 8). O que a torna admin
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estudo-de-caso-a-borda-que-nuxe3o-guardava}{%
-\section{\texorpdfstring{Estudo de Caso --- A borda que não guardava}{Estudo de Caso  A borda que não guardava}}\label{estudo-de-caso-a-borda-que-nuxe3o-guardava}}
+\section{\texorpdfstring{Estudo de Caso --- A borda que não guardava}{Estudo de Caso  A borda que não guardava}}\label{estudo-de-caso-a-borda-que-nuxe3o-guardava}
 
 \textbf{Cenário.} Um sistema de telemetria de 40 unidades consumidoras de água. Cada unidade tem um
 \emph{gateway} com modem 4G, lendo um medidor de vazão por pulso e a pressão da linha. A empresa de
@@ -367,8 +357,8 @@ faturado e o volume real medido em um lote piloto. A investigação mostrou:
 \textbf{Decisão de engenharia.}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Medida
@@ -395,8 +385,7 @@ disso, o \emph{setpoint} de pressão continua exclusivamente no controlador loca
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{resumo}{%
-\section{Resumo}\label{resumo}}
+\section{Resumo}\label{resumo}
 
 \begin{itemize}
 \tightlist
@@ -424,8 +413,7 @@ disso, o \emph{setpoint} de pressão continua exclusivamente no controlador loca
   O teste de aceitação é desligar o enlace por horas e verificar se o dado volta com o carimbo certo.
 \end{itemize}
 
-\hypertarget{questuxf5es-de-revisuxe3o}{%
-\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -450,8 +438,7 @@ disso, o \emph{setpoint} de pressão continua exclusivamente no controlador loca
   Liste cinco requisitos de operação de uma frota de 50 gateways e explique o risco de ignorar cada um.
 \end{enumerate}
 
-\hypertarget{referuxeancias}{%
-\section{Referências}\label{referuxeancias}}
+\section{Referências}\label{referuxeancias}
 
 \begin{itemize}
 \tightlist

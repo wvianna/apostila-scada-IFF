@@ -32,9 +32,9 @@ Modbus e outros protocolos clássicos resolvem o transporte e deixam a semântic
 
 | Camada | O que define | Quem resolve bem |
 |---|---|---|
-| Transporte confiável | Entrega da mensagem | TCP, MQTT, OPC UA |
-| Identificação do dado | Qual variável, de qual ativo | OPC UA (espaço de endereços); Sparkplug B (tópico + métricas) |
-| Significado do dado | Tipo, unidade, escala, faixa | OPC UA (modelo de informação); Sparkplug B (payload tipado) |
+| Comunicação | Caminho e serviços de troca de dados | TCP/IP (transporte); Modbus, MQTT e OPC UA (protocolos de aplicação) |
+| Identificação do dado | Qual variável, de qual ativo | OPC UA (espaço de endereços); Sparkplug B (tópico e métricas, conforme a convenção de nomes adotada) |
+| Significado do dado | Tipo, unidade, escala, faixa | OPC UA (modelo de informação); Sparkplug B (métricas tipadas; convenções de unidade e escala precisam ser acordadas) |
 | Qualidade e tempo | Valor válido? De quando? | OPC UA (*status code*, *source timestamp*); Sparkplug B (*timestamp* por métrica) |
 | Comportamento | Como ler, escrever, assinar, descobrir | OPC UA (serviços); Sparkplug B (estado, nascimento/morte) |
 
@@ -169,9 +169,10 @@ O tópico é **contrato de interface**: renomear um nível quebra todos os assin
 |---|---|---|
 | QoS 0 | Entrega "no máximo uma vez" (pode perder) | Aceitável para telemetria de tendência, não para evento |
 | QoS 1 | Entrega "ao menos uma vez" (pode duplicar) | O assinante precisa ser idempotente |
-| QoS 2 | Entrega exatamente uma vez (mais custoso) | Use com parcimônia em enlace de campo |
+| QoS 2 | Entrega de acordo com o fluxo de protocolo de maior garantia do MQTT | Não garante, por si só, execução exatamente uma vez do efeito da aplicação |
 | *Retained message* | O broker guarda a última mensagem do tópico e a entrega a novos assinantes | Excelente para "último valor"; perigoso para dado temporal |
-| *Last will and testament* (LWT) | Mensagem publicada pelo broker quando o cliente cai | É como se detecta "dispositivo silencioso" |
+| *Last will and testament* (LWT) | Mensagem que o broker publica se detectar desconexão inesperada do cliente | Ajuda a sinalizar uma desconexão; não substitui monitoramento de disponibilidade ponta a ponta |
+> ⚠️ **Atenção:** `SecurityPolicy: None` não protege a mensagem com assinatura ou criptografia; o controle de acesso a nós depende também da autenticação e das permissões configuradas no servidor. Em rede compartilhada, evite esse modo e valide a política e a lista de confiança. Certificados expirados ou não confiáveis podem impedir a conexão, portanto inclua sua gestão na manutenção.
 | Sessão persistente | Assinaturas e fila sobrevivem à desconexão | No 5.0 a expiração de sessão é explícita |
 
 A versão 5.0 acrescentou o que faltava para uso industrial: códigos de motivo (*reason codes*), propriedades de usuário, *shared subscriptions* (vários consumidores dividindo a carga de um tópico), apelidos de tópico e expiração de sessão.

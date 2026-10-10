@@ -1,5 +1,4 @@
-\hypertarget{tenduxeancias-cloud-scada-e-digital-twin}{%
-\chapter{Tendências: Cloud SCADA e Digital Twin}\label{tenduxeancias-cloud-scada-e-digital-twin}}
+\chapter{Tendências: Cloud SCADA e Digital Twin}\label{tenduxeancias-cloud-scada-e-digital-twin}
 
 \section*{Objetivos de Aprendizagem}
 
@@ -19,20 +18,18 @@ Ao final deste capítulo, o leitor será capaz de:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{cloud-scada-conceito-e-motivauxe7uxf5es}{%
-\section{Cloud SCADA: Conceito e Motivações}\label{cloud-scada-conceito-e-motivauxe7uxf5es}}
+\section{Cloud SCADA: Conceito e Motivações}\label{cloud-scada-conceito-e-motivauxe7uxf5es}
 
 O \textbf{Cloud SCADA} é a evolução natural dos sistemas supervisórios tradicionais: em vez de servidores físicos instalados na própria planta (\emph{on-premises}), o software SCADA é hospedado em infraestrutura de nuvem pública (AWS, Azure, Google Cloud) ou privada.
 
-\hypertarget{por-que-migrar-para-a-nuvem}{%
-\subsection{Por que migrar para a nuvem?}\label{por-que-migrar-para-a-nuvem}}
+\subsection{Por que migrar para a nuvem?}\label{por-que-migrar-para-a-nuvem}
 
 \textbf{Tabela 9.1 -- SCADA On-Premises \ensuremath{\times} Cloud SCADA}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Critério
@@ -56,8 +53,7 @@ Cloud SCADA
 \textbf{Compliance / Soberania de dados} & Total controle & Depende da região do datacenter \\
 \end{longtable}
 
-\hypertarget{arquitetura-cloud-scada}{%
-\subsection{Arquitetura Cloud SCADA}\label{arquitetura-cloud-scada}}
+\subsection{Arquitetura Cloud SCADA}\label{arquitetura-cloud-scada}
 
 \begin{center}
 \IfFileExists{../figuras/capitulo-09-m1.pdf}{%
@@ -80,11 +76,9 @@ Cloud SCADA
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{plataformas-de-cloud-scada}{%
-\section{Plataformas de Cloud SCADA}\label{plataformas-de-cloud-scada}}
+\section{Plataformas de Cloud SCADA}\label{plataformas-de-cloud-scada}
 
-\hypertarget{ignition-cloud-edition-inductive-automation}{%
-\subsection{Ignition Cloud Edition (Inductive Automation)}\label{ignition-cloud-edition-inductive-automation}}
+\subsection{Ignition Cloud Edition (Inductive Automation)}\label{ignition-cloud-edition-inductive-automation}
 
 O \textbf{Ignition} foi pioneiro no modelo de licenciamento cloud-native:
 
@@ -100,8 +94,7 @@ O \textbf{Ignition} foi pioneiro no modelo de licenciamento cloud-native:
   Ideal para empresas com múltiplos sites que precisam de visão unificada.
 \end{itemize}
 
-\hypertarget{aws-iot-sitewise}{%
-\subsection{AWS IoT SiteWise}\label{aws-iot-sitewise}}
+\subsection{AWS IoT SiteWise}\label{aws-iot-sitewise}
 
 O \textbf{AWS IoT SiteWise} é a solução da Amazon para modelagem e supervisão de ativos industriais:
 
@@ -117,13 +110,11 @@ O \textbf{AWS IoT SiteWise} é a solução da Amazon para modelagem e supervisã
   \textbf{SiteWise Edge:} módulo local para operação sem conectividade.
 \end{itemize}
 
-\hypertarget{azure-iot-hub-azure-digital-twins}{%
-\subsection{Azure IoT Hub + Azure Digital Twins}\label{azure-iot-hub-azure-digital-twins}}
+\subsection{Azure IoT Hub + Azure Digital Twins}\label{azure-iot-hub-azure-digital-twins}
 
 A combinação \textbf{Azure IoT Hub} (ingestão de dados) + \textbf{Azure Digital Twins} (modelagem) + \textbf{Azure Time Series Insights} (histórico) + \textbf{Power BI} (dashboards) forma uma stack completa de Cloud SCADA na Microsoft.
 
-\hypertarget{aveva-insight}{%
-\subsection{AVEVA Insight}\label{aveva-insight}}
+\subsection{AVEVA Insight}\label{aveva-insight}
 
 O \textbf{AVEVA Insight} é a solução cloud da AVEVA (herdeira do PI System e Wonderware):
 
@@ -145,13 +136,11 @@ O \textbf{AVEVA Insight} é a solução cloud da AVEVA (herdeira do PI System e 
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{digital-twin-nos-sistemas-scada}{%
-\section{Digital Twin nos Sistemas SCADA}\label{digital-twin-nos-sistemas-scada}}
+\section{Digital Twin nos Sistemas SCADA}\label{digital-twin-nos-sistemas-scada}
 
 A integração do \textbf{Digital Twin} com o SCADA cria um sistema de supervisão que não apenas monitora --- mas também simula, prevê e otimiza.
 
-\hypertarget{como-o-scada-alimenta-o-digital-twin}{%
-\subsection{Como o SCADA alimenta o Digital Twin}\label{como-o-scada-alimenta-o-digital-twin}}
+\subsection{Como o SCADA alimenta o Digital Twin}\label{como-o-scada-alimenta-o-digital-twin}
 
 \begin{center}
 \IfFileExists{../figuras/capitulo-09-m2.pdf}{%
@@ -166,8 +155,7 @@ A integração do \textbf{Digital Twin} com o SCADA cria um sistema de supervis�
 
 \end{caixafigura}
 
-\hypertarget{caso-de-uso-otimizauxe7uxe3o-de-destilauxe7uxe3o}{%
-\subsection{Caso de Uso: Otimização de Destilação}\label{caso-de-uso-otimizauxe7uxe3o-de-destilauxe7uxe3o}}
+\subsection{Caso de Uso: Otimização de Destilação}\label{caso-de-uso-otimizauxe7uxe3o-de-destilauxe7uxe3o}
 
 Em uma coluna de destilação de uma refinaria, o Digital Twin permite:
 
@@ -188,18 +176,16 @@ Em uma coluna de destilação de uma refinaria, o Digital Twin permite:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{inteliguxeancia-artificial-aplicada-a-sistemas-supervisuxf3rios}{%
-\section{Inteligência Artificial Aplicada a Sistemas Supervisórios}\label{inteliguxeancia-artificial-aplicada-a-sistemas-supervisuxf3rios}}
+\section{Inteligência Artificial Aplicada a Sistemas Supervisórios}\label{inteliguxeancia-artificial-aplicada-a-sistemas-supervisuxf3rios}
 
-\hypertarget{manutenuxe7uxe3o-preditiva-pdm}{%
-\subsection{Manutenção Preditiva (PdM)}\label{manutenuxe7uxe3o-preditiva-pdm}}
+\subsection{Manutenção Preditiva (PdM)}\label{manutenuxe7uxe3o-preditiva-pdm}
 
 A \textbf{manutenção preditiva} usa modelos de ML para prever falhas antes que ocorram, com base em dados históricos e em tempo real:
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Algoritmo
@@ -218,8 +204,7 @@ Indicadores Monitorados
 \textbf{Redes Neurais Convolucionais} & Análise de vibração espectral & FFT de sinal de acelerômetro \\
 \end{longtable}
 
-\hypertarget{controle-avanuxe7ado-com-ia}{%
-\subsection{Controle Avançado com IA}\label{controle-avanuxe7ado-com-ia}}
+\subsection{Controle Avançado com IA}\label{controle-avanuxe7ado-com-ia}
 
 \begin{itemize}
 \tightlist
@@ -229,8 +214,7 @@ Indicadores Monitorados
   \textbf{RL} (\emph{Reinforcement Learning}): agente aprende a operar o processo por tentativa e erro no Digital Twin --- depois é implantado na planta real.
 \end{itemize}
 
-\hypertarget{processamento-de-linguagem-natural-nlp-em-scada}{%
-\subsection{Processamento de Linguagem Natural (NLP) em SCADA}\label{processamento-de-linguagem-natural-nlp-em-scada}}
+\subsection{Processamento de Linguagem Natural (NLP) em SCADA}\label{processamento-de-linguagem-natural-nlp-em-scada}
 
 Interfaces conversacionais permitem que operadores consultem o SCADA por voz ou texto:
 
@@ -246,15 +230,14 @@ Interfaces conversacionais permitem que operadores consultem o SCADA por voz ou 
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{low-code-no-code-em-supervisuxf3rios}{%
-\section{Low-Code / No-Code em Supervisórios}\label{low-code-no-code-em-supervisuxf3rios}}
+\section{Low-Code / No-Code em Supervisórios}\label{low-code-no-code-em-supervisuxf3rios}
 
 A tendência \textbf{low-code/no-code} está democratizando o desenvolvimento de sistemas supervisórios:
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Plataforma
@@ -283,8 +266,7 @@ Ideal para
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{o-futuro-da-profissuxe3o-converguxeancia-tiot}{%
-\section{O Futuro da Profissão: Convergência TI/OT}\label{o-futuro-da-profissuxe3o-converguxeancia-tiot}}
+\section{O Futuro da Profissão: Convergência TI/OT}\label{o-futuro-da-profissuxe3o-converguxeancia-tiot}
 
 O engenheiro de automação do futuro precisa transitar entre dois mundos:
 
@@ -310,8 +292,7 @@ O engenheiro de automação do futuro precisa transitar entre dois mundos:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estudo-de-caso-piloto-de-cloud-scada-em-uma-frota-de-elevatuxf3rias}{%
-\section{\texorpdfstring{Estudo de Caso --- Piloto de Cloud SCADA em uma frota de elevatórias}{Estudo de Caso  Piloto de Cloud SCADA em uma frota de elevatórias}}\label{estudo-de-caso-piloto-de-cloud-scada-em-uma-frota-de-elevatuxf3rias}}
+\section{\texorpdfstring{Estudo de Caso --- Piloto de Cloud SCADA em uma frota de elevatórias}{Estudo de Caso  Piloto de Cloud SCADA em uma frota de elevatórias}}\label{estudo-de-caso-piloto-de-cloud-scada-em-uma-frota-de-elevatuxf3rias}
 
 \textbf{Cenário.} Concessionária com 120 elevatórias de esgoto distribuídas em uma região
 metropolitana. Cada unidade tem um CLP local, comunicação por 4G e inspeção presencial semanal. A
@@ -321,9 +302,9 @@ trocado por supervisão remota sem aumentar o risco de extravasamento?}
 \textbf{Escopo do piloto --- 12 elevatórias, 90 dias.} Três decisões de arquitetura definiram o resto:
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Decisão
@@ -380,8 +361,7 @@ remota apenas transfere para a tela a mesma incerteza que hoje existe na inspeç
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{resumo}{%
-\section{Resumo}\label{resumo}}
+\section{Resumo}\label{resumo}
 
 \begin{itemize}
 \tightlist
@@ -401,8 +381,7 @@ remota apenas transfere para a tela a mesma incerteza que hoje existe na inspeç
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{questuxf5es-de-revisuxe3o}{%
-\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}
 
 \textbf{Conceituais:}
 
@@ -441,8 +420,7 @@ remota apenas transfere para a tela a mesma incerteza que hoje existe na inspeç
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{referuxeancias}{%
-\section{Referências}\label{referuxeancias}}
+\section{Referências}\label{referuxeancias}
 
 \begin{itemize}
 \tightlist

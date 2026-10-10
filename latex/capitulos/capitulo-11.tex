@@ -1,5 +1,4 @@
-\hypertarget{dashboards-e-visualizauxe7uxe3o-de-dados}{%
-\chapter{Dashboards e Visualização de Dados}\label{dashboards-e-visualizauxe7uxe3o-de-dados}}
+\chapter{Dashboards e Visualização de Dados}\label{dashboards-e-visualizauxe7uxe3o-de-dados}
 
 \section*{Objetivos de Aprendizagem}
 
@@ -25,8 +24,7 @@ Ao final deste capítulo, o leitor será capaz de:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{do-dado-ao-indicador}{%
-\section{Do dado ao indicador}\label{do-dado-ao-indicador}}
+\section{Do dado ao indicador}\label{do-dado-ao-indicador}
 
 Um dashboard não é um repositório de números: é um instrumento de decisão. A cadeia que leva do dado bruto à ação tem quatro elos, e cada elo tem sua responsabilidade.
 
@@ -41,9 +39,9 @@ A falha mais comum em dashboards industriais é pular o elo do \textbf{contexto}
 \textbf{Tabela 11.1 -- Vocabulário mínimo do dashboard}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Elemento
@@ -72,18 +70,17 @@ Meta/limite & Referência de comparação & Marcar graficamente no próprio pain
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{hierarquia-de-telas}{%
-\section{Hierarquia de telas}\label{hierarquia-de-telas}}
+\section{Hierarquia de telas}\label{hierarquia-de-telas}
 
 A ISA-101 --- principal referência global para o projeto de \textbf{IHM de alta performance} (Seção 10.6.1) --- organiza as telas de operação em níveis de detalhe. A mesma ideia vale para dashboards web de processo: fundo neutro, cor reservada a alarme e anomalia, e cada nível respondendo a uma pergunta.
 
 \textbf{Tabela 11.2 -- Níveis de detalhe e responsabilidade}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Nível
@@ -114,7 +111,7 @@ A regra prática é \textbf{navegação a dois cliques}: do nível 1 ao dado que
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap11-navegacao-telas.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 11.1  Navegação entre telas: barra de navegação e link horizontal no sinótico}]{../figuras/cap11-navegacao-telas.png}}
 \caption[Figura 11.1 -- Navegação entre telas: barra de navegação e link horizontal no sinótico]{Figura 11.1 -- Navegação entre telas: barra de navegação e link horizontal no sinótico. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~83 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
@@ -127,17 +124,16 @@ de eventos.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{tipos-de-painel-e-quando-usar-cada-um}{%
-\section{Tipos de painel e quando usar cada um}\label{tipos-de-painel-e-quando-usar-cada-um}}
+\section{Tipos de painel e quando usar cada um}\label{tipos-de-painel-e-quando-usar-cada-um}
 
 A escolha do painel depende do tipo de dado e da pergunta.
 
 \textbf{Tabela 11.3 -- Tipo de painel por tipo de dado}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Tipo de dado
@@ -161,7 +157,7 @@ Posição geográfica & Mapa com estado por ponto & Lista sem ordenação \\
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap11-tendencia-real.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 11.2  Tendência de processo com escala fixa e legenda da variável}]{../figuras/cap11-tendencia-real.png}}
 \caption[Figura 11.2 -- Tendência de processo com escala fixa e legenda da variável]{Figura 11.2 -- Tendência de processo com escala fixa e legenda da variável. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~114 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
@@ -171,8 +167,7 @@ escala \textbf{fixa} de 0 a 100, eixo de tempo com hora explícita e legenda nom
 (\passthrough{\lstinline!Nível Tanque 01!}). Um valor instantâneo de 45 seria idêntico em uma subida ou em uma descida; a
 tendência distingue os dois casos em um relance.
 
-\hypertarget{cor-escala-e-precisuxe3o}{%
-\subsection{Cor, escala e precisão}\label{cor-escala-e-precisuxe3o}}
+\subsection{Cor, escala e precisão}\label{cor-escala-e-precisuxe3o}
 
 \begin{itemize}
 \tightlist
@@ -193,9 +188,9 @@ tendência distingue os dois casos em um relance.
 \textbf{Tabela 11.4 -- Antipadrões frequentes e a correção}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Antipadrão
@@ -218,19 +213,18 @@ Filtro sem indicação de contexto & Usuário não sabe o que está vendo & Cabe
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{comparando-plataformas-de-dashboard}{%
-\section{Comparando plataformas de dashboard}\label{comparando-plataformas-de-dashboard}}
+\section{Comparando plataformas de dashboard}\label{comparando-plataformas-de-dashboard}
 
 Não existe vencedor: existe tarefa. A comparação útil é por função.
 
 \textbf{Tabela 11.5 -- Comparação de plataformas de visualização}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 8\tabcolsep) * \real{0.2000}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Plataforma
@@ -263,13 +257,11 @@ A leitura correta dessas linhas: o SCADA \textbf{comanda}, o Grafana \textbf{ana
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{grafana-na-pruxe1tica}{%
-\section{Grafana na prática}\label{grafana-na-pruxe1tica}}
+\section{Grafana na prática}\label{grafana-na-pruxe1tica}
 
 O Grafana é uma plataforma de visualização que consulta fontes externas: ele não armazena os dados de processo (com exceção de configuração e estado de alerta). Isso define o desenho da arquitetura: primeiro o banco de séries temporais, depois o painel.
 
-\hypertarget{fonte-de-dados-influxdb}{%
-\subsection{Fonte de dados: InfluxDB}\label{fonte-de-dados-influxdb}}
+\subsection{Fonte de dados: InfluxDB}\label{fonte-de-dados-influxdb}
 
 A configuração de fonte de dados pode ser feita por interface ou por arquivo de provisionamento. Os dois formatos abaixo são os documentados oficialmente para InfluxDB 1.x e 2.x.
 
@@ -316,8 +308,7 @@ Observações de engenharia:
   No InfluxDB 1.x o campo recomendado é \passthrough{\lstinline!dbName!} (o campo \passthrough{\lstinline!database!} é legado); no 2.x o idioma de consulta é o Flux.
 \end{itemize}
 
-\hypertarget{variuxe1veis-de-dashboard}{%
-\subsection{Variáveis de dashboard}\label{variuxe1veis-de-dashboard}}
+\subsection{Variáveis de dashboard}\label{variuxe1veis-de-dashboard}
 
 Variáveis transformam um dashboard em um instrumento reutilizável: em vez de uma tela por área, uma tela com seletor de área, bomba e período.
 
@@ -339,8 +330,7 @@ Variáveis transformam um dashboard em um instrumento reutilizável: em vez de u
 
 O campo \passthrough{\lstinline!query!} é resolvido pela fonte de dados (por exemplo \passthrough{\lstinline!tag\_values!} para InfluxDB) e \passthrough{\lstinline!refresh!} controla quando a lista é recarregada. Um cuidado de desempenho: variável com \passthrough{\lstinline!refresh: 1!} (a cada carregamento) em painel com muitos usuários gera consultas repetidas --- considerar \passthrough{\lstinline!refresh: 2!} (sob demanda).
 
-\hypertarget{alertas-a-limitauxe7uxe3o-que-pega-todo-mundo}{%
-\subsection{Alertas: a limitação que pega todo mundo}\label{alertas-a-limitauxe7uxe3o-que-pega-todo-mundo}}
+\subsection{Alertas: a limitação que pega todo mundo}\label{alertas-a-limitauxe7uxe3o-que-pega-todo-mundo}
 
 \begin{caixaatencao}
 
@@ -348,8 +338,7 @@ O campo \passthrough{\lstinline!query!} é resolvido pela fonte de dados (por ex
 
 \end{caixaatencao}
 
-\hypertarget{provisionamento-como-cuxf3digo}{%
-\subsection{Provisionamento como código}\label{provisionamento-como-cuxf3digo}}
+\subsection{Provisionamento como código}\label{provisionamento-como-cuxf3digo}
 
 Configurar dashboards à mão não escala e não é auditável. O Grafana aceita provisionamento por arquivo em quatro tipos de recurso: \textbf{fontes de dados, plugins, dashboards e alertas}. Usuários \textbf{não} são provisionados por arquivo --- isso é feito por integração com provedor de identidade.
 
@@ -357,8 +346,7 @@ Na prática: dashboards versionados em Git, provisionados por arquivo, revisados
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estudo-de-caso-dashboard-de-pressuxe3o-temperatura-vazuxe3o-e-nuxedvel}{%
-\section{\texorpdfstring{Estudo de caso --- dashboard de pressão, temperatura, vazão e nível}{Estudo de caso  dashboard de pressão, temperatura, vazão e nível}}\label{estudo-de-caso-dashboard-de-pressuxe3o-temperatura-vazuxe3o-e-nuxedvel}}
+\section{\texorpdfstring{Estudo de caso --- dashboard de pressão, temperatura, vazão e nível}{Estudo de caso  dashboard de pressão, temperatura, vazão e nível}}\label{estudo-de-caso-dashboard-de-pressuxe3o-temperatura-vazuxe3o-e-nuxedvel}
 
 \textbf{Cenário.} Estação elevatória com quatro variáveis principais: pressão de descarga (0--16 bar), temperatura do mancal (0--120 \ensuremath{^\circ}C), vazão (0--420 m³/h) e nível do reservatório (0--6 m). Telemetria publicada em MQTT a cada 5 s; persistida em InfluxDB; visualizada em Grafana.
 
@@ -381,9 +369,9 @@ A \textbf{tag} identifica o ativo (cardinalidade baixa e estável); o \textbf{fi
 \textbf{Painéis do dashboard operacional.}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Painel
@@ -425,7 +413,7 @@ from(bucket: "processo")
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap11-fluxograma-pi.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 11.3  Fluxograma P\&I do processo usado no estudo de caso}]{../figuras/cap11-fluxograma-pi.png}}
 \caption[Figura 11.3 -- Fluxograma P\&I do processo usado no estudo de caso]{Figura 11.3 -- Fluxograma P\&I do processo usado no estudo de caso. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~89 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
@@ -440,8 +428,7 @@ resto é expectativa.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{atividade-pruxe1tica}{%
-\section{Atividade prática}\label{atividade-pruxe1tica}}
+\section{Atividade prática}\label{atividade-pruxe1tica}
 
 Com os dados históricos disponibilizados em um arquivo CSV (ou em um InfluxDB local) contendo pressão, temperatura, vazão e nível de um período de sete dias:
 
@@ -466,8 +453,7 @@ Com os dados históricos disponibilizados em um arquivo CSV (ou em um InfluxDB l
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{resumo}{%
-\section{Resumo}\label{resumo}}
+\section{Resumo}\label{resumo}
 
 \begin{itemize}
 \tightlist
@@ -489,8 +475,7 @@ Com os dados históricos disponibilizados em um arquivo CSV (ou em um InfluxDB l
   Um dashboard industrial mínimo tem quatro variáveis de processo, contexto visual e uma lista de eventos --- não trinta gauges.
 \end{itemize}
 
-\hypertarget{questuxf5es-de-revisuxe3o}{%
-\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -517,8 +502,7 @@ Com os dados históricos disponibilizados em um arquivo CSV (ou em um InfluxDB l
   Um gestor pede um dashboard com dados de 1 segundo de todas as 40 variáveis da planta. Apresente duas objeções técnicas e uma proposta alternativa.
 \end{enumerate}
 
-\hypertarget{referuxeancias}{%
-\section{Referências}\label{referuxeancias}}
+\section{Referências}\label{referuxeancias}
 
 \begin{itemize}
 \tightlist

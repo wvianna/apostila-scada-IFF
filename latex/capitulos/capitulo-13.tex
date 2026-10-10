@@ -1,5 +1,4 @@
-\hypertarget{opc-ua-mqtt-e-sparkplug-b}{%
-\chapter{OPC UA, MQTT e Sparkplug B}\label{opc-ua-mqtt-e-sparkplug-b}}
+\chapter{OPC UA, MQTT e Sparkplug B}\label{opc-ua-mqtt-e-sparkplug-b}
 
 \section*{Objetivos de Aprendizagem}
 
@@ -27,8 +26,7 @@ Ao final deste capítulo, o leitor será capaz de:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{o-problema-conectar-uxe9-fuxe1cil-entender-uxe9-difuxedcil}{%
-\section{O problema: conectar é fácil, entender é difícil}\label{o-problema-conectar-uxe9-fuxe1cil-entender-uxe9-difuxedcil}}
+\section{O problema: conectar é fácil, entender é difícil}\label{o-problema-conectar-uxe9-fuxe1cil-entender-uxe9-difuxedcil}
 
 Um CLP que expõe 4.000 registradores Modbus está ``conectado''. Mas o que é o registrador 40012? É a pressão de descarga da bomba 2? Em que unidade? Está escalado? Qual o valor que significa ``sem medição''?
 
@@ -47,9 +45,9 @@ Modbus e outros protocolos clássicos resolvem o transporte e deixam a semântic
 \textbf{Tabela 13.1 -- Onde cada solução atua}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Camada
@@ -62,9 +60,9 @@ Quem resolve bem
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-Transporte confiável & Entrega da mensagem & TCP, MQTT, OPC UA \\
-Identificação do dado & Qual variável, de qual ativo & OPC UA (espaço de endereços); Sparkplug B (tópico + métricas) \\
-Significado do dado & Tipo, unidade, escala, faixa & OPC UA (modelo de informação); Sparkplug B (payload tipado) \\
+Comunicação & Caminho e serviços de troca de dados & TCP/IP (transporte); Modbus, MQTT e OPC UA (protocolos de aplicação) \\
+Identificação do dado & Qual variável, de qual ativo & OPC UA (espaço de endereços); Sparkplug B (tópico e métricas, conforme a convenção de nomes adotada) \\
+Significado do dado & Tipo, unidade, escala, faixa & OPC UA (modelo de informação); Sparkplug B (métricas tipadas; convenções de unidade e escala precisam ser acordadas) \\
 Qualidade e tempo & Valor válido? De quando? & OPC UA (\emph{status code}, \emph{source timestamp}); Sparkplug B (\emph{timestamp} por métrica) \\
 Comportamento & Como ler, escrever, assinar, descobrir & OPC UA (serviços); Sparkplug B (estado, nascimento/morte) \\
 \end{longtable}
@@ -77,8 +75,7 @@ Comportamento & Como ler, escrever, assinar, descobrir & OPC UA (serviços); Spa
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{opc-ua}{%
-\section{OPC UA}\label{opc-ua}}
+\section{OPC UA}\label{opc-ua}
 
 A \textbf{OPC UA} (\emph{OPC Unified Architecture}) foi lançada pela OPC Foundation em \textbf{2008} e é normalizada como a série \textbf{IEC 62541} (verifique a edição vigente antes de citá-la em projeto). Ela sucedeu o OPC clássico (DCOM) resolvendo três limitações que inviabilizavam seu uso em redes industriais modernas: dependência de Windows/DCOM, dificuldade de atravessar \emph{firewalls} e ausência de um modelo de informação padronizado.
 
@@ -94,7 +91,7 @@ depende de DCOM/Windows e não atravessa \emph{firewall} corporativo de forma se
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap13-opc-arquitetura-logica.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 13.1  Arquitetura lógica do OPC clássico: servidor, grupos e itens}]{../figuras/cap13-opc-arquitetura-logica.png}}
 \caption[Figura 13.1 -- Arquitetura lógica do OPC clássico: servidor, grupos e itens]{Figura 13.1 -- Arquitetura lógica do OPC clássico: servidor, grupos e itens. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~48 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
@@ -104,8 +101,7 @@ no OPC clássico era ``grupo com taxa de leitura'' virou \textbf{sessão com ass
 unidade e qualidade. A herança explica por que tantos clientes OPC UA ainda expõem a leitura
 ``por grupo de itens'': é a tradução direta do modelo antigo.
 
-\hypertarget{modelo-de-informauxe7uxe3o}{%
-\subsection{Modelo de informação}\label{modelo-de-informauxe7uxe3o}}
+\subsection{Modelo de informação}\label{modelo-de-informauxe7uxe3o}
 
 O OPC UA não expõe ``registradores'': expõe um \textbf{espaço de endereços} (\emph{address space}) organizado em \textbf{nós} ligados por \textbf{referências} hierárquicas.
 
@@ -119,14 +115,13 @@ Cada nó tem \textbf{atributos} (valor, tipo, \emph{status code}, \emph{source t
 
 Os \textbf{tipos} vêm de \emph{ObjectTypes} e \emph{VariableTypes} padronizados, e a OPC Foundation publica \textbf{especificações de acompanhamento} (\emph{companion specifications}) por domínio, com numeração própria (séries OPC 3xxxx e 4xxxx). Quando existe uma especificação de acompanhamento para o seu setor, usá-la é o caminho mais curto para interoperar com terceiros.
 
-\hypertarget{serviuxe7os}{%
-\subsection{Serviços}\label{serviuxe7os}}
+\subsection{Serviços}\label{serviuxe7os}
 
 Os serviços são agrupados em conjuntos. Os que aparecem em todo projeto:
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Serviço
@@ -155,8 +150,7 @@ Dois detalhes de engenharia que mudam o resultado do projeto:
   \textbf{\passthrough{\lstinline!StatusCode!} obrigatório.} Todo valor lido carrega um código de status. Um valor ``0,0 bar'' pode ser leitura válida de pressão zero \textbf{ou} indicar que a variável está com qualidade ruim. Tratar os dois casos como iguais é a origem de diagnóstico errado (e de alarme espúrio, como discutido no Capítulo 10).
 \end{itemize}
 
-\hypertarget{seguranuxe7a}{%
-\subsection{Segurança}\label{seguranuxe7a}}
+\subsection{Segurança}\label{seguranuxe7a}
 
 O OPC UA traz segurança no próprio protocolo, o que nenhum protocolo clássico da camada de campo oferece:
 
@@ -178,8 +172,7 @@ O OPC UA traz segurança no próprio protocolo, o que nenhum protocolo clássico
 
 \end{caixaatencao}
 
-\hypertarget{cliente-servidor-e-pubsub}{%
-\subsection{Cliente-servidor e PubSub}\label{cliente-servidor-e-pubsub}}
+\subsection{Cliente-servidor e PubSub}\label{cliente-servidor-e-pubsub}
 
 \begin{center}
 \IfFileExists{../figuras/capitulo-13-m2.pdf}{%
@@ -188,9 +181,9 @@ O OPC UA traz segurança no próprio protocolo, o que nenhum protocolo clássico
 \end{center}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Critério
@@ -221,15 +214,13 @@ A regra prática: \textbf{cliente-servidor para quem conversa com o ativo; PubSu
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{mqtt}{%
-\section{MQTT}\label{mqtt}}
+\section{MQTT}\label{mqtt}
 
 O \textbf{MQTT} (\emph{Message Queuing Telemetry Transport}) é um protocolo publish-subscribe padronizado pela OASIS --- versão \textbf{3.1.1} e versão \textbf{5.0} ---, pensado para enlaces instáveis e dispositivos com poucos recursos.
 
 O desenho é simples: dispositivos \textbf{publicam} em um \textbf{tópico}; o \textbf{broker} entrega a quem \textbf{assinou} aquele tópico (ou um padrão de tópicos). Publisher e subscriber não se conhecem.
 
-\hypertarget{tuxf3picos-e-curingas}{%
-\subsection{Tópicos e curingas}\label{tuxf3picos-e-curingas}}
+\subsection{Tópicos e curingas}\label{tuxf3picos-e-curingas}
 
 Os tópicos são hierárquicos, separados por \passthrough{\lstinline!/!}:
 
@@ -251,13 +242,12 @@ Curinga & Alcance & Exemplo \\
 
 O tópico é \textbf{contrato de interface}: renomear um nível quebra todos os assinantes silenciosamente. Trate a estrutura de tópicos como se fosse o mapa de registradores do seu Modbus --- documentada e versionada.
 
-\hypertarget{recursos-que-definem-o-comportamento}{%
-\subsection{Recursos que definem o comportamento}\label{recursos-que-definem-o-comportamento}}
+\subsection{Recursos que definem o comportamento}\label{recursos-que-definem-o-comportamento}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Recurso
@@ -272,20 +262,26 @@ Cuidado prático
 \endlastfoot
 QoS 0 & Entrega ``no máximo uma vez'' (pode perder) & Aceitável para telemetria de tendência, não para evento \\
 QoS 1 & Entrega ``ao menos uma vez'' (pode duplicar) & O assinante precisa ser idempotente \\
-QoS 2 & Entrega exatamente uma vez (mais custoso) & Use com parcimônia em enlace de campo \\
+QoS 2 & Entrega de acordo com o fluxo de protocolo de maior garantia do MQTT & Não garante, por si só, execução exatamente uma vez do efeito da aplicação \\
 \emph{Retained message} & O broker guarda a última mensagem do tópico e a entrega a novos assinantes & Excelente para ``último valor''; perigoso para dado temporal \\
-\emph{Last will and testament} (LWT) & Mensagem publicada pelo broker quando o cliente cai & É como se detecta ``dispositivo silencioso'' \\
-Sessão persistente & Assinaturas e fila sobrevivem à desconexão & No 5.0 a expiração de sessão é explícita \\
+\emph{Last will and testament} (LWT) & Mensagem que o broker publica se detectar desconexão inesperada do cliente & Ajuda a sinalizar uma desconexão; não substitui monitoramento de disponibilidade ponta a ponta \\
 \end{longtable}
+
+\begin{caixaatencao}
+
+\textbf{Atenção:} \passthrough{\lstinline!SecurityPolicy: None!} não protege a mensagem com assinatura ou criptografia; o controle de acesso a nós depende também da autenticação e das permissões configuradas no servidor. Em rede compartilhada, evite esse modo e valide a política e a lista de confiança. Certificados expirados ou não confiáveis podem impedir a conexão, portanto inclua sua gestão na manutenção.
+\textbar{} Sessão persistente \textbar{} Assinaturas e fila sobrevivem à desconexão \textbar{} No 5.0 a expiração de sessão é explícita \textbar{}
+
+\end{caixaatencao}
 
 A versão 5.0 acrescentou o que faltava para uso industrial: códigos de motivo (\emph{reason codes}), propriedades de usuário, \emph{shared subscriptions} (vários consumidores dividindo a carga de um tópico), apelidos de tópico e expiração de sessão.
 
 \textbf{Tabela 13.2 -- MQTT 3.1.1 \ensuremath{\times} 5.0 (o que muda em projeto industrial)}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Aspecto
@@ -312,21 +308,19 @@ Diagnóstico & Difícil & Propriedades de usuário e fluxo de motivo \\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{sparkplug-b-mqtt-com-regras}{%
-\section{Sparkplug B: MQTT com regras}\label{sparkplug-b-mqtt-com-regras}}
+\section{Sparkplug B: MQTT com regras}\label{sparkplug-b-mqtt-com-regras}
 
 O \textbf{Sparkplug B} é uma especificação mantida pela \textbf{Eclipse Foundation} (versão \textbf{3.0}) que \textbf{define a convenção} que faltava no MQTT industrial: estrutura de tópicos, formato de \emph{payload} e uma máquina de estados para os dispositivos.
 
-\hypertarget{estrutura-de-tuxf3picos}{%
-\subsection{Estrutura de tópicos}\label{estrutura-de-tuxf3picos}}
+\subsection{Estrutura de tópicos}\label{estrutura-de-tuxf3picos}
 
 \begin{lstlisting}
 spBv1.0/<grupo>/<tipo de mensagem>/<edge node>/[device]
 \end{lstlisting}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Tipo de mensagem
@@ -366,8 +360,7 @@ O ganho é direto:
   \textbf{Número de sequência} permite detectar perda de mensagens.
 \end{itemize}
 
-\hypertarget{o-que-o-sparkplug-nuxe3o-resolve}{%
-\subsection{\texorpdfstring{O que o Sparkplug \textbf{não} resolve}{O que o Sparkplug não resolve}}\label{o-que-o-sparkplug-nuxe3o-resolve}}
+\subsection{\texorpdfstring{O que o Sparkplug \textbf{não} resolve}{O que o Sparkplug não resolve}}\label{o-que-o-sparkplug-nuxe3o-resolve}
 
 \begin{itemize}
 \tightlist
@@ -381,18 +374,17 @@ O ganho é direto:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{combinando-as-truxeas-peuxe7as}{%
-\section{Combinando as três peças}\label{combinando-as-truxeas-peuxe7as}}
+\section{Combinando as três peças}\label{combinando-as-truxeas-peuxe7as}
 
 Na prática, os protocolos se sobrepõem em papéis diferentes:
 
 \textbf{Tabela 13.3 -- Comparação para decisão de projeto}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Critério
@@ -437,8 +429,7 @@ Limitação típica & Mais pesado na borda & Sem semântica & Menos flexível qu
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estudo-de-caso-integrauxe7uxe3o-de-uma-frota-de-gateways}{%
-\section{\texorpdfstring{Estudo de caso --- integração de uma frota de gateways}{Estudo de caso  integração de uma frota de gateways}}\label{estudo-de-caso-integrauxe7uxe3o-de-uma-frota-de-gateways}}
+\section{\texorpdfstring{Estudo de caso --- integração de uma frota de gateways}{Estudo de caso  integração de uma frota de gateways}}\label{estudo-de-caso-integrauxe7uxe3o-de-uma-frota-de-gateways}
 
 \begin{caixafigura}
 
@@ -452,9 +443,9 @@ Limitação típica & Mais pesado na borda & Sem semântica & Menos flexível qu
 \textbf{Decisão de arquitetura.}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Necessidade
@@ -495,8 +486,7 @@ Histórico & Historizador assinando OPC UA e consumindo MQTT & Duas fontes, mesm
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{atividade-pruxe1tica}{%
-\section{Atividade prática}\label{atividade-pruxe1tica}}
+\section{Atividade prática}\label{atividade-pruxe1tica}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -517,8 +507,7 @@ Histórico & Historizador assinando OPC UA e consumindo MQTT & Duas fontes, mesm
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{resumo}{%
-\section{Resumo}\label{resumo}}
+\section{Resumo}\label{resumo}
 
 \begin{itemize}
 \tightlist
@@ -540,8 +529,7 @@ Histórico & Historizador assinando OPC UA e consumindo MQTT & Duas fontes, mesm
   Nenhuma dessas tecnologias substitui CLP e SCADA em controle, proteção e segurança funcional.
 \end{itemize}
 
-\hypertarget{questuxf5es-de-revisuxe3o}{%
-\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -568,8 +556,7 @@ Histórico & Historizador assinando OPC UA e consumindo MQTT & Duas fontes, mesm
   Uma planta quer publicar 500 variáveis a cada 100 ms na nuvem, por enlace 4G com franquia. Critique a proposta e proponha uma arquitetura alternativa com OPC UA e Sparkplug.
 \end{enumerate}
 
-\hypertarget{referuxeancias}{%
-\section{Referências}\label{referuxeancias}}
+\section{Referências}\label{referuxeancias}
 
 \begin{itemize}
 \tightlist

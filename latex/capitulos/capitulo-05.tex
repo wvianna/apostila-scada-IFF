@@ -1,5 +1,4 @@
-\hypertarget{redes-e-protocolos-de-comunicauxe7uxe3o-industrial}{%
-\chapter{Redes e Protocolos de Comunicação Industrial}\label{redes-e-protocolos-de-comunicauxe7uxe3o-industrial}}
+\chapter{Redes e Protocolos de Comunicação Industrial}\label{redes-e-protocolos-de-comunicauxe7uxe3o-industrial}
 
 \section*{Objetivos de Aprendizagem}
 
@@ -19,17 +18,16 @@ Ao final deste capítulo, o leitor será capaz de:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{redes-industriais-versus-redes-corporativas}{%
-\section{Redes Industriais versus Redes Corporativas}\label{redes-industriais-versus-redes-corporativas}}
+\section{Redes Industriais versus Redes Corporativas}\label{redes-industriais-versus-redes-corporativas}
 
 As redes industriais possuem requisitos distintos das redes corporativas de TI:
 
 \textbf{Tabela 5.1 -- Comparativo: Rede Corporativa \ensuremath{\times} Rede Industrial}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Critério
@@ -59,8 +57,7 @@ Atualização & Frequente & Raramente (risco de parada) \\
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{modelo-osi-aplicado-uxe0-automauxe7uxe3o}{%
-\section{Modelo OSI Aplicado à Automação}\label{modelo-osi-aplicado-uxe0-automauxe7uxe3o}}
+\section{Modelo OSI Aplicado à Automação}\label{modelo-osi-aplicado-uxe0-automauxe7uxe3o}
 
 O modelo \textbf{OSI} (\emph{Open Systems Interconnection}) de 7 camadas é frequentemente referenciado para classificar os protocolos industriais:
 
@@ -79,26 +76,31 @@ O modelo \textbf{OSI} (\emph{Open Systems Interconnection}) de 7 camadas é freq
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{protocolos-cluxe1ssicos}{%
-\section{Protocolos Clássicos}\label{protocolos-cluxe1ssicos}}
+\section{Protocolos Clássicos}\label{protocolos-cluxe1ssicos}
 
-\hypertarget{modbus}{%
-\subsection{Modbus}\label{modbus}}
+\subsection{Modbus}\label{modbus}
 
 O \textbf{Modbus} foi criado pela Modicon em 1979 e é um dos protocolos mais simples e amplamente suportados no mundo. Sua popularidade se deve à especificação aberta, gratuita e fácil de implementar.
 
 \textbf{Variantes:}
-- \textbf{Modbus RTU:} comunicação serial (RS-232 ou RS-485), codificação binária compacta. Máximo de 247 escravos por barramento RS-485.
-- \textbf{Modbus ASCII:} comunicação serial, codificação hexadecimal. Raramente usado hoje.
-- \textbf{Modbus TCP/IP:} encapsula o Modbus RTU sobre TCP, na porta 502. Permite comunicação via Ethernet com distâncias ilimitadas.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Modbus RTU:} comunicação serial (RS-232 ou RS-485), codificação binária compacta. Máximo de 247 escravos por barramento RS-485.
+\item
+  \textbf{Modbus ASCII:} comunicação serial, codificação hexadecimal. Raramente usado hoje.
+\item
+  \textbf{Modbus TCP:} transporta mensagens do protocolo de aplicação Modbus sobre TCP/IP, normalmente na porta 502. Usa o cabeçalho MBAP e não encapsula simplesmente o quadro serial RTU; o alcance depende da infraestrutura de rede entre os nós.
+\end{itemize}
 
 \textbf{Modelo de dados Modbus:}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Área
@@ -127,7 +129,7 @@ Input Registers (3x) & Word 16 bits & Somente Leitura & Valor de temperatura, co
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap05-mestre-escravo-token.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 5.2  Métodos de acesso ao meio: mestre-escravo e token passing}]{../figuras/cap05-mestre-escravo-token.png}}
 \caption[Figura 5.2 -- Métodos de acesso ao meio: mestre-escravo e token passing]{Figura 5.2 -- Métodos de acesso ao meio: mestre-escravo e token passing. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~31 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
@@ -135,21 +137,26 @@ No método \textbf{mestre-escravo}, o mestre conduz a comunicação e cada instr
 interrogado --- é o modelo do Modbus RTU. No \textbf{token passing}, o direito de transmitir circula entre
 as estações mestre por um quadro especial, o que evita colisão sem precisar de um mestre único.
 
-\hypertarget{profibus}{%
-\subsection{Profibus}\label{profibus}}
+\subsection{Profibus}\label{profibus}
 
 O \textbf{Profibus} (\emph{Process Field Bus}) foi desenvolvido na Alemanha em 1987 e tornou-se o protocolo de fieldbus mais utilizado na Europa para automação discreta e de processo.
 
 \textbf{Variantes:}
-- \textbf{Profibus DP} (\emph{Decentralized Peripherals}): otimizado para comunicação rápida com CLPs e módulos de I/O distribuído. Velocidades até 12 Mbps.
-- \textbf{Profibus PA} (\emph{Process Automation}): para instrumentação de processo em zonas de risco (alimentação e comunicação pelo mesmo par de fios --- barramento intrínseco).
 
-\textbf{Limitações:} padrão aberto e publicado (séries IEC 61158/61784), mas com certificação obrigatória
-para conformidade; não trafega nativamente sobre IP --- a evolução sobre Ethernet é o \textbf{PROFINET};
-e o diagnóstico é menos imediato que o de uma rede IP.
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Profibus DP} (\emph{Decentralized Peripherals}): otimizado para comunicação rápida com CLPs e módulos de I/O distribuído. Velocidades até 12 Mbps.
+\item
+  \textbf{PROFIBUS PA} (\emph{Process Automation}): para instrumentação de processo; dados e alimentação podem compartilhar o mesmo par. O uso em área classificada e a segurança intrínseca dependem do projeto do segmento, das barreiras/acopladores e dos parâmetros dos dispositivos.
+\end{itemize}
 
-\hypertarget{dnp3}{%
-\subsection{DNP3}\label{dnp3}}
+\textbf{Limitações:} padrão aberto e publicado (séries IEC 61158/61784), com requisitos de conformidade
+e certificação definidos pelo ecossistema PROFIBUS; não trafega nativamente sobre IP --- uma opção
+Ethernet industrial é o \textbf{PROFINET}. O diagnóstico depende das ferramentas e da integração
+disponíveis, não apenas de o protocolo usar ou não IP.
+
+\subsection{DNP3}\label{dnp3}
 
 O \textbf{DNP3} (\emph{Distributed Network Protocol 3}) foi desenvolvido para sistemas SCADA de infraestrutura crítica --- energia elétrica, água, óleo e gás. Características:
 
@@ -165,8 +172,7 @@ O \textbf{DNP3} (\emph{Distributed Network Protocol 3}) foi desenvolvido para si
   Norma IEEE Std 1815-2012.
 \end{itemize}
 
-\hypertarget{foundation-fieldbus}{%
-\subsection{Foundation Fieldbus}\label{foundation-fieldbus}}
+\subsection{Foundation Fieldbus}\label{foundation-fieldbus}
 
 O \textbf{Foundation Fieldbus} (FF) leva a lógica de controle para dentro do próprio barramento: os
 instrumentos são inteligentes, comunicam-se entre si e podem executar blocos de controle sem
@@ -175,7 +181,7 @@ passar pelo CLP. Como não existe um mestre único, o direito de uso do meio é 
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap05-fieldbus-foundation.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 5.3  Arquitetura com Foundation Fieldbus}]{../figuras/cap05-fieldbus-foundation.png}}
 \caption[Figura 5.3 -- Arquitetura com Foundation Fieldbus]{Figura 5.3 -- Arquitetura com Foundation Fieldbus. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~29 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
@@ -187,11 +193,9 @@ comunicação precisam compartilhar o cabo.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{protocolos-modernos}{%
-\section{Protocolos Modernos}\label{protocolos-modernos}}
+\section{Protocolos Modernos}\label{protocolos-modernos}
 
-\hypertarget{opc-e-opc-ua}{%
-\subsection{OPC e OPC UA}\label{opc-e-opc-ua}}
+\subsection{OPC e OPC UA}\label{opc-e-opc-ua}
 
 O \textbf{OPC} (\emph{OLE for Process Control}) surgiu em 1996 como padrão de interoperabilidade entre softwares SCADA e CLPs no ambiente Windows. O problema: dependia fortemente de tecnologia Microsoft COM/DCOM, limitando seu uso a redes Windows.
 
@@ -204,7 +208,9 @@ O \textbf{OPC UA} (\emph{Unified Architecture}), lançado em 2008 pela OPC Found
 \item
   \textbf{Modelo de informação orientado a objetos:} dados são expostos como objetos com tipos, métodos e eventos --- muito mais rico que endereços de registradores.
 \item
-  \textbf{Segurança nativa:} TLS/SSL e assinatura de certificados embutidos no protocolo.
+  \textbf{Segurança:} mecanismos definidos pelo OPC UA incluem certificados X.509, autenticação de
+  aplicações e modos de segurança para assinatura e criptografia de mensagens. O perfil efetivo
+  depende da política de segurança, do transporte e da configuração de cliente e servidor.
 \item
   \textbf{Transporte flexível:} TCP binário (eficiente) ou HTTPS/WebSocket (firewall-friendly).
 \item
@@ -226,12 +232,11 @@ O \textbf{OPC UA} (\emph{Unified Architecture}), lançado em 2008 pela OPC Found
 
 \begin{caixanota}
 
-\textbf{Nota:} O OPC UA é hoje o protocolo preferido para integração SCADA-CLP em novos projetos. Todos os grandes fabricantes de CLP (Siemens, Rockwell, Beckhoff, Schneider) oferecem servidores OPC UA nativos em seus equipamentos.
+\textbf{Nota:} OPC UA é uma opção adequada quando a integração SCADA--CLP requer modelo de informação, descoberta e serviços padronizados. A compatibilidade deve ser confirmada por modelo, firmware, licenciamento e perfil suportado; não presuma que todo CLP de qualquer linha tenha servidor OPC UA habilitado.
 
 \end{caixanota}
 
-\hypertarget{mqtt}{%
-\subsection{MQTT}\label{mqtt}}
+\subsection{MQTT}\label{mqtt}
 
 O \textbf{MQTT} (\emph{Message Queuing Telemetry Transport}) foi criado em 1999 pela IBM para telemetria em oleodutos via satélite --- com requisitos de baixo consumo de banda. Hoje é o protocolo dominante para IIoT.
 
@@ -251,23 +256,40 @@ O \textbf{MQTT} (\emph{Message Queuing Telemetry Transport}) foi criado em 1999 
 \end{caixafigura}
 
 \textbf{Características técnicas:}
-- Leve: overhead mínimo (cabeçalho de 2 bytes) --- ideal para dispositivos com memória e banda limitadas.
-- \textbf{QoS} (\emph{Quality of Service}): 3 níveis: 0 (at-most-once), 1 (at-least-once), 2 (exactly-once).
-- \textbf{Retained messages:} o broker armazena o último valor de cada tópico; novos subscribers recebem imediatamente.
-- \textbf{Last Will and Testament (LWT):} mensagem publicada automaticamente se o cliente desconectar inesperadamente --- mecanismo de detecção de falha.
-- Porta padrão: 1883 (TCP) ou 8883 (TLS).
-- \textbf{Sparkplug B:} especificação sobre MQTT com esquema de dados padronizado para IIoT industrial --- define payloads, timestamps e gerenciamento de sessão.
+
+\begin{itemize}
+\tightlist
+\item
+  Leve: overhead mínimo (cabeçalho de 2 bytes) --- ideal para dispositivos com memória e banda limitadas.
+\item
+  \textbf{QoS} (\emph{Quality of Service}): três níveis de entrega de mensagens: 0 (no máximo uma vez), 1 (pelo menos uma vez) e 2 (uma vez no intercâmbio MQTT). QoS 2 não garante que a aplicação execute um efeito de negócio exatamente uma vez após reconexões ou reprocessamento.
+\item
+  \textbf{Retained messages:} o broker armazena o último valor de cada tópico; novos subscribers recebem imediatamente.
+\item
+  \textbf{Last Will and Testament (LWT):} mensagem publicada automaticamente se o cliente desconectar inesperadamente --- mecanismo de detecção de falha.
+\item
+  Portas convencionais: 1883 para MQTT sobre TCP sem TLS e 8883 para MQTT sobre TLS. A segurança depende da configuração de TLS, autenticação e autorização no broker e nos clientes.
+\item
+  \textbf{Sparkplug B:} especificação sobre MQTT com esquema de dados padronizado para IIoT industrial --- define payloads, timestamps e gerenciamento de sessão.
+\end{itemize}
 
 \textbf{Brokers MQTT populares:}
-- \textbf{Mosquitto} (Eclipse Foundation) --- open-source, leve, amplamente usado.
-- \textbf{HiveMQ} --- enterprise, alta escalabilidade, clustering.
-- \textbf{EMQX} --- alta performance, suporte a MQTT 5.0.
-- \textbf{AWS IoT Core, Azure IoT Hub} --- brokers gerenciados na nuvem.
 
-\hypertarget{profinet}{%
-\subsection{PROFINET}\label{profinet}}
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Mosquitto} (Eclipse Foundation) --- open-source, leve, amplamente usado.
+\item
+  \textbf{HiveMQ} --- enterprise, alta escalabilidade, clustering.
+\item
+  \textbf{EMQX} --- alta performance, suporte a MQTT 5.0.
+\item
+  \textbf{AWS IoT Core, Azure IoT Hub} --- brokers gerenciados na nuvem.
+\end{itemize}
 
-O \textbf{PROFINET} é o sucessor do Profibus para redes Ethernet industrial, desenvolvido pela Siemens e padronizado pela PI (PROFIBUS \& PROFINET International).
+\subsection{PROFINET}\label{profinet}
+
+O \textbf{PROFINET} é um padrão de comunicação para Ethernet industrial desenvolvido pela PI (PROFIBUS \& PROFINET International). É uma opção para aplicações que usam PROFIBUS ou outras redes de campo, mas não é uma substituição direta em todos os projetos.
 
 \begin{itemize}
 \tightlist
@@ -279,25 +301,31 @@ O \textbf{PROFINET} é o sucessor do Profibus para redes Ethernet industrial, de
   Compatível com infraestrutura Ethernet padrão (switches, cabos Cat5e/6).
 \end{itemize}
 
-\hypertarget{ethernetip}{%
-\subsection{EtherNet/IP}\label{ethernetip}}
+\subsection{EtherNet/IP}\label{ethernetip}
 
 O \textbf{EtherNet/IP} (\emph{Ethernet Industrial Protocol}) é o protocolo da Rockwell Automation e ODVA para automação discreta. Usa o protocolo CIP (\emph{Common Industrial Protocol}) encapsulado em TCP/UDP/IP. Muito utilizado no ecossistema Allen-Bradley.
 
+Esses protocolos atendem a funções diferentes e podem coexistir na mesma arquitetura. A seleção
+deve considerar aplicação, desempenho, interoperabilidade, segurança, ciclo de vida e capacidade
+de manutenção, não apenas se o protocolo é descrito como clássico ou moderno.
+
+Uma mesma planta pode combinar protocolos de campo e de integração, usando gateways quando as
+interfaces não forem compatíveis. A tabela resume características típicas; a seleção final exige
+verificar versão, perfil, limites, diagnóstico e suporte no equipamento escolhido.
+
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{comparativo-de-protocolos}{%
-\section{Comparativo de Protocolos}\label{comparativo-de-protocolos}}
+\section{Comparativo de Protocolos}\label{comparativo-de-protocolos}
 
 \textbf{Tabela 5.2 -- Principais protocolos industriais: comparativo}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 10\tabcolsep) * \real{0.1667}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 10\tabcolsep) * \real{0.1667}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Protocolo
@@ -317,24 +345,21 @@ Aplicação Principal
 \bottomrule\noalign{}
 \endlastfoot
 Modbus RTU & RS-485 & Barramento & 9,6k--115,2 kbps & Nenhuma nativa & CLP instrumento \\
-Modbus TCP & Ethernet & Estrela/Anel & 10/100 Mbps & Opcional (TLS) & CLP SCADA \\
-Profibus DP & RS-485 & Barramento & até 12 Mbps & Nenhuma & Automação discreta EU \\
+Modbus TCP & Ethernet / TCP/IP & Conforme a rede IP & Limitada pela rede & Modbus Security: TLS & CLP--SCADA \\
+PROFIBUS DP & RS-485 & Barramento & até 12 Mbps & Nenhuma nativa & Automação discreta \\
 DNP3 & Serial / TCP & Barramento / Estrela & variável & SAv5 opcional & SCADA energia/água \\
 OPC DA & Ethernet (DCOM) & Estrela & variável & Windows DCOM & SCADA legado Windows \\
-\textbf{OPC UA} & Ethernet / qualquer & Qualquer & variável & TLS + certificado & SCADA moderno, IIoT \\
-\textbf{MQTT} & Ethernet / 4G / Wi-Fi & Pub/Sub (broker) & variável & TLS opcional & IIoT, telemetria, cloud \\
+\textbf{OPC UA} & Ethernet / IP & Cliente-servidor ou Pub/Sub & variável & X.509; segurança conforme perfil & Integração semântica e troca de dados \\
+\textbf{MQTT} & Ethernet / redes IP & Pub/Sub (broker) & variável & TLS e autorização no broker & IIoT, telemetria, nuvem \\
 PROFINET & Ethernet & Estrela/Anel & 100 Mbps & Opcional & I/O distribuído Siemens \\
 EtherNet/IP & Ethernet & Estrela & 100 Mbps / 1 Gbps & CIPsecurity & I/O Rockwell/AB \\
 \end{longtable}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estudo-de-caso-integrauxe7uxe3o-modbus-opc-ua-mqtt}{%
-\section{\texorpdfstring{Estudo de Caso --- Integração Modbus + OPC UA + MQTT}{Estudo de Caso  Integração Modbus + OPC UA + MQTT}}\label{estudo-de-caso-integrauxe7uxe3o-modbus-opc-ua-mqtt}}
+\section{\texorpdfstring{Estudo de Caso --- Integração Modbus + OPC UA + MQTT}{Estudo de Caso  Integração Modbus + OPC UA + MQTT}}\label{estudo-de-caso-integrauxe7uxe3o-modbus-opc-ua-mqtt}
 
 \textbf{Contexto:} Uma planta química possui CLPs Siemens S7-1500 (OPC UA nativo) e instrumentos de campo com Modbus RTU (transmissores antigos sem Ethernet).
-
-\textbf{Solução de integração:}
 
 \begin{center}
 \IfFileExists{../figuras/capitulo-05-m4.pdf}{%
@@ -344,7 +369,7 @@ EtherNet/IP & Ethernet & Estrela & 100 Mbps / 1 Gbps & CIPsecurity & I/O Rockwel
 
 \begin{figure}
 \centering
-\includegraphics{../figuras/cap05-servidor-driver.png}
+\pandocbounded{\includegraphics[keepaspectratio,alt={Figura 5.6  Integração de múltiplos protocolos em um servidor de supervisão}]{../figuras/cap05-servidor-driver.png}}
 \caption[Figura 5.6 -- Integração de múltiplos protocolos em um servidor de supervisão]{Figura 5.6 -- Integração de múltiplos protocolos em um servidor de supervisão. \textbf{Fonte:} \emph{Livro SCADA --- versão para análise}, p.~25 (Machado, Pontes e Vianna, reproduzida com crédito).}
 \end{figure}
 
@@ -359,8 +384,7 @@ pelo número de equipamentos.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{resumo}{%
-\section{Resumo}\label{resumo}}
+\section{Resumo}\label{resumo}
 
 \begin{itemize}
 \tightlist
@@ -371,7 +395,7 @@ pelo número de equipamentos.
 \item
   \textbf{DNP3} é o padrão para SCADA de infraestrutura crítica (energia, água).
 \item
-  \textbf{OPC UA} é o protocolo preferido para integração moderna SCADA-CLP, com segurança nativa e modelo de informação rico.
+  \textbf{OPC UA} oferece serviços e modelos de informação úteis à integração SCADA--CLP; segurança efetiva requer perfil compatível, certificados e configuração adequada.
 \item
   \textbf{MQTT} domina o IIoT: leve, escalável, arquitetura pub/sub com broker central.
 \item
@@ -380,8 +404,7 @@ pelo número de equipamentos.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{questuxf5es-de-revisuxe3o}{%
-\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}
 
 \textbf{Conceituais:}
 
@@ -420,8 +443,7 @@ pelo número de equipamentos.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{referuxeancias}{%
-\section{Referências}\label{referuxeancias}}
+\section{Referências}\label{referuxeancias}
 
 \begin{itemize}
 \tightlist

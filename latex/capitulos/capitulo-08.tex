@@ -1,5 +1,4 @@
-\hypertarget{seguranuxe7a-em-sistemas-scada}{%
-\chapter{Segurança em Sistemas SCADA}\label{seguranuxe7a-em-sistemas-scada}}
+\chapter{Segurança em Sistemas SCADA}\label{seguranuxe7a-em-sistemas-scada}
 
 \section*{Objetivos de Aprendizagem}
 
@@ -19,26 +18,34 @@ Ao final deste capítulo, o leitor será capaz de:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{ot-security-por-que-uxe9-diferente}{%
-\section{OT Security: Por que é Diferente?}\label{ot-security-por-que-uxe9-diferente}}
+\section{OT Security: Por que é Diferente?}\label{ot-security-por-que-uxe9-diferente}
 
-A cibersegurança em \textbf{OT} (\emph{Operational Technology}) segue princípios distintos da segurança em \textbf{TI} (\emph{Information Technology}). A tríade clássica de segurança \textbf{CIA} (Confidencialidade, Integridade, Disponibilidade) tem pesos diferentes:
+A cibersegurança em \textbf{OT} (\emph{Operational Technology}) segue princípios distintos da segurança em \textbf{TI} (\emph{Information Technology}). A tríade clássica \textbf{CIA} (Confidencialidade, Integridade e Disponibilidade) continua relevante, mas não existe uma ordem universal de prioridade: os impactos sobre segurança de pessoas, meio ambiente, processo e continuidade precisam ser avaliados para cada sistema.
 
-\textbf{Tabela 8.1 -- Prioridades CIA: TI \ensuremath{\times} OT}
+\textbf{Tabela 8.1 -- Ênfases de risco frequentes: TI \ensuremath{\times} OT}
 
-\begin{longtable}[]{@{}lll@{}}
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
-Prioridade & TI (Corporativa) & OT (Industrial) \\
+\begin{minipage}[b]{\linewidth}\raggedright
+Aspecto
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+TI (Corporativa)
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+OT (Industrial)
+\end{minipage} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\textbf{1ª} & Confidencialidade & \textbf{Disponibilidade} \\
-\textbf{2ª} & Integridade & \textbf{Integridade} \\
-\textbf{3ª} & Disponibilidade & Confidencialidade \\
+Impacto frequentemente enfatizado & Exposição de dados e privacidade & Segurança de pessoas, processo e continuidade operacional \\
+Risco de integridade & Alteração de dados ou transações & Comandos ou valores manipulados podem afetar o processo físico \\
+Risco de disponibilidade & Interrupção de serviços e negócios & Perda de supervisão ou controle pode causar consequências físicas e operacionais \\
 \end{longtable}
 
-Na OT, \textbf{parar um sistema pode significar:} explosão em uma refinaria, blackout em uma cidade, contaminação de abastecimento de água, acidentes com operadores. A segurança das \textbf{pessoas} e do \textbf{processo} está acima da confidencialidade dos dados.
+Na OT, \textbf{parar um sistema pode significar} perda de produção, interrupção de serviço essencial ou riscos à segurança de pessoas e ao meio ambiente. A prioridade entre confidencialidade, integridade e disponibilidade depende da análise de risco e do contexto operacional.
 
 \textbf{Outras diferenças críticas:}
 
@@ -62,8 +69,7 @@ Na OT, \textbf{parar um sistema pode significar:} explosão em uma refinaria, bl
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{linha-do-tempo-de-ataques-a-infraestruturas-cruxedticas}{%
-\section{Linha do Tempo de Ataques a Infraestruturas Críticas}\label{linha-do-tempo-de-ataques-a-infraestruturas-cruxedticas}}
+\section{Linha do Tempo de Ataques a Infraestruturas Críticas}\label{linha-do-tempo-de-ataques-a-infraestruturas-cruxedticas}
 
 \begin{caixafigura}
 
@@ -82,13 +88,12 @@ Na OT, \textbf{parar um sistema pode significar:} explosão em uma refinaria, bl
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{principais-vetores-de-ataque}{%
-\section{Principais Vetores de Ataque}\label{principais-vetores-de-ataque}}
+\section{Principais Vetores de Ataque}\label{principais-vetores-de-ataque}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Vetor
@@ -111,15 +116,14 @@ Movimento lateral TI\ensuremath{\rightarrow}OT & Atacante compromete TI e se mov
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{norma-iec-62443}{%
-\section{Norma IEC 62443}\label{norma-iec-62443}}
+\section{Norma IEC 62443}\label{norma-iec-62443}
 
 A \textbf{IEC 62443} (\emph{Security for Industrial Automation and Control Systems}) é a família de normas internacional para cibersegurança em sistemas de automação e controle industrial. É estruturada em quatro séries:
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Série
@@ -138,8 +142,7 @@ Conteúdo
 \textbf{IEC 62443-4} & Componentes & Requisitos para produtos (CLPs, SCADA) \\
 \end{longtable}
 
-\hypertarget{zonas-de-seguranuxe7a-e-condutos}{%
-\subsection{Zonas de Segurança e Condutos}\label{zonas-de-seguranuxe7a-e-condutos}}
+\subsection{Zonas de Segurança e Condutos}\label{zonas-de-seguranuxe7a-e-condutos}
 
 O conceito central da IEC 62443-3-2 é dividir o sistema em \textbf{zonas} (\emph{Security Zones}) e \textbf{condutos} (\emph{Conduits}):
 
@@ -160,19 +163,18 @@ O conceito central da IEC 62443-3-2 é dividir o sistema em \textbf{zonas} (\emp
 \begin{caixafigura}
 
 \textbf{{[}Figura 8.2 -- Modelo de zonas e condutos IEC 62443{]}}
-\emph{Diagrama de zonas concêntricas ou em camadas: Zona Corporativa (exterior) \ensuremath{\rightarrow} DMZ Industrial \ensuremath{\rightarrow} Zona Supervisória \ensuremath{\rightarrow} Zona de Controle \ensuremath{\rightarrow} Zona de Segurança (centro, mais protegida). Firewalls e diodos de dados entre cada zona. Cores indicando nível de segurança crescente.}
+\emph{Diagrama de zonas funcionais conectadas por condutos controlados: Zona Corporativa, DMZ Industrial, Supervisão, Controle e Sistema Instrumentado de Segurança. Mostrar fronteiras, fluxos permitidos e pontos de aplicação de controles, sem atribuir automaticamente um SL às zonas nem sugerir que a criticidade sempre cresce em direção ao centro.}
 
 \end{caixafigura}
 
-\hypertarget{security-levels-sl}{%
-\subsection{Security Levels (SL)}\label{security-levels-sl}}
+\subsection{Security Levels (SL)}\label{security-levels-sl}
 
-A norma define quatro \textbf{Níveis de Segurança} (\emph{Security Level}):
+A IEC 62443 descreve níveis de segurança (\textbf{SL}) associados à capacidade de resistência requerida para um sistema ou componente. A seleção do \textbf{SL-alvo} resulta da análise de risco e dos requisitos de segurança; não se atribui um nível apenas pelo nome ou posição da zona. SL 0 indica ausência de requisitos específicos, e SL 1 a 4 representam capacidades progressivamente maiores contra ameaças intencionais.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 SL
@@ -185,39 +187,36 @@ Descrição
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\textbf{SL 1} & Causas não intencionais & Erros humanos, falhas acidentais \\
-\textbf{SL 2} & Atacantes com baixa habilidade e motivação & Script kiddies, ataques oportunistas \\
-\textbf{SL 3} & Atacantes sofisticados, motivados & Hackers patrocinados por concorrentes \\
-\textbf{SL 4} & Atores estatais, recursos ilimitados & Ataques como Stuxnet \\
+\textbf{SL 1} & Violações casuais ou acidentais & Erros e uso indevido não deliberado \\
+\textbf{SL 2} & Ataques intencionais com meios simples e recursos limitados & Ameaça com competências e motivação limitadas \\
+\textbf{SL 3} & Ataques intencionais com meios sofisticados e recursos moderados & Ameaça com competências e motivação moderadas \\
+\textbf{SL 4} & Ataques intencionais com meios sofisticados e recursos extensos & Ameaça com competências e motivação elevadas \\
 \end{longtable}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{boas-pruxe1ticas-de-seguranuxe7a-em-scada}{%
-\section{Boas Práticas de Segurança em SCADA}\label{boas-pruxe1ticas-de-seguranuxe7a-em-scada}}
+\section{Boas Práticas de Segurança em SCADA}\label{boas-pruxe1ticas-de-seguranuxe7a-em-scada}
 
-\hypertarget{segmentauxe7uxe3o-de-redes}{%
-\subsection{Segmentação de Redes}\label{segmentauxe7uxe3o-de-redes}}
+\subsection{Segmentação de Redes}\label{segmentauxe7uxe3o-de-redes}
 
 \begin{caixafigura}
 
 \textbf{{[}Figura 8.3 -- Segmentação em zonas, com o tráfego permitido e o bloqueado{]}}
-\emph{Diagrama de blocos com quatro zonas empilhadas (corporativa, DMZ industrial, supervisória e de controle), mostrando as setas de tráfego permitido e as bloqueadas. Anotar junto a cada seta o protocolo e a porta, e destacar os pontos de inspeção: firewall industrial e proxy reverso. Incluir legenda com o nível de segurança (SL) de cada zona.}
+\emph{Diagrama de blocos com zonas corporativa, DMZ industrial, supervisória e de controle. Mostrar apenas os fluxos explicitamente permitidos e bloqueados, os pontos de inspeção (firewalls e proxies) e os protocolos/portas do cenário ilustrado. Não pré-atribuir SL às zonas: indicar que os alvos dependem de análise de risco.}
 
 \end{caixafigura}
 
 \begin{itemize}
 \tightlist
 \item
-  Isolar completamente a rede OT da rede corporativa com \textbf{firewall industrial} (ex.: Fortinet FortiGate, Cisco ASA, Schneider Electric ConneXium).
+  Segmentar a rede OT da rede corporativa com \textbf{firewall industrial} e regras explícitas de comunicação; isolamento físico pode ser apropriado em certos casos, mas não substitui a análise dos caminhos de manutenção e troca de dados.
 \item
   Criar \textbf{DMZ Industrial} para sistemas que precisam compartilhar dados com TI (historiador, servidor web de relatórios).
 \item
-  Usar \textbf{diodos de dados} (\emph{data diodes}) em pontos onde apenas fluxo unidirecional é necessário --- fisicamente impossível de hackear de volta.
+  Usar \textbf{diodos de dados} (\emph{data diodes}) quando a arquitetura exigir fluxo unidirecional. Eles impõem uma direção de comunicação no enlace protegido, mas não tornam invulneráveis os sistemas conectados nem eliminam outros caminhos de retorno.
 \end{itemize}
 
-\hypertarget{controle-de-acesso-remoto}{%
-\subsection{Controle de Acesso Remoto}\label{controle-de-acesso-remoto}}
+\subsection{Controle de Acesso Remoto}\label{controle-de-acesso-remoto}
 
 \begin{itemize}
 \tightlist
@@ -237,8 +236,7 @@ Descrição
 
 \end{caixadica}
 
-\hypertarget{gestuxe3o-de-vulnerabilidades-e-patches}{%
-\subsection{Gestão de Vulnerabilidades e Patches}\label{gestuxe3o-de-vulnerabilidades-e-patches}}
+\subsection{Gestão de Vulnerabilidades e Patches}\label{gestuxe3o-de-vulnerabilidades-e-patches}
 
 \begin{itemize}
 \tightlist
@@ -252,8 +250,7 @@ Descrição
   \textbf{EOL Management:} equipamentos sem suporte (End-of-Life) devem ser isolados e substituídos no prazo.
 \end{itemize}
 
-\hypertarget{backup-e-recuperauxe7uxe3o}{%
-\subsection{Backup e Recuperação}\label{backup-e-recuperauxe7uxe3o}}
+\subsection{Backup e Recuperação}\label{backup-e-recuperauxe7uxe3o}
 
 \begin{itemize}
 \tightlist
@@ -265,8 +262,7 @@ Descrição
   Plano de \textbf{DRP} (\emph{Disaster Recovery Plan}) específico para o ambiente OT.
 \end{itemize}
 
-\hypertarget{treinamento-e-cultura-de-seguranuxe7a}{%
-\subsection{Treinamento e Cultura de Segurança}\label{treinamento-e-cultura-de-seguranuxe7a}}
+\subsection{Treinamento e Cultura de Segurança}\label{treinamento-e-cultura-de-seguranuxe7a}
 
 \begin{itemize}
 \tightlist
@@ -286,8 +282,7 @@ Descrição
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{monitoramento-e-resposta-a-incidentes-soc-ot}{%
-\section{Monitoramento e Resposta a Incidentes (SOC OT)}\label{monitoramento-e-resposta-a-incidentes-soc-ot}}
+\section{Monitoramento e Resposta a Incidentes (SOC OT)}\label{monitoramento-e-resposta-a-incidentes-soc-ot}
 
 Responder a um incidente em rede industrial é diferente de responder em rede corporativa: não se
 pode simplesmente desligar o equipamento suspeito se ele estiver operando o processo.
@@ -298,8 +293,7 @@ pode simplesmente desligar o equipamento suspeito se ele estiver operando o proc
 }{\fbox{\parbox{0.9\linewidth}{\small Diagrama Mermaid ainda não renderizado: capitulo-08-m2. Rode scripts/render-mermaid.sh.}}}
 \end{center}
 
-\hypertarget{monitoramento-passivo-da-rede-ot}{%
-\subsection{Monitoramento Passivo da Rede OT}\label{monitoramento-passivo-da-rede-ot}}
+\subsection{Monitoramento Passivo da Rede OT}\label{monitoramento-passivo-da-rede-ot}
 
 Ferramentas de monitoramento OT analisam o tráfego de rede de forma \textbf{passiva} --- sem injetar pacotes --- para:
 
@@ -316,9 +310,9 @@ Ferramentas de monitoramento OT analisam o tráfego de rede de forma \textbf{pas
 \textbf{Soluções especializadas em OT:}
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Ferramenta
@@ -338,8 +332,7 @@ Microsoft Defender for IoT & Microsoft & Integrado ao Azure Sentinel \\
 Nozomi Networks & Nozomi & IA para detecção de anomalias OT \\
 \end{longtable}
 
-\hypertarget{plano-de-resposta-a-incidentes-ot}{%
-\subsection{Plano de Resposta a Incidentes OT}\label{plano-de-resposta-a-incidentes-ot}}
+\subsection{Plano de Resposta a Incidentes OT}\label{plano-de-resposta-a-incidentes-ot}
 
 Em caso de incidente cibernético em ambiente OT:
 
@@ -362,8 +355,7 @@ Em caso de incidente cibernético em ambiente OT:
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{estudo-de-caso-segmentauxe7uxe3o-por-zonas-e-condutos-em-uma-planta-de-muxe9dio-porte}{%
-\section{\texorpdfstring{Estudo de Caso --- Segmentação por zonas e condutos em uma planta de médio porte}{Estudo de Caso  Segmentação por zonas e condutos em uma planta de médio porte}}\label{estudo-de-caso-segmentauxe7uxe3o-por-zonas-e-condutos-em-uma-planta-de-muxe9dio-porte}}
+\section{\texorpdfstring{Estudo de Caso --- Segmentação por zonas e condutos em uma planta de médio porte}{Estudo de Caso  Segmentação por zonas e condutos em uma planta de médio porte}}\label{estudo-de-caso-segmentauxe7uxe3o-por-zonas-e-condutos-em-uma-planta-de-muxe9dio-porte}
 
 \textbf{Cenário.} Planta de processamento contínuo com 340 funcionários. A rede de automação cresceu
 por acumulação ao longo de 15 anos: CLPs, IHM, supervisório, servidor de histórico, estações de
@@ -374,9 +366,9 @@ corporativo ligado a um deles. Não há documentação de endereçamento.
 um firewall: é o \textbf{inventário de ativos com função e criticidade}. Só depois as zonas aparecem.
 
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Zona proposta
@@ -424,17 +416,16 @@ firewall. A segmentação precisa vir acompanhada de registro de tráfego nas fr
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{resumo}{%
-\section{Resumo}\label{resumo}}
+\section{Resumo}\label{resumo}
 
 \begin{itemize}
 \tightlist
 \item
-  Segurança OT prioriza \textbf{disponibilidade} acima de confidencialidade --- ao contrário da TI.
+  Em OT, a análise de risco deve considerar disponibilidade, integridade, confidencialidade e, sobretudo, as consequências à segurança de pessoas e ao processo; não há uma ordenação universal que sirva a todo sistema.
 \item
   Sistemas SCADA foram projetados para disponibilidade, não para segurança; a convergência TI/OT os expôs a ameaças digitais.
 \item
-  A \textbf{IEC 62443} estrutura a segurança industrial em zonas, condutos e níveis de segurança (SL1--SL4).
+  A \textbf{IEC 62443} estrutura a segurança industrial em zonas e condutos e define níveis de segurança; os SL-alvo são selecionados a partir da análise de risco.
 \item
   Boas práticas essenciais: segmentação de rede, DMZ industrial, VPN com MFA, monitoramento passivo e treinamento de operadores.
 \item
@@ -443,8 +434,7 @@ firewall. A segmentação precisa vir acompanhada de registro de tráfego nas fr
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{questuxf5es-de-revisuxe3o}{%
-\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}}
+\section{Questões de Revisão}\label{questuxf5es-de-revisuxe3o}
 
 \textbf{Conceituais:}
 
@@ -483,13 +473,12 @@ firewall. A segmentação precisa vir acompanhada de registro de tráfego nas fr
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\hypertarget{referuxeancias}{%
-\section{Referências}\label{referuxeancias}}
+\section{Referências}\label{referuxeancias}
 
 \begin{itemize}
 \tightlist
 \item
-  IEC 62443: \emph{Security for Industrial Automation and Control Systems} (séries 1 a 4). IEC, 2018--2023.
+  IEC 62443: \emph{Security for Industrial Automation and Control Systems} (séries 1 a 4; consultar a edição vigente de cada parte aplicável no catálogo IEC).
 \item
   NIST SP 800-82 Rev.~3: \emph{Guide to OT Security}. NIST, 2023.
 \item

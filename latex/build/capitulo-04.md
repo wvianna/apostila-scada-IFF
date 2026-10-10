@@ -15,7 +15,10 @@ Ao final deste capítulo, o leitor será capaz de:
 
 ## Componentes de uma Arquitetura SCADA
 
-Uma arquitetura SCADA típica é composta pelos seguintes elementos:
+Uma arquitetura SCADA típica combina dispositivos de campo e controle, redes, serviços de aquisição e
+supervisão, clientes de operação e, quando requerido, historiadores e serviços de integração. A
+figura resume uma configuração possível; os nomes MTU e RTU são mais comuns em telecontrole e não
+representam componentes obrigatórios em toda arquitetura moderna.
 
 ```mermaid
 graph TD
@@ -54,32 +57,33 @@ sobre o processo.
 
 ## RTU — Unidade Terminal Remota
 
-A **RTU** (*Remote Terminal Unit*) é o dispositivo de campo responsável por:
+A **RTU** (*Remote Terminal Unit*) é uma unidade de telecontrole instalada em local remoto. Em
+geral, reúne entradas/saídas, comunicação e capacidade de executar lógica local, mas os recursos
+variam por modelo e aplicação. Suas funções podem incluir:
 
-1. **Coletar** dados dos sensores e instrumentos (entradas analógicas e digitais).
-2. **Executar** lógicas de controle locais simples.
-3. **Transmitir** os dados ao servidor central (MTU) via protocolo SCADA.
-4. **Receber** comandos da MTU e aplicá-los aos atuadores.
+1. **Coletar** dados de sensores e instrumentos.
+2. **Executar** lógica local, quando prevista no projeto.
+3. **Transmitir** dados ao centro por um protocolo de comunicação.
+4. **Receber** comandos e encaminhá-los às saídas, conforme permissões e intertravamentos.
 
-### Características Técnicas
+As quantidades de canais, faixas elétricas, protocolos, alimentação e temperatura admissível são
+características do modelo escolhido, não uma definição geral de RTU; devem ser conferidas na folha
+de dados.
 
-| Parâmetro | Valores Típicos |
-|---|---|
-| Entradas analógicas | 4–64 canais, 4-20 mA / ±10 V |
-| Entradas digitais | 8–256 pontos, 24 VCC / 120 VCA |
-| Saídas analógicas | 2–16 canais, 4-20 mA |
-| Saídas digitais | 4–64 relés ou transistores |
-| Protocolos suportados | Modbus RTU/TCP, DNP3, IEC 60870-5-101/104 |
-| Alimentação | 12–48 VCC (bateria + painel solar em campo remoto) |
-| Temperatura operação | -40°C a +70°C |
+### Módulo de I/O remoto não é necessariamente uma RTU
 
-### RTU vs. CLP no Papel de RTU
+Um **módulo de I/O remoto** (*remote I/O*) concentra canais distribuídos e os comunica a um
+controlador. Em geral, não executa por si só a lógica de controle nem desempenha as funções de
+telemetria e operação autônoma de uma RTU. Se apenas expande a E/S de um CLP, é um módulo remoto; se
+também adquire dados, comunica-se com o centro e executa funções locais, pode atuar como RTU. Há
+equipamentos híbridos: verifique a documentação e o comportamento durante a perda de comunicação.
 
-Em instalações modernas, **CLPs de pequeno porte** frequentemente substituem RTUs tradicionais, pois oferecem maior capacidade de processamento e conectividade Ethernet nativa. A escolha entre RTU dedicada e CLP depende de:
+### RTU vs. CLP em telecontrole
 
-- **Consumo energético:** RTUs consomem menos energia — essencial em locais com energia solar.
-- **Robustez ambiental:** RTUs certificadas para ambientes extremos (offshore, subestações).
-- **Custo:** CLPs de pequeno porte (ex.: Siemens S7-1200 Basic) são competitivos.
+CLPs podem atender a aplicações de telecontrole, assim como RTUs podem executar lógicas locais. A
+escolha deve comparar consumo do conjunto, autonomia, protocolos, manutenção, expansão de E/S,
+requisitos ambientais e comportamento durante falhas. Baixo consumo ou certificação ambiental não
+são garantidos apenas pelo rótulo RTU; confirme as características do modelo para o local de uso.
 
 > 💡 **Dica:** Em aplicações de telemetria de água e saneamento, é comum encontrar RTUs com comunicação GPRS/4G incorporada, alimentadas por painel solar e bateria, operando sem intervenção por meses. Fabricantes como Advantech, Emerson (Bristol) e SEL atendem bem esse nicho.
 
@@ -87,7 +91,10 @@ Em instalações modernas, **CLPs de pequeno porte** frequentemente substituem R
 
 ## MTU — Unidade Terminal Mestre
 
-A **MTU** (*Master Terminal Unit*) é o **servidor central** do sistema SCADA. Suas funções:
+A **MTU** (*Master Terminal Unit*) é um termo tradicional para a unidade mestre de um sistema de
+telecontrole. Em arquiteturas atuais, suas funções podem estar distribuídas entre servidores
+SCADA, front-ends de comunicação e outros serviços. Quando o termo é usado, costuma identificar o
+componente que coordena a comunicação com RTUs e concentra dados e comandos:
 
 - **Polling:** interroga periodicamente cada RTU/CLP para coletar dados.
 - **Banco de dados em tempo real (RTDB):** mantém na memória o estado atual de todas as variáveis do sistema.
@@ -98,10 +105,12 @@ A **MTU** (*Master Terminal Unit*) é o **servidor central** do sistema SCADA. S
 
 ### Redundância da MTU
 
-Em sistemas críticos (energia elétrica, óleo e gás, água), a MTU opera em configuração **ativo-passivo** ou **ativo-ativo**:
+Para requisitos elevados de disponibilidade, a arquitetura pode incluir redundância **ativo-passivo**
+ou serviços **ativo-ativos**. O comportamento depende do produto, da topologia e do que está
+sincronizado; redundância de servidor, isoladamente, não garante continuidade de todos os serviços:
 
-- **Ativo-passivo:** Servidor primário em operação; o secundário sincroniza continuamente o banco de dados em tempo real. Em caso de falha, assume em segundos (failover).
-- **Ativo-ativo:** Dois servidores processam dados simultaneamente; os clientes HMI recebem de ambos.
+- **Ativo-passivo:** um nó atende às funções principais e outro fica pronto para assumir. Verifique o que é replicado, os critérios de detecção e o tempo de comutação especificado e testado.
+- **Ativo-ativo:** os nós atendem simultaneamente a serviços ou cargas definidas pela arquitetura. A distribuição de clientes e a recuperação de sessão variam entre implementações.
 
 > 🖼️ **[Figura 4.2 – Configuração redundante de servidores SCADA]**
 > *Diagrama mostrando dois servidores SCADA (Primário e Backup) conectados por link dedicado de sincronização. As RTUs de campo conectam-se aos dois servidores. Os clientes HMI recebem dados do servidor ativo. Seta pontilhada indicando o failover automático.*
@@ -114,11 +123,19 @@ O **historiador de processo** é um banco de dados especializado em armazenar s�
 
 ### Por que não usar SQL convencional?
 
-Bancos de dados relacionais (SQL Server, PostgreSQL) são inadequados para a escala de dados industriais:
+Bancos relacionais podem armazenar dados temporais e são adequados a várias aplicações industriais.
+Em altas taxas de ingestão, muitos anos de retenção ou consultas repetidas por intervalo, um
+historiador especializado ou banco de séries temporais pode reduzir o esforço de armazenamento,
+compressão e consulta. A escolha depende da escala, dos requisitos de integridade e das competências
+da equipe:
 
 - Uma planta com 10.000 tags coletados a cada segundo gera **864 milhões de registros por dia**.
-- Bancos relacionais não comprimem séries temporais eficientemente.
-- Queries de tendência histórica são lentas em SQL não otimizado para séries temporais.
+- Sem particionamento, compressão e índices adequados, o volume pode aumentar o custo de armazenamento e manutenção.
+- Consultas temporais repetidas podem exigir modelagem e otimização que soluções especializadas já oferecem.
+
+Isso não significa que todo banco SQL seja inadequado: particionamento, extensões para séries
+temporais e infraestrutura dimensionada podem atender ao caso. Compare com uma carga representativa
+e consultas reais.
 
 ### Soluções de Historização
 
@@ -254,7 +271,7 @@ igual ao tempo de varredura do CLP.
 - **SCADA:** Servidor central com ScadaBR (open-source) + módulo de relatórios. Interface web para acesso da equipe de operação e manutenção via tablets.
 - **Histórico:** InfluxDB para séries temporais + Grafana para dashboards de consumo e OEE das bombas.
 
-**Resultados:** redução de 35% nas perdas comerciais (detecção de vazamentos), tempo médio de resposta a falhas caiu de 4 horas para 25 minutos.
+**Resultados esperados no cenário didático:** maior visibilidade do estado das estações, priorização mais rápida de falhas e disponibilidade de dados históricos para investigar desvios. Não são métricas de uma implantação real; estimativas de economia ou tempo de resposta exigiriam dados de referência e validação em campo.
 
 > 🖼️ **[Figura 4.8 – Arquitetura do SCADA de saneamento]**
 > *Diagrama da arquitetura completa do estudo de caso: mapa geográfico esquemático da cidade com as 35 estações; link 4G até o centro de controle; servidor SCADA, InfluxDB e Grafana; estações de operação e acesso mobile.*
@@ -263,9 +280,9 @@ igual ao tempo de varredura do CLP.
 
 ## Resumo
 
-- A arquitetura SCADA é composta por RTUs de campo, infraestrutura de comunicação, MTU (servidor central), historiador e estações de operação.
-- **RTUs** coletam dados do campo; a **MTU** centraliza, processa e distribui para os clientes.
-- O **historiador de processo** armazena séries temporais; soluções modernas como InfluxDB são alternativas open-source ao AVEVA PI.
+- Uma arquitetura SCADA integra campo/controle, comunicação, aquisição e serviços de supervisão; MTU e RTU são termos tradicionais de telecontrole, não blocos obrigatórios em todos os sistemas.
+- **RTUs** podem reunir E/S, comunicação e lógica local; módulos de I/O remoto normalmente expandem os canais de um controlador.
+- A escolha entre historiador dedicado, banco de séries temporais ou relacional depende de volume, retenção, integridade, consulta e capacidade de operação.
 - A arquitetura deve ser dimensionada conforme criticidade: desde monolítica (simples) até redundante com failover automático (infraestruturas críticas).
 - A comunicação pode usar fibra, Ethernet, rádio ou 4G — cada meio com trade-offs de custo, velocidade e confiabilidade.
 
